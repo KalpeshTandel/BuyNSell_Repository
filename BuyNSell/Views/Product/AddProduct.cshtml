@@ -1,0 +1,81 @@
+﻿
+@model BuyNSell.Models.ProductMaster
+
+@{
+    ViewBag.Title = "AddProduct";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+
+<div style="border:solid; margin:2% 30% 0% 30%; padding:2% 6% 5% 7%; border-radius:50px">
+ <h2 style="padding-left:28%">Add Product</h2>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        @*<div style="padding-bottom:5%">
+          <img src="/Product/ShowPhoto/100" alt="" />
+        </div>*@
+
+
+
+        <div style="padding-bottom:5%">
+            @Html.Label("Product Name", new { @class = "Label", style = "padding-right: 16%;" })
+            @Html.TextBoxFor(m => m.ProductName, new { placeholder = "Product Name" })
+            @Html.ValidationMessageFor(m => m.ProductName, "", new { @class = "ErrorMsg" })
+        </div>
+
+        <div style="padding-bottom:5%">
+            @Html.Label("Product Description", new { @class = "Label", style = "padding-right: 6%;" })
+            @Html.TextAreaFor(m => m.ProductDescription, new { placeholder = "Product Description" })
+            @Html.ValidationMessageFor(m => m.ProductDescription, "", new { @class = "ErrorMsg" })
+        </div>
+
+        <div style="padding-bottom:5%">
+            @Html.Label("Product Category", new { @class = "Label", style = "padding-right: 10%;" })
+            @Html.DropDownListFor(m => m.ProductCategoryId, new SelectList(ViewBag.CategoryList,"Value","Text"),"Select Category")
+            @Html.ValidationMessageFor(m => m.ProductCategoryId, "", new { @class = "ErrorMsg" })
+        </div>
+
+        <div style="padding-bottom:5%">
+            @Html.Label("Price", new { @class = "Label", style = "padding-right: 10%;" })
+            @Html.TextBoxFor(m => m.Price, new { placeholder = "Quantity" })
+            @Html.ValidationMessageFor(m => m.Price, "", new { @class = "ErrorMsg" })
+        </div>
+
+
+        <div style="padding-bottom:5%">
+            @Html.Label("Product Quantity", new { @class = "Label", style = "padding-right: 10%;" })
+            @Html.TextBoxFor(m => m.Quantity, new { placeholder = "Quantity" })
+            @Html.ValidationMessageFor(m => m.Quantity, "", new { @class = "ErrorMsg" })
+        </div>
+
+        <div style="padding-bottom:5%">
+            @Html.Label("Product Pictures", new { @class = "Label", style = "padding-right: 1%;" })
+            <input type="file" name="SelectPicture1" id="SelectPicture1" style="margin-left:40%"/>
+
+            <input type="file" name="SelectPicture2" id="SelectPicture2" style="margin-left:40%" />
+
+            <input type="file" name="SelectPicture2" id="SelectPicture2" style="margin-left:40%" />
+
+            @*@Html.TextBoxFor(m => m.ProductPicture, new {type="file",multiple="multiple" })*@
+            @*@Html.ValidationMessageFor(m => m.ProductPicture, "", new { @class = "ErrorMsg" })*@
+        </div>
+
+        <div style="padding:10% 15% 0% 5%">
+            <input type="submit" value="Add Product" class="SubmitButton" style="width:100%" />
+        </div>
+
+
+
+
+    }
+
+</div>
+</body>
+</html>

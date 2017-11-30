@@ -1,0 +1,97 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>BuyNSell</title>
+    <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/MyScript.js"></script>
+</head>
+
+<body>
+    <div style="width:100%; display:flex; background-color:#70A2AB">
+        <div style="width:20%">
+       @*     @Html.ActionLink("BuyNSell", "Index", "Home", new { @class = "Homeicon" })*@
+            <a href="@Url.Action("Home","Home")">
+                <img src="~/Images/BuyNSell.jpg" style="width:70%"/>
+            </a> 
+        </div>
+
+        <div style="width:80%">
+            
+            <div style="height:50%; display:flex">
+                <div style="padding-left:20%; width:80%">
+                    <label style="font-size:250%">India's MegaStore</label>
+                </div>
+                <div style="width:20%;padding-top: 1%;">
+                    <label style="font-size: 23px;">Welcome @Session["FirstName"]</label>
+                </div>
+            </div>
+
+            <div style="height:50%; display:flex">
+
+               <div id="divCategory" class="divMenu" >
+                   @Html.ActionLink("Category","Index","Home",new { @class= "MenuItem" })                  
+               </div>
+                
+                <div id="divMyProducts" class="divMenu">
+                    @Html.ActionLink("My products", "MyProducts", "Product",null, new { @class = "MenuItem" })
+                </div>
+
+                <div class="divMenu">
+                    @Html.ActionLink("My Orders", "Index", "Home",null, new { @class = "MenuItem" })
+                </div>
+
+                <div class="divMenu">
+                    @Html.ActionLink("My Cart", "Index", "Home",null, new { @class = "MenuItem" })
+                </div>
+
+                <div class="divMenu" >
+                    @Html.ActionLink("My Profile", "Index", "Home",null, new { @class = "MenuItem" })
+                </div>
+            </div>
+
+            @*<div style="height:50%; display:flex">
+           <ul>
+               <li>
+                   @Html.ActionLink("Category", "Index", "Home")
+               </li>
+               <li>
+                   @Html.ActionLink("My products", "Index", "Home")
+               </li>
+               <li>
+                   @Html.ActionLink("My Cart", "Index", "Home")
+               </li>
+               <li>
+                   @Html.ActionLink("My Profile", "Index", "Home")
+               </li>
+           </ul>
+        </div>*@
+        
+
+    </div>
+</div>
+    <div id="divCategoryItems" style="margin-left: 20%;" class="divSubMenu">
+        @Html.ActionLink("Mobiles", "Index", "Home",null, new { @class = "MenuItem" })
+        @Html.ActionLink("Electronics", "Index", "Home",null, new { @class = "MenuItem" })
+        @Html.ActionLink("Computers", "Index", "Home",null, new { @class = "MenuItem" })
+    </div>
+
+    <div id="divAddProducts" style="margin-left:36%;" class="divSubMenu">
+        @Html.ActionLink("Add Product", "AddProduct", "Product", null,new { @class= "MenuItem" })
+    </div>
+
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
+<footer>
+    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+</footer>

@@ -1,0 +1,70 @@
+﻿
+
+@*@model BuyNSell.Models.ViewModels.ProductList_ViewModel*@
+
+@model IEnumerable<BuyNSell.Models.ViewModels.ProductList_ViewModel>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@*<h2>Home</h2>*@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/MyScript.js"></script>
+</head>
+<body>
+
+
+    <div id="divSearch" style="border:solid; border-radius:10px; padding:1%; margin:1%">
+        <label>Product Name</label>
+        <input type="text" id="txtProductName" placeholder="Product Name" />
+        <button id="btnSearch">Search</button>
+    </div>
+
+    <div id="divPageSize" style="margin-left:74%;">
+        <label id="lblPageSize" style="font-weight:bold; font-size:20px">Products Per Page</label>
+        <select id="ddlPageSize" style="font-size:17px;font-weight: bold;width: 32%;padding-left: 7%;">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+        </select>
+    </div>
+
+    <div id="divSearchResult">
+ 
+        @Html.Partial("_ProductList")
+
+    @*@foreach (var item in Model)
+    {
+        <div id="divResultRow" style="border:solid; height:30%; border-radius:10px; padding:1%; margin:1%; display:flex">
+
+            <div id="divpicture">
+                <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent1)" style="height:150px;width:250px;" />
+            </div>
+            <div id="divPrice" style="margin-top:4%;margin-left:1%" class="LabelProductList">
+                @Html.DisplayFor(m => item.ProductName)
+            </div>
+
+
+        </div>
+    }*@
+
+
+
+
+    </div>
+
+
+    <div id="divPaging" style="margin-left:41%">
+
+        <button id="btnPreviousPage">PreviousPage</button>
+        <button id="btnNextPage">NextPage</button>
+
+    </div>
+
+
+    </body>
+</html>

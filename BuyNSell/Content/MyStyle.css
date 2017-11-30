@@ -1,0 +1,59 @@
+﻿body {
+}
+
+
+
+.Label{
+padding-right:5%;
+font-weight:bold
+}
+
+.SubmitButton{
+    border-color: white;
+    padding: 3px 10px 3px 13px;
+    font-size: 16px;
+    background-color: cornflowerblue;
+    border-radius: 10px;
+}
+
+
+.ErrorMsg{
+    color:red;
+}
+
+.Homeicon{
+    width: 15%;
+    height: 2%;
+}
+
+
+.MenuItem{
+    font-size: 25px;
+    margin-left: 25%;
+    text-decoration: none;
+}
+
+.divMenu{
+    margin-top:1%;
+    width:20%;
+    height:100%;
+}
+
+/*.divCategoryItemsShow{
+    display:block;
+
+}*/
+
+.divSubMenu{
+    display:none;
+    width:15%;
+    background-color: #70A2AB;
+    position:absolute;
+    padding-bottom:1%
+}
+
+
+.LabelProductList{
+    font-size:25px;
+    font-weight:bold;
+}

@@ -1,0 +1,63 @@
+﻿
+@model BuyNSell.Models.ViewModels.UserMaster_Login_ViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    
+    <div style="border:solid; margin:6% 35% 0% 30%; padding:2% 6% 5% 7%; border-radius:50px">
+       
+        <h2 style="padding-left:28%">LogIn</h2>
+        <div>
+          @Html.ValidationSummary(true,"", new { @class = "ErrorMsg",style= "list-style-type: none;" })  
+        </div> 
+   @using(Html.BeginForm())
+   {
+        <div style="padding-bottom:10%">
+        @Html.LabelFor(m => m.EmailId, new { @class="Label" })
+        @Html.TextBoxFor(m => m.EmailId, new { placeholder = "Email Id" })
+        @Html.ValidationMessageFor(m => m.EmailId,"",new {@class = "ErrorMsg" })
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Password, new { @class="Label",style= "padding-right: 2%;" })
+            @Html.PasswordFor(m => m.Password,new { placeholder="Password"})
+            @Html.ValidationMessageFor(m => m.Password,"", new { @class = "ErrorMsg" })
+        </div>
+        
+        <div style="padding:10% 25% 1% 10%">
+            <input type="submit" value="LogIn" class="SubmitButton" style="width:100%" />
+        </div>
+    
+        }
+
+        <div style="margin:20% 2% 0% 0%; display:inline-flex">
+          <div>
+              <label style="font-weight:bold">No Have Account?</label>
+
+          </div>
+            
+           <div style="padding-left:5%">
+               <input type="button" value="SignUp" class="SubmitButton" onclick="location.href='@Url.Action("Signup","Login")'" style="margin-top:-7%" />
+           </div>
+           
+        </div>
+
+    </div>
+</body>
+</html>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+

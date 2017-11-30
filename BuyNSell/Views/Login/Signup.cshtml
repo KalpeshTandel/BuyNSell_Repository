@@ -1,0 +1,72 @@
+﻿
+@model BuyNSell.Models.UserMaster
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Signup</title>
+</head>
+<body>
+    <div style="border:solid; margin:2% 30% 0% 30%; padding:2% 6% 5% 7%; border-radius:50px">
+        <h2 style="padding-left:28%">SignUp</h2> 
+        
+        @using (Html.BeginForm())
+        {
+            <div style="padding-bottom:10%">
+               @Html.Label("First Name",new { @class="Label",style= "padding-right: 16%;" })
+               @Html.TextBoxFor(m => m.FirstName, new { placeholder="First Name"})
+                @Html.ValidationMessageFor(m => m.FirstName,"",new { @class= "ErrorMsg" })
+            </div>
+
+            <div style="padding-bottom:10%">
+                @Html.Label("Last Name", new { @class = "Label", style = "padding-right: 17%;" })
+                @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name" })
+                @Html.ValidationMessageFor(m => m.LastName,"", new { @class = "ErrorMsg" })
+            </div>
+
+            <div style="padding-bottom:10%">
+                @Html.Label("Email Id", new { @class = "Label", style = "padding-right: 21%;" })
+                @Html.TextBoxFor(m => m.EmailId, new { placeholder = "Email Id" })
+                @Html.ValidationMessageFor(m => m.EmailId,"", new { @class = "ErrorMsg",style= "padding-left: 48%;" })
+            </div>
+
+            <div style="padding-bottom:10%">
+                @Html.Label("Mobile Number", new { @class = "Label", style = "padding-right: 8%;" })
+                @Html.TextBoxFor(m => m.MobileNum, new { placeholder = "Mobile Number" })
+                @Html.ValidationMessageFor(m => m.MobileNum,"", new { @class = "ErrorMsg",style= "padding-left: 42%;" })
+            </div>
+
+            <div style="padding-bottom:10%">
+                @Html.Label("Password", new { @class = "Label", style = "padding-right: 20%;" })
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password,"", new { @class = "ErrorMsg" })
+            </div>
+
+            <div style="padding-bottom:10%">
+                @Html.Label("Confirm Password", new { @class = "Label", style = "padding-right: 2%;" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword,"", new { @class = "ErrorMsg" })
+            </div>
+
+            <div style="padding:10% 15% 0% 5%">
+                <input type="submit" value="SignUp" class="SubmitButton" style="width:100%" />
+            </div>
+
+
+        }
+
+            </div>
+</body>
+
+
+</html>
+
+@Scripts.Render("~/bundles/jqueryval")

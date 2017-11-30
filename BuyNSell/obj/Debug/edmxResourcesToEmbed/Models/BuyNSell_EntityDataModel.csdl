@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BuyNSell_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserTypeId" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="UserTypeMaster">
+    <Key>
+      <PropertyRef Name="UserTypeId" />
+    </Key>
+    <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Deleted" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="BuyNSell_DbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
+    <EntitySet Name="UserTypeMasters" EntityType="Self.UserTypeMaster" />
+    <EntitySet Name="ProductCategoryMasters" EntityType="BuyNSell_Model.ProductCategoryMaster" />
+    <EntitySet Name="ProductMasters" EntityType="BuyNSell_Model.ProductMaster" />
+    <EntitySet Name="PictureMasters" EntityType="BuyNSell_Model.PictureMaster" />
+  </EntityContainer>
+  <EntityType Name="ProductCategoryMaster">
+    <Key>
+      <PropertyRef Name="ProductCategoryId" />
+    </Key>
+    <Property Name="ProductCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ProductMaster">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="ProductCategoryId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Deleted" Type="Boolean" />
+    <Property Name="AddedDate" Type="DateTime" Precision="3" />
+    <Property Name="PictureContent1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ContentType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PictureContent2" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ContentType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PictureContent3" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ContentType3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PictureMaster">
+    <Key>
+      <PropertyRef Name="PictureId" />
+    </Key>
+    <Property Name="PictureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PictureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="PictureContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Deleted" Type="Boolean" />
+  </EntityType>
+</Schema>

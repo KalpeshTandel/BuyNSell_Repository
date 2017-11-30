@@ -1,0 +1,36 @@
+﻿
+
+
+@model IEnumerable<BuyNSell.Models.ViewModels.ProductList_ViewModel>
+
+
+
+
+<div id="divProductList" style="margin:1% 1% 1% 1%; padding:1% 1% 1% 1%">
+
+
+
+    @foreach (var item in Model)
+    {
+        <div id="divResultRow" style="border:solid; height:30%; border-radius:10px; padding:1%; margin:1%; display:flex">
+
+            <div id="divSrNo">
+                @Html.DisplayFor(m => item.SrNo)
+            </div>
+
+            <div id="divpicture">
+                <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent1)" style="height:150px;width:250px;" />
+            </div>
+            <div id="divPrice" style="margin-top:4%;margin-left:1%" class="LabelProductList">
+                @Html.DisplayFor(m => item.ProductName)
+            </div>
+
+
+        </div>
+    }
+
+
+
+
+</div>
+

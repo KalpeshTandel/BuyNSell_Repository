@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    <title>LogInAgain</title>
+</head>
+<body>
+    <div style="border:solid; margin:11% 35% 11% 35%; border-radius:50px;padding: 3% 0% 5% 4%;">
+
+        <label style="font-size: 20px;font-weight: bold;">Please kindly LogIn Or SignUp First</label>
+        
+        <div style="margin-right: 22%;margin-top: 15%;">
+            <button class="SubmitButton" style="width:100%" onclick="location.href='@Url.Action("Login","login")'">Click Here To LogIn Or SignUp</button>
+        </div>
+        
+         
+    </div>
+</body>
+</html>
