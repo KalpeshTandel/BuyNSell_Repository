@@ -121,7 +121,7 @@ namespace BuyNSell.Controllers
         {
             try
             {
-                Session["PageNumber"] = 1;
+                Session["PageNumber11"] = 1;
                 Session["PageSize"] = PageSize;
                 int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
                 int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
