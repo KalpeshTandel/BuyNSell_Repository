@@ -88,7 +88,7 @@ $(document).ready(function () {
 
 
 
-    $("#ddlPageSize").change(function () {
+    $("#ddlPageSize").change(function ()  {
         debugger;
         var txtProductName = $("#txtProductName").val();
         SearchText = "And ProductName Like '%" + txtProductName + "%'";
