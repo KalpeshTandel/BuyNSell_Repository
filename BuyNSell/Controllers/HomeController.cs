@@ -8,7 +8,6 @@ using BuyNSell.Models;
 using BuyNSell.Models.ViewModels;
 using BuyNSell.Controllers.DataAccess;
 
-//Hiii Shruti 10.14AM
 
 namespace BuyNSell.Controllers
 {
