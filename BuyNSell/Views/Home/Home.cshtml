@@ -24,14 +24,29 @@
         <button id="btnSearch">Search</button>
     </div>
 
-    <div id="divPageSize" style="margin-left:74%;">
-        <label id="lblPageSize" style="font-weight:bold; font-size:20px">Products Per Page</label>
-        <select id="ddlPageSize" style="font-size:17px;font-weight: bold;width: 32%;padding-left: 7%;">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-        </select>
-    </div>
+
+
+        <div id="divSortBy" style="margin-left:55%;">
+            <label id="lblSortBy" style="font-weight:bold; font-size:20px">Sort By</label>
+            <select id="ddlSortBy" style="font-size:17px;font-weight: bold;width: 26%;padding-left: 1%;">
+                <option value="ProductName">Product Name</option>
+                <option value="AddedDate Desc">Newest First</option>
+                <option value="Price">Price</option>
+            </select>
+        </div>
+
+
+        <div id="divPageSize" style="margin-left:74%;">
+            <label id="lblPageSize" style="font-weight:bold; font-size:20px">Products Per Page</label>
+            <select id="ddlPageSize" style="font-size:17px;font-weight: bold;width: 32%;padding-left: 7%;">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
+        </div>
+
+
+    
 
     <div id="divSearchResult">
  
@@ -56,15 +71,6 @@
 
 
     </div>
-
-
-    <div id="divPaging" style="margin-left:41%">
-
-        <button id="btnPreviousPage">PreviousPage</button>
-        <button id="btnNextPage">NextPage</button>
-
-    </div>
-
 
     </body>
 </html>

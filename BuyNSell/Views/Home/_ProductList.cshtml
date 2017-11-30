@@ -1,12 +1,22 @@
 ﻿
-
-
 @model IEnumerable<BuyNSell.Models.ViewModels.ProductList_ViewModel>
 
 
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/MyScript.js"></script>
+</head>
+
+<body>
 
 
-<div id="divProductList" style="margin:1% 1% 1% 1%; padding:1% 1% 1% 1%">
+<div id="divTotalProduct" style="font-weight: bold;font-size: 20px; margin-left:2%">
+    <label id="lblTotalProducts">Total Products: @Session["TotalRecords"]</label>
+</div>
+
+<div id="divProductList" style="margin:1% 1% 1% 1%">
 
 
 
@@ -28,9 +38,26 @@
 
         </div>
     }
-
-
-
-
 </div>
+
+<div id="divPageNumber" style="margin-left:42%;margin-bottom:1%">
+    <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:20px">Page @Session["PageNumber"] Of @Session["LastPageNumber"] </label>
+</div>
+<div id="divPaging" style="margin-left:41%">
+
+    @if (Convert.ToInt32(Session["PageNumber"]) > 1)
+    {
+        <button id="btnPreviousPage">PreviousPage</button>
+
+    }
+    
+    
+    
+    <button id="btnNextPage">NextPage</button>
+</div>
+
+
+
+</body>
+</html>
 

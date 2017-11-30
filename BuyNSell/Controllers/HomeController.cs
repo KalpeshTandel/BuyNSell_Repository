@@ -22,13 +22,13 @@ namespace BuyNSell.Controllers
             {
                 if (Session["UserId"] != null)
                 {
+                    Session["PageNumber"] = 1;
+                    Session["PageSize"] = 5;
+
                     List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
                     ProductList = GetProductList("", 1, 5, "ProductName");
 
-                    Int32 TotalRecords = Convert.ToInt32(Session["TotalRecords"]);
-
-                    Session["PageNumber"] = 1;
-                    Session["PageSize"] = 5;
+                    Session["LastPageNumber"] = Math.Ceiling( Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
 
                     return View(ProductList);
                 }
@@ -70,14 +70,25 @@ namespace BuyNSell.Controllers
 
 
 
-        public ActionResult SearchProduct(string SearchText, int Start, int End, string OrderBy)
+        public ActionResult SearchProduct(string SearchText, string OrderBy, int PageSize)
         {
             try
             {
                 if (Session["UserId"] != null)
                 {
+                    Session["PageNumber"] = 1;
+                    Session["PageSize"] = PageSize;
+
+                    int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
+
+                    int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
+
+
                     List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
                     ProductList = GetProductList(SearchText, Start, End, OrderBy);
+
+                    Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
+
                     return PartialView("_ProductList", ProductList);
                 }
                 else
@@ -92,22 +103,69 @@ namespace BuyNSell.Controllers
         }
 
         [HttpPost]
-        public ActionResult Paging(string SearchText, int Start, int End, string OrderBy,int PageSize)/*string SearchText, int Start, int End, string OrderBy,int PageSize)*/
-            {
+        public ActionResult NextPage_Click(string SearchText,string OrderBy,int PageSize)/*string SearchText, int Start, int End, string OrderBy,int PageSize)*/
+        {
             try
             {
-                Session["PageSize"] = PageSize;
-                Session["PageNumber"] = Convert.ToInt32(Session["PageNumber"]) + 1;
+                if (Session["UserId"] != null)
+                {
+                    Session["PageSize"] = PageSize;
+                    Session["PageNumber"] = Convert.ToInt32(Session["PageNumber"]) + 1;
 
-                Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1 ;
+                    int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
 
-                End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
+                    int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
 
-                List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
-                ProductList = GetProductList("", Start, End, "ProductName");
-                return PartialView("_ProductList", ProductList);
+                    List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
+                    ProductList = GetProductList(SearchText, Start, End, "ProductName");
+
+                    Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
+
+                    return PartialView("_ProductList", ProductList);
+
+                }
+                else
+                {
+                    return RedirectToAction("LogInAgain", "Login");
+                }
+
             }
 
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ActionResult PreviousPage_Click(string SearchText,string OrderBy, int PageSize)
+        {
+            try
+            {
+                if (Session["UserId"] != null)
+                {
+                    Session["PageSize"] = PageSize;
+                    Session["PageNumber"] = Convert.ToInt32(Session["PageNumber"]) - 1;
+
+
+                    int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
+
+                    int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
+
+                    List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
+                    ProductList = GetProductList(SearchText, Start, End, OrderBy);
+
+                    Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
+
+                    return PartialView("_ProductList", ProductList);
+
+                }
+                else
+                {
+                    return RedirectToAction("LogInAgain", "Login");
+                }
+
+
+            }
             catch(Exception ex)
             {
                 throw ex;
@@ -120,14 +178,57 @@ namespace BuyNSell.Controllers
         {
             try
             {
-                Session["PageNumber"] = 1; 
-                Session["PageSize"] = PageSize;
-                int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
-                int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
+                
+                if (Session["UserId"] != null)
+                {
+                    Session["PageNumber"] = 1;
+                    Session["PageSize"] = PageSize;
 
-                List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
-                ProductList = GetProductList(SearchText, Start, End, OrderBy);
-                return PartialView("_ProductList", ProductList);
+                    int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
+                    int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
+
+                    List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
+                    ProductList = GetProductList(SearchText, Start, End, OrderBy);
+
+                    Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
+
+                    return PartialView("_ProductList", ProductList);
+                }
+                else
+                {
+                    return RedirectToAction("LogInAgain", "Login");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public ActionResult ddlSortBy_Change(string SearchText, string OrderBy, int PageSize)
+        {
+            try
+            {
+                if (Session["UserId"] != null)
+                {
+                    Session["PageNumber"] = 1;
+                    Session["PageSize"] = PageSize;
+
+                    int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
+                    int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
+                    List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
+                    ProductList = GetProductList(SearchText, Start, End, OrderBy);
+
+                    Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
+
+                    return PartialView("_ProductList", ProductList);
+                }
+                else
+                {
+                    return RedirectToAction("LogInAgain", "Login");
+                }
 
             }
             catch (Exception ex)
