@@ -18,10 +18,28 @@
 <body>
 
 
-    <div id="divSearch" style="border:solid; border-radius:10px; padding:1%; margin:1%">
-        <label>Product Name</label>
-        <input type="text" id="txtProductName" placeholder="Product Name" />
-        <button id="btnSearch">Search</button>
+    <div id="divSearch" style="border:solid; border-radius:10px;padding-left: 14%;padding-bottom: 2%;padding-top: 2%; margin:1%; display:flex">
+        <div style="width:80%">
+            @*<div>*@
+                <label style="font-weight:bold; font-size:20px;margin-right: 25px;">Product Name</label>
+                <input type="text" id="txtProductName" placeholder="Product Name" style="font-size:17px" />
+
+            <label style="font-weight:bold; font-size:20px;margin-right: 25px;margin-left: 4%;">Product Category</label>
+                @Html.DropDownList("ddlProductCategory", new SelectList(ViewBag.ProductCategory, "Value", "Text"), " Select Product Category ", new { style = "font-size:17px;" })
+            @*</div>*@
+            <div style="margin-top:2%">
+                <label id="lblFromDate" style="font-weight:bold; font-size:20px;margin-right: 58px;">From Date</label>
+                <input type="date" id="txtFromDate" />
+
+                <label id="lblToDate" style="font-weight:bold; font-size:20px;margin-left: 12%;margin-right: 110px;">To Date</label>
+                <input type="date" id="txtToDate" />
+            </div>
+        </div>
+        <div>
+
+            <button id="btnSearch">Search</button>
+        </div>
+
     </div>
 
 
@@ -36,7 +54,7 @@
         </div>
 
 
-        <div id="divPageSize" style="margin-left:74%;">
+        <div id="divPageSize" style="margin-left:74%; margin-top:-24px">
             <label id="lblPageSize" style="font-weight:bold; font-size:20px">Products Per Page</label>
             <select id="ddlPageSize" style="font-size:17px;font-weight: bold;width: 32%;padding-left: 7%;">
                 <option value="5">5</option>
@@ -46,10 +64,8 @@
         </div>
 
 
-    
-
     <div id="divSearchResult">
- 
+
         @Html.Partial("_ProductList")
 
     @*@foreach (var item in Model)
@@ -66,11 +82,8 @@
 
         </div>
     }*@
-
-
-
-
     </div>
+
 
     </body>
 </html>

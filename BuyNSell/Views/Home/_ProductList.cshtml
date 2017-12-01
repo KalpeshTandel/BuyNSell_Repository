@@ -17,9 +17,6 @@
 </div>
 
 <div id="divProductList" style="margin:1% 1% 1% 1%">
-
-
-
     @foreach (var item in Model)
     {
         <div id="divResultRow" style="border:solid; height:30%; border-radius:10px; padding:1%; margin:1%; display:flex">
@@ -40,21 +37,22 @@
     }
 </div>
 
-<div id="divPageNumber" style="margin-left:42%;margin-bottom:1%">
-    <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:20px">Page @Session["PageNumber"] Of @Session["LastPageNumber"] </label>
-</div>
-<div id="divPaging" style="margin-left:41%">
+    <div id="divPageNumber" style="margin-left:42%;margin-bottom:1%">
+        <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:20px">Page @Session["PageNumber"] Of @Session["LastPageNumber"] </label>
+    </div>
+    <div id="divPaging" style="margin-left:41%">
 
-    @if (Convert.ToInt32(Session["PageNumber"]) > 1)
-    {
-        <button id="btnPreviousPage">PreviousPage</button>
+        @if (Convert.ToInt32(Session["LastPageNumber"]) > 1 && Convert.ToInt32(Session["PageNumber"]) > 1)
+        {
+            <button id="btnPreviousPage">PreviousPage</button>
+        }
 
-    }
-    
-    
-    
-    <button id="btnNextPage">NextPage</button>
-</div>
+        @if (Convert.ToInt32(Session["LastPageNumber"]) > 1 && Convert.ToInt32(Session["LastPageNumber"]) != Convert.ToInt32(Session["PageNumber"]))
+        {
+            <button id="btnNextPage">NextPage</button>
+        }
+
+    </div>
 
 
 

@@ -25,10 +25,16 @@ namespace BuyNSell.Controllers
                     Session["PageNumber"] = 1;
                     Session["PageSize"] = 5;
 
+                    Session["SearchText"] = "";
+
                     List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
                     ProductList = GetProductList("", 1, 5, "ProductName");
 
                     Session["LastPageNumber"] = Math.Ceiling( Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
+
+                    ViewBag.ProductCategory = new SelectList(objDB.ProductCategoryMasters.ToList(), "ProductCategoryId", "ProductCategoryName");
+
+
 
                     return View(ProductList);
                 }
@@ -79,6 +85,8 @@ namespace BuyNSell.Controllers
                     Session["PageNumber"] = 1;
                     Session["PageSize"] = PageSize;
 
+                    Session["SearchText"] = SearchText;
+
                     int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
 
                     int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
@@ -102,7 +110,7 @@ namespace BuyNSell.Controllers
             }
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult NextPage_Click(string SearchText,string OrderBy,int PageSize)/*string SearchText, int Start, int End, string OrderBy,int PageSize)*/
         {
             try
@@ -112,12 +120,14 @@ namespace BuyNSell.Controllers
                     Session["PageSize"] = PageSize;
                     Session["PageNumber"] = Convert.ToInt32(Session["PageNumber"]) + 1;
 
+                    SearchText = Session["SearchText"].ToString();
+
                     int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
 
                     int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
 
                     List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
-                    ProductList = GetProductList(SearchText, Start, End, "ProductName");
+                    ProductList = GetProductList(SearchText, Start, End, OrderBy);
 
                     Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
 
@@ -137,6 +147,8 @@ namespace BuyNSell.Controllers
             }
         }
 
+
+        //[HttpPost]
         public ActionResult PreviousPage_Click(string SearchText,string OrderBy, int PageSize)
         {
             try
@@ -146,6 +158,7 @@ namespace BuyNSell.Controllers
                     Session["PageSize"] = PageSize;
                     Session["PageNumber"] = Convert.ToInt32(Session["PageNumber"]) - 1;
 
+                    SearchText = Session["SearchText"].ToString();
 
                     int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
 
@@ -178,11 +191,13 @@ namespace BuyNSell.Controllers
         {
             try
             {
-                
+
                 if (Session["UserId"] != null)
                 {
                     Session["PageNumber"] = 1;
                     Session["PageSize"] = PageSize;
+
+                    SearchText = Session["SearchText"].ToString();
 
                     int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
                     int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
@@ -215,6 +230,8 @@ namespace BuyNSell.Controllers
                 {
                     Session["PageNumber"] = 1;
                     Session["PageSize"] = PageSize;
+
+                    SearchText = Session["SearchText"].ToString();
 
                     int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
                     int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);

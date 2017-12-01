@@ -81,8 +81,8 @@ namespace BuyNSell.Controllers.DataAccess
 
                 sqldr = SqlHelper.ExecuteReader(sqlConn , CommandType.StoredProcedure, "Sp_GetProductData", param);
 
-                if (sqldr.HasRows)
-                {
+                //if (sqldr.HasRows)
+                //{
                     while (sqldr.Read())
                     {
                         ProductList.Add(CreateProductList(sqldr));
@@ -99,7 +99,7 @@ namespace BuyNSell.Controllers.DataAccess
                     
 
                   
-                }
+                //}
                 sqldr.Close();
 
 

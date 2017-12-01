@@ -43,8 +43,25 @@ $(document).ready(function () {
 
 
 
+    debugger;
 
-    var SearchText = "";
+        var SearchText = "";
+
+        //var txtProductName = $("#txtProductName").val();
+
+        //if (txtProductName != "")
+        //{
+        //    SearchText = " And ProductName Like '%" + txtProductName + "%'";
+        //}
+
+        //var ddlProductCategory = $("#ddlProductCategory").val();
+
+        //if (ddlProductCategory != "")
+        //{
+        //    SearchText = SearchText + " And P.ProductCategoryId =" + ddlProductCategory;
+        //}
+
+
 
     var PageSize = $("#ddlPageSize").val();
 
@@ -52,17 +69,38 @@ $(document).ready(function () {
 
 
 
-    $("#txtProductName").keyup(function () {
-        debugger;
-        var txtProductName = $("#txtProductName").val();
-        if (txtProductName != "") {
-            SearchText = "And ProductName Like '%" + txtProductName + "%'";
-        }
-    });
+    //$("#txtProductName").keyup(function () {
+    //    debugger;
+    //    var txtProductName = $("#txtProductName").val();
+    //   // if (txtProductName != "") {
+    //        SearchText = "And ProductName Like '%" + txtProductName + "%'";
+    //    //}
+    //});
 
 
     $("#btnSearch").click(function () {
         debugger;
+
+        var SearchText = "";
+
+        var txtProductName = $("#txtProductName").val();
+        if (txtProductName != "")
+        {
+            SearchText = " And ProductName Like '%" + txtProductName + "%'";
+        }
+
+        var ddlProductCategory = $("#ddlProductCategory").val();
+        if (ddlProductCategory != "")
+        {
+            SearchText = SearchText + " And P.ProductCategoryId =" + ddlProductCategory;
+        }
+
+        var txtFromDate = $("#txtFromDate").val();
+        var txtToDate = $("#txtToDate").val();
+        if (txtFromDate != "" && txtToDate != "")
+        {
+            SearchText = SearchText + " And Cast(AddedDate as Date) between '" + txtFromDate + "' and '" + txtToDate + "'";
+        }
 
         $.ajax({
             type: "Post",
@@ -81,22 +119,22 @@ $(document).ready(function () {
     //$('#btnNextPage').on('click', function () {
     $("#btnNextPage").click(function () {
         debugger;
-        //$("#btnPreviousPage").css("display", "none");
+
         $.ajax({
             type: "Post",
             url: "../Home/NextPage_Click",
             datatype: "json",
             //contentType: "application/json; charset=utf-8",
-            data: { SearchText: SearchText, OrderBy: SortBy, PageSize: PageSize },
+            data: { SearchText: "", OrderBy: SortBy, PageSize: PageSize },
             success: function (result) {
 
                 $("#divSearchResult").html(result);
                 
             }
         });
-         e.preventDefault();
+        // e.preventDefault();
         // e.stopPropagation();
-        // e.stopImmediatePropagation();
+         e.stopImmediatePropagation();
        
       
 
@@ -105,11 +143,12 @@ $(document).ready(function () {
 
     $("#btnPreviousPage").click(function () {
         debugger;
+
         $.ajax({
             type: "Post",
             url: "../Home/PreviousPage_Click",
             datatype: "json",
-            data: { SearchText: SearchText, OrderBy: SortBy, PageSize: PageSize },
+            data: { SearchText: "", OrderBy: SortBy, PageSize: PageSize },
             success: function (result) {
                 $("#divSearchResult").html(result);
 
@@ -123,11 +162,11 @@ $(document).ready(function () {
 
 
 
-
-
     $("#ddlPageSize").change(function ()  {
         debugger;
+
         PageSize = $("#ddlPageSize").val();
+
         $.ajax({
             type: "Post",
             url: "../Home/ddlPageSize_Change",
@@ -162,6 +201,13 @@ $(document).ready(function () {
         });
         e.stopImmediatePropagation();
     });
+
+
+    //$("#ddlProductCategory").change(function () {
+    //    debugger;
+    //    var ddlProductCategory = $("#ddlProductCategory").val();
+    //    SearchText = SearchText + "And P.ProductCategoryId =" + ddlProductCategory;
+    // })
 
 
 
