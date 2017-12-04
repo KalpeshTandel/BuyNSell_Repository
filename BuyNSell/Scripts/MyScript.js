@@ -210,6 +210,48 @@ $(document).ready(function () {
     // })
 
 
+    $(".SubmitButton").click(function () {
+        debugger;
+        $("#divAddOrderBackground").show();
+        $("#divAddOrder").show();
+        $.ajax({
+            type: "Post",
+            url: "../Order/AddOrder",
+            datatype: "json",
+            data: { ProductId: },
+            success: function (result) {
+                $("#divAddOrder").html(result);
+                //$('#divAddOrder').dialog('open');
+            }
+
+        });
+        e.stopImmediatePropagation();
+    });
+
+    //$("#divAddOrder").dialog({
+    //    autoOpen: false,
+    //    modal: true,
+    //    title: "View Details"
+    //});
+
+    function btnAddOrder_Click(ProductId)
+    {
+        debugger;
+        $("#divAddOrderBackground").show();
+        $("#divAddOrder").show();
+        $.ajax({
+            type: "Post",
+            url: "../Order/AddOrder",
+            datatype: "json",
+            data: { ProductId:ProductId},
+            success: function (result) {
+                $("#divAddOrder").html(result);
+                //$('#divAddOrder').dialog('open');
+            }
+
+        });
+        e.stopImmediatePropagation();
+    }
 
 
 });

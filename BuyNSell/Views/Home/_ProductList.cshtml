@@ -7,6 +7,8 @@
 <head>
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
     <script src="~/Scripts/MyScript.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -28,9 +30,27 @@
             <div id="divpicture">
                 <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent1)" style="height:150px;width:250px;" />
             </div>
-            <div id="divPrice" style="margin-top:4%;margin-left:1%" class="LabelProductList">
+            
+            <div id="divProductName" style="margin: 4% 3% 0% 2%;" class="LabelProductList">
                 @Html.DisplayFor(m => item.ProductName)
             </div>
+
+            <div id="divPrice" style="margin: 4% 3% 0% 2%;" class="LabelProductList">
+                @Html.Label("Price:- ")
+                @Html.DisplayFor(m => item.Price)
+            </div>
+
+            <div id="divQuantity" style="margin: 4% 3% 0% 2%;" class="LabelProductList">
+                @Html.Label("Available Quantity:- ")
+                @Html.DisplayFor(m => item.Quantity)
+            </div>
+
+            <div id="divOrder" style="margin: 4% 3% 0% 2%;">
+                @*<input id="btnOrder" type="button" value="Order" class="SubmitButton" onclick="location.href='@Url.Action("AddOrder","Order",new {ProductId = item.ProductId})'" />*@
+           
+                 <button id="btnAddOrder" class="SubmitButton" onclick="btnAddOrder_Click(@item.ProductId)" > Place Order </button>
+                 
+             </div>
 
 
         </div>
@@ -56,6 +76,35 @@
 
 
 
+    
+
+
+
+
 </body>
 </html>
+<script type="text/javascript">
+    function abc(pid)
+    {
+        alert(pid);
+    }
 
+    function btnAddOrder_Click(ProductId) {
+        debugger;
+        $("#divAddOrderBackground").show();
+        $("#divAddOrder").show();
+        $.ajax({
+            type: "Post",
+            url: "../Order/AddOrder",
+            datatype: "json",
+            data: { ProductId: ProductId },
+            success: function (result) {
+                $("#divAddOrder").html(result);
+                //$('#divAddOrder').dialog('open');
+            }
+
+        });
+        e.stopImmediatePropagation();
+    }
+
+</script>

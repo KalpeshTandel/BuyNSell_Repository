@@ -166,6 +166,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageResult.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -276,6 +277,7 @@
     <Content Include="Views\Login\LogInAgain.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\_ProductList.cshtml" />
+    <Content Include="Views\Order\_AddOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
