@@ -1,8 +1,68 @@
 ﻿
 
+@model BuyNSell.Models.OrderMaster
 
-<div id="divOrder" style="width:200px; height:200px">
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/MyScript.js"></script>
+    <script type="text/javascript">
+        var asasd =  
+    </script>
 
-    <label>Order Here</label>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div id="divOrder" style="padding-left:14%; padding-top:5%; width:90%;height:90%">
 
-</div>
+            <h3 style="padding-left:20%">Place Order</h3>
+
+            
+
+            <div style="padding-bottom:4%">
+                @Html.Label("Product Name", new { @class = "Label" })
+                @*@Html.DisplayFor(m => m.ProductName,new { @class="Label"})*@
+                <label id="lbl">@ViewBag.ProductInfo.ProductName</label>
+            </div>
+
+            <div style="padding-bottom:4%">
+                @Html.Label("Available Quantity", new { @class = "Label" })
+                @*@Html.DisplayFor(m => m.Quantity)*@
+                @ViewBag.ProductInfo.Quantity
+            </div>
+
+            <div style="padding-bottom:4%">
+                @Html.Label("Price", new { @class = "Label" })
+                @*@Html.DisplayFor(m => m.Price)*@
+                @ViewBag.ProductInfo.Price
+            </div>
+
+            <div style="padding-bottom:4%">
+                @Html.Label("Order Quantity", new { @class = "Label" })
+                @Html.DropDownListFor(m => m.OrderQuantity, new SelectList(ViewBag.ddlQuantity, "Value", "Text"), "Select Quantity")
+            </div>
+
+            <div style="padding-bottom:4%">
+                @Html.Label("Payment Amount", new { @class = "Label" })
+                @ViewBag.ProductInfo.Price
+            </div>
+
+            <div style="padding-bottom:4%">
+                @Html.Label("Delivery Address", new { @class = "Label" })
+                @Html.TextAreaFor(m => m.DeliveryAddress)
+            </div>
+
+            <div style="padding-bottom:4%">
+                @Html.Label("Contact Number", new { @class = "Label" })
+                @Html.TextBoxFor(m => m.ContactNum)
+            </div>
+
+            <input type="submit" value="Order Now" class="SubmitButton" />
+
+        </div>
+
+    }
+
+    </body>
+</html>

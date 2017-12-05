@@ -30,5 +30,6 @@ namespace BuyNSell.Models
         public virtual DbSet<ProductCategoryMaster> ProductCategoryMasters { get; set; }
         public virtual DbSet<ProductMaster> ProductMasters { get; set; }
         public virtual DbSet<PictureMaster> PictureMasters { get; set; }
+        public virtual DbSet<OrderMaster> OrderMasters { get; set; }
     }
 }

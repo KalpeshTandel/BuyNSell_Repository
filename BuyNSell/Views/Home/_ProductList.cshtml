@@ -6,9 +6,31 @@
 <html>
 <head>
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
-    <script src="~/Scripts/MyScript.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+    <script src="~/Scripts/MyScript.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function btnAddOrder_Click(ProductId) {
+            debugger;
+            $("#divAddOrderBackground").show();
+            $("#divAddOrder").show();
+            $.ajax({
+                type: "Get",
+                url: "../Order/AddOrder",
+                datatype: "json",
+                data: { ProductId: ProductId },
+                success: function (result) {
+                    $("#divAddOrder").html(result);
+                    //$('#divAddOrder').dialog('open');
+                }
+
+            });
+            e.stopImmediatePropagation();
+        }
+    </script>
+
+
+
+
 </head>
 
 <body>
@@ -83,28 +105,3 @@
 
 </body>
 </html>
-<script type="text/javascript">
-    function abc(pid)
-    {
-        alert(pid);
-    }
-
-    function btnAddOrder_Click(ProductId) {
-        debugger;
-        $("#divAddOrderBackground").show();
-        $("#divAddOrder").show();
-        $.ajax({
-            type: "Post",
-            url: "../Order/AddOrder",
-            datatype: "json",
-            data: { ProductId: ProductId },
-            success: function (result) {
-                $("#divAddOrder").html(result);
-                //$('#divAddOrder').dialog('open');
-            }
-
-        });
-        e.stopImmediatePropagation();
-    }
-
-</script>

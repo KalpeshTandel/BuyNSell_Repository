@@ -28,6 +28,7 @@
     <EntitySet Name="ProductCategoryMasters" EntityType="BuyNSell_Model.ProductCategoryMaster" />
     <EntitySet Name="ProductMasters" EntityType="BuyNSell_Model.ProductMaster" />
     <EntitySet Name="PictureMasters" EntityType="BuyNSell_Model.PictureMaster" />
+    <EntitySet Name="OrderMasters" EntityType="BuyNSell_Model.OrderMaster" />
   </EntityContainer>
   <EntityType Name="ProductCategoryMaster">
     <Key>
@@ -68,6 +69,21 @@
     <Property Name="ProductId" Type="Int32" />
     <Property Name="PictureContent" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="ContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Deleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="OrderMaster">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="OrderQuantity" Type="Int32" />
+    <Property Name="PaymentAmount" Type="Int32" />
+    <Property Name="DeliveryAddress" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrderStatusId" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
     <Property Name="Deleted" Type="Boolean" />
   </EntityType>
 </Schema>

@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BuyNSell_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OrderMaster">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="OrderQuantity" Type="int" />
+          <Property Name="PaymentAmount" Type="int" />
+          <Property Name="DeliveryAddress" Type="varchar" MaxLength="5000" />
+          <Property Name="ContactNum" Type="varchar" MaxLength="50" />
+          <Property Name="OrderStatusId" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
         <EntityType Name="PictureMaster">
           <Key>
             <PropertyRef Name="PictureId" />
@@ -69,6 +84,7 @@
           <Property Name="Deleted" Type="bit" />
         </EntityType>
         <EntityContainer Name="BuyNSell_ModelStoreContainer">
+          <EntitySet Name="OrderMaster" EntityType="Self.OrderMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PictureMaster" EntityType="Self.PictureMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategoryMaster" EntityType="Self.ProductCategoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
@@ -107,6 +123,7 @@
           <EntitySet Name="ProductCategoryMasters" EntityType="BuyNSell_Model.ProductCategoryMaster" />
           <EntitySet Name="ProductMasters" EntityType="BuyNSell_Model.ProductMaster" />
           <EntitySet Name="PictureMasters" EntityType="BuyNSell_Model.PictureMaster" />
+          <EntitySet Name="OrderMasters" EntityType="BuyNSell_Model.OrderMaster" />
         </EntityContainer>
         <EntityType Name="ProductCategoryMaster">
           <Key>
@@ -147,6 +164,21 @@
           <Property Name="ProductId" Type="Int32" />
           <Property Name="PictureContent" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="OrderMaster">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="OrderQuantity" Type="Int32" />
+          <Property Name="PaymentAmount" Type="Int32" />
+          <Property Name="DeliveryAddress" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderStatusId" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
           <Property Name="Deleted" Type="Boolean" />
         </EntityType>
       </Schema>
@@ -220,6 +252,22 @@
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="PictureName" ColumnName="PictureName" />
                 <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderMasters">
+            <EntityTypeMapping TypeName="BuyNSell_Model.OrderMaster">
+              <MappingFragment StoreEntitySet="OrderMaster">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+                <ScalarProperty Name="ContactNum" ColumnName="ContactNum" />
+                <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="OrderQuantity" ColumnName="OrderQuantity" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

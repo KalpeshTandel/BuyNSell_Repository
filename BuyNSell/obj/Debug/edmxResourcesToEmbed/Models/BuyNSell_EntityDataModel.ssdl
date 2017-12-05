@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="BuyNSell_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="OrderMaster">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="OrderQuantity" Type="int" />
+    <Property Name="PaymentAmount" Type="int" />
+    <Property Name="DeliveryAddress" Type="varchar" MaxLength="5000" />
+    <Property Name="ContactNum" Type="varchar" MaxLength="50" />
+    <Property Name="OrderStatusId" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
   <EntityType Name="PictureMaster">
     <Key>
       <PropertyRef Name="PictureId" />
@@ -64,6 +79,7 @@
     <Property Name="Deleted" Type="bit" />
   </EntityType>
   <EntityContainer Name="BuyNSell_ModelStoreContainer">
+    <EntitySet Name="OrderMaster" EntityType="Self.OrderMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PictureMaster" EntityType="Self.PictureMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductCategoryMaster" EntityType="Self.ProductCategoryMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />

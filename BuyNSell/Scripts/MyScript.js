@@ -210,23 +210,23 @@ $(document).ready(function () {
     // })
 
 
-    $(".SubmitButton").click(function () {
-        debugger;
-        $("#divAddOrderBackground").show();
-        $("#divAddOrder").show();
-        $.ajax({
-            type: "Post",
-            url: "../Order/AddOrder",
-            datatype: "json",
-            data: { ProductId: },
-            success: function (result) {
-                $("#divAddOrder").html(result);
-                //$('#divAddOrder').dialog('open');
-            }
+    //$(".SubmitButton").click(function () {
+    //    debugger;
+    //    $("#divAddOrderBackground").show();
+    //    $("#divAddOrder").show();
+    //    $.ajax({
+    //        type: "Post",
+    //        url: "../Order/AddOrder",
+    //        datatype: "json",
+    //        data: { ProductId: },
+    //        success: function (result) {
+    //            $("#divAddOrder").html(result);
+    //            //$('#divAddOrder').dialog('open');
+    //        }
 
-        });
-        e.stopImmediatePropagation();
-    });
+    //    });
+    //    e.stopImmediatePropagation();
+    //});
 
     //$("#divAddOrder").dialog({
     //    autoOpen: false,
@@ -234,24 +234,48 @@ $(document).ready(function () {
     //    title: "View Details"
     //});
 
-    function btnAddOrder_Click(ProductId)
-    {
+    //function btnAddOrder_Click(ProductId)
+    //{
+    //    debugger;
+    //    $("#divAddOrderBackground").show();
+    //    $("#divAddOrder").show();
+    //    $.ajax({
+    //        type: "Post",
+    //        url: "../Order/AddOrder",
+    //        datatype: "json",
+    //        data: { ProductId:ProductId},
+    //        success: function (result) {
+    //            $("#divAddOrder").html(result);
+    //            //$('#divAddOrder').dialog('open');
+    //        }
+
+    //    });
+    //    e.stopImmediatePropagation();
+    //}
+
+    $("#OrderQuantity").change(function () {
         debugger;
-        $("#divAddOrderBackground").show();
-        $("#divAddOrder").show();
+        var OrderQuantity = $("#OrderQuantity").val();
+
         $.ajax({
             type: "Post",
-            url: "../Order/AddOrder",
+            url: "../Order/OrderQuantity_Change",
             datatype: "json",
-            data: { ProductId:ProductId},
+            //contentType: "application/json; charset=utf-8",
+            data: { OrderQuantity: OrderQuantity},
             success: function (result) {
-                $("#divAddOrder").html(result);
-                //$('#divAddOrder').dialog('open');
-            }
 
+                $("#divSearchResult").html(result);
+
+            }
         });
         e.stopImmediatePropagation();
-    }
+
+
+
+
+    });
+
 
 
 });
