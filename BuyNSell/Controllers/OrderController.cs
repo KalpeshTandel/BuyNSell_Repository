@@ -19,20 +19,22 @@ namespace BuyNSell.Controllers
             {
                 if (Session["UserId"] != null)
                 {
-                    Session["ProductId"] = ProductId;
 
-                    ViewBag.ProductInfo = objDB.ProductMasters.Where(p => p.ProductId == ProductId).FirstOrDefault();
+                    ProductMaster ProductMaster = objDB.ProductMasters.Where(p => p.ProductId == ProductId).FirstOrDefault();
 
-                    var Quantity = objDB.ProductMasters.Where(p => p.ProductId == ProductId).Select(p => p.Quantity).FirstOrDefault();
+                    Session["OrderProductId"] = ProductId;
+                    Session["PaymentAmount"] = ProductMaster.Price;
 
-                    List<SelectListItem> listQuantity = new List<SelectListItem>();
+                    List <SelectListItem> listOrderQuantity = new List<SelectListItem>();
 
-                    for(int i = 1; i <= Quantity; i++)
+                    for(int i = 1; i <= ProductMaster.Quantity; i++)
                     {
-                        listQuantity.Add(new SelectListItem { Text = i.ToString(), Value= i.ToString()});
+                        listOrderQuantity.Add(new SelectListItem { Text = i.ToString(), Value= i.ToString()});
                     }
 
-                    ViewBag.ddlQuantity = listQuantity;
+
+                    Session["ProductInfo"] = ProductMaster;
+                    Session["ddlOrderQuantity"] = listOrderQuantity;
 
 
                     return PartialView("_AddOrder");
@@ -57,7 +59,25 @@ namespace BuyNSell.Controllers
             {
                 if (Session["UserId"] != null)
                 {
-                    return PartialView("_AddOrder");
+                    if(ModelState.IsValid)
+                    {
+                        objOM.OrderId = 0;
+                        objOM.UserId = Convert.ToInt32(Session["UserId"]);
+                        objOM.PaymentAmount = Convert.ToInt32(Session["PaymentAmount"]);
+                        objOM.OrderStatusId = 1;
+                        objOM.Active = true;
+                        objOM.Deleted = false;
+                        objOM.OrderAddedDate = DateTime.Now;
+
+                        objDB.OrderMasters.Add(objOM);
+                        objDB.SaveChanges();
+
+                        return RedirectToAction("Home", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Home", "Home");
+                    }
                 }
                 else
                 {
@@ -72,14 +92,18 @@ namespace BuyNSell.Controllers
         }
 
 
-        public ActionResult OrderQuantity_Change(int OrderQuantity)
+        public JsonResult OrderQuantity_Change(int OrderQuantity)
         {
-            int ProductId = Convert.ToInt16(Session["ProductId"]);
 
-            var Price = objDB.ProductMasters.Where(p => p.ProductId == ProductId).Select(p => p.Price).FirstOrDefault();
+            int OrderProductId = Convert.ToInt16(Session["OrderProductId"]);
+
+            var Price = objDB.ProductMasters.Where(p => p.ProductId == OrderProductId).Select(p => p.Price).FirstOrDefault();
 
             int PaymentAmount = Convert.ToInt32(Price * OrderQuantity);
 
+            Session["PaymentAmount"] = PaymentAmount;
+
+            return Json(PaymentAmount, JsonRequestBehavior.AllowGet);
 
         }
 

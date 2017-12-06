@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BuyNSell.Models.ViewModels
+namespace BuyNSell.Models
 {
     public class ProductList_ViewModel
     {

@@ -187,11 +187,13 @@
       <DependentUpon>BuyNSell_EntityDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomValidationDataAnnotation.cs" />
+    <Compile Include="Models\MetaData\OrderMaster_MetaData.cs" />
     <Compile Include="Models\MetaData\ProductMaster_MetaData.cs" />
     <Compile Include="Models\MetaData\UserMaster_MetaData.cs" />
     <Compile Include="Models\OrderMaster.cs">
       <DependentUpon>BuyNSell_EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PartialClasses\OrderMaster.cs" />
     <Compile Include="Models\PartialClasses\ProductMaster.cs" />
     <Compile Include="Models\PartialClasses\UserMaster.cs" />
     <Compile Include="Models\PictureMaster.cs">
@@ -210,7 +212,6 @@
       <DependentUpon>BuyNSell_EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\ProductList_ViewModel.cs" />
-    <Compile Include="Models\ViewModels\Product_Order_ViewModel.cs" />
     <Compile Include="Models\ViewModels\UserMaster_Login_ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

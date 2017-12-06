@@ -19,6 +19,7 @@
           <Property Name="OrderStatusId" Type="int" />
           <Property Name="Active" Type="bit" />
           <Property Name="Deleted" Type="bit" />
+          <Property Name="OrderAddedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="PictureMaster">
           <Key>
@@ -180,6 +181,7 @@
           <Property Name="OrderStatusId" Type="Int32" />
           <Property Name="Active" Type="Boolean" />
           <Property Name="Deleted" Type="Boolean" />
+          <Property Name="OrderAddedDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -258,6 +260,7 @@
           <EntitySetMapping Name="OrderMasters">
             <EntityTypeMapping TypeName="BuyNSell_Model.OrderMaster">
               <MappingFragment StoreEntitySet="OrderMaster">
+                <ScalarProperty Name="OrderAddedDate" ColumnName="OrderAddedDate" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />

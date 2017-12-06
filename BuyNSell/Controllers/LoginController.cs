@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 
 using BuyNSell.Models;
-using BuyNSell.Models.ViewModels;
 
 namespace BuyNSell.Controllers
 {

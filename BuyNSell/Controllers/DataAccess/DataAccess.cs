@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 
 using BuyNSell.Models;
-using BuyNSell.Models.ViewModels;
 using System.Data.SqlClient;
 using Microsoft.ApplicationBlocks.Data;
 using System.Configuration;

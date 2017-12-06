@@ -14,6 +14,7 @@
     <Property Name="OrderStatusId" Type="int" />
     <Property Name="Active" Type="bit" />
     <Property Name="Deleted" Type="bit" />
+    <Property Name="OrderAddedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="PictureMaster">
     <Key>

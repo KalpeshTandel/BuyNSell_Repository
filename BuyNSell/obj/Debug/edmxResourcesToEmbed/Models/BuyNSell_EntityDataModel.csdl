@@ -85,5 +85,6 @@
     <Property Name="OrderStatusId" Type="Int32" />
     <Property Name="Active" Type="Boolean" />
     <Property Name="Deleted" Type="Boolean" />
+    <Property Name="OrderAddedDate" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

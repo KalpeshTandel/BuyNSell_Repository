@@ -5,7 +5,7 @@ using System.Web;
 
 using System.ComponentModel.DataAnnotations;
 
-namespace BuyNSell.Models.MetaData
+namespace BuyNSell.Models
 {
     public class UserMaster_MetaData
     {

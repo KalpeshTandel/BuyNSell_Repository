@@ -2,63 +2,69 @@
 
 @model BuyNSell.Models.OrderMaster
 
+@using BuyNSell.Models
+
+@{
+    ProductMaster ProductMaster = Session["ProductInfo"] as ProductMaster;
+}
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <script src="~/Scripts/MyScript.js"></script>
-    <script type="text/javascript">
-        var asasd =  
-    </script>
-
 </head>
 <body>
     @using (Html.BeginForm())
     {
+
         <div id="divOrder" style="padding-left:14%; padding-top:5%; width:90%;height:90%">
 
             <h3 style="padding-left:20%">Place Order</h3>
 
-            
-
+           
             <div style="padding-bottom:4%">
                 @Html.Label("Product Name", new { @class = "Label" })
-                @*@Html.DisplayFor(m => m.ProductName,new { @class="Label"})*@
-                <label id="lbl">@ViewBag.ProductInfo.ProductName</label>
+                @Html.Label(@ProductMaster.ProductName)
             </div>
 
             <div style="padding-bottom:4%">
                 @Html.Label("Available Quantity", new { @class = "Label" })
-                @*@Html.DisplayFor(m => m.Quantity)*@
-                @ViewBag.ProductInfo.Quantity
+                @Html.Label(@ProductMaster.Quantity.ToString())               
             </div>
 
             <div style="padding-bottom:4%">
                 @Html.Label("Price", new { @class = "Label" })
-                @*@Html.DisplayFor(m => m.Price)*@
-                @ViewBag.ProductInfo.Price
+                @Html.Label(@ProductMaster.Price.ToString())
             </div>
 
             <div style="padding-bottom:4%">
                 @Html.Label("Order Quantity", new { @class = "Label" })
-                @Html.DropDownListFor(m => m.OrderQuantity, new SelectList(ViewBag.ddlQuantity, "Value", "Text"), "Select Quantity")
+                @Html.DropDownListFor(m => m.OrderQuantity, new SelectList((List<SelectListItem>)Session["ddlOrderQuantity"], "Value", "Text"))
+                @Html.ValidationMessageFor(m => m.OrderQuantity)
             </div>
 
             <div style="padding-bottom:4%">
                 @Html.Label("Payment Amount", new { @class = "Label" })
-                @ViewBag.ProductInfo.Price
+                @Html.Label(@ProductMaster.Price.ToString(),new { id= "lblPaymentAmount" })
             </div>
 
             <div style="padding-bottom:4%">
                 @Html.Label("Delivery Address", new { @class = "Label" })
                 @Html.TextAreaFor(m => m.DeliveryAddress)
+                @Html.ValidationMessageFor(m => m.DeliveryAddress)
+                @Html.Label("*",new {id="lblErrorDelivery", @class= "ErrorMsg", style="display:None" })
             </div>
 
             <div style="padding-bottom:4%">
                 @Html.Label("Contact Number", new { @class = "Label" })
                 @Html.TextBoxFor(m => m.ContactNum)
+                @Html.ValidationMessageFor(m => m.ContactNum)
+                @Html.Label("*", new {id="lblErrorContact", @class = "ErrorMsg", style = "display:None" })
             </div>
 
-            <input type="submit" value="Order Now" class="SubmitButton" />
+            <input id="btnOrderNow" type="submit" value="Order Now" class="SubmitButton" />
 
         </div>
 

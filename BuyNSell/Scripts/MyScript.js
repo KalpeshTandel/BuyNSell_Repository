@@ -265,14 +265,36 @@ $(document).ready(function () {
             data: { OrderQuantity: OrderQuantity},
             success: function (result) {
 
-                $("#divSearchResult").html(result);
+                $("#lblPaymentAmount").html(result);
 
             }
         });
         e.stopImmediatePropagation();
+    });
 
 
 
+    $("#btnOrderNow").click(function () {
+        debugger;
+        var DeliveryAddress = $("#DeliveryAddress").val();
+        var ContactNum = $("#ContactNum").val();
+        $("#lblErrorDelivery").hide();
+        $("#lblErrorContact").hide();
+
+        if (DeliveryAddress == "" && ContactNum == "") {
+            $("#lblErrorDelivery").show();
+            $("#lblErrorContact").show();
+            return false;
+        }
+
+        if (DeliveryAddress == "") {
+            $("#lblErrorDelivery").show();
+            return false;
+        }
+        if (ContactNum == "") {
+            $("#lblErrorContact").show();
+            return false;
+        }
 
     });
 

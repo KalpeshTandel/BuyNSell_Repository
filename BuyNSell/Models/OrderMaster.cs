@@ -24,5 +24,6 @@ namespace BuyNSell.Models
         public Nullable<int> OrderStatusId { get; set; }
         public Nullable<bool> Active { get; set; }
         public Nullable<bool> Deleted { get; set; }
+        public Nullable<System.DateTime> OrderAddedDate { get; set; }
     }
 }
