@@ -287,16 +287,35 @@ $(document).ready(function () {
             return false;
         }
 
-        if (DeliveryAddress == "") {
+        else if (DeliveryAddress == "") {
             $("#lblErrorDelivery").show();
             return false;
         }
-        if (ContactNum == "") {
+        else if (ContactNum == "") {
             $("#lblErrorContact").show();
             return false;
         }
 
+        else
+        {
+            $("#divAddOrder").empty();
+            $("#divAddOrderBackground").empty();
+            $("#divAddOrder").hide();
+            $("#divAddOrderBackground").hide();
+        }
+
     });
+
+
+    $("#btnOrderNowCancel").click(function () {
+        debugger;
+        $("#divAddOrder").empty();
+        $("#divAddOrderBackground").empty();
+        $("#divAddOrder").hide();
+        $("#divAddOrderBackground").hide();
+
+    });
+
 
 
 

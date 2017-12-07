@@ -29,6 +29,7 @@
     <EntitySet Name="ProductMasters" EntityType="BuyNSell_Model.ProductMaster" />
     <EntitySet Name="PictureMasters" EntityType="BuyNSell_Model.PictureMaster" />
     <EntitySet Name="OrderMasters" EntityType="BuyNSell_Model.OrderMaster" />
+    <EntitySet Name="RatingMasters" EntityType="BuyNSell_Model.RatingMaster" />
   </EntityContainer>
   <EntityType Name="ProductCategoryMaster">
     <Key>
@@ -86,5 +87,16 @@
     <Property Name="Active" Type="Boolean" />
     <Property Name="Deleted" Type="Boolean" />
     <Property Name="OrderAddedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RatingMaster">
+    <Key>
+      <PropertyRef Name="RatingId" />
+    </Key>
+    <Property Name="RatingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Rate" Type="Int32" />
+    <Property Name="RatingAddedDate" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" />
   </EntityType>
 </Schema>

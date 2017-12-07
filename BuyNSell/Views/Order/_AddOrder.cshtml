@@ -64,10 +64,15 @@
                 @Html.Label("*", new {id="lblErrorContact", @class = "ErrorMsg", style = "display:None" })
             </div>
 
-            <input id="btnOrderNow" type="submit" value="Order Now" class="SubmitButton" />
+
+            <div style="margin-left:10%">
+                <input id="btnOrderNow" type="submit" value="Order Now" class="SubmitButton" />
+
+                <button id="btnOrderNowCancel" type="button" class="SubmitButton" style="margin-left:5%">Cancel</button>
+            </div>
+
 
         </div>
-
     }
 
     </body>

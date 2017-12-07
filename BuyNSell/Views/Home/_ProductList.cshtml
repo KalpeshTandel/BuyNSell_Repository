@@ -67,6 +67,10 @@
                 @Html.DisplayFor(m => item.Quantity)
             </div>
 
+            <div id="divRating"  style="padding-top:4%">
+                @Html.Action("Rating", "Rating", new { ProductId = item.ProductId })
+            </div>
+
             <div id="divOrder" style="margin: 4% 3% 0% 2%;">
                 @*<input id="btnOrder" type="button" value="Order" class="SubmitButton" onclick="location.href='@Url.Action("AddOrder","Order",new {ProductId = item.ProductId})'" />*@
            

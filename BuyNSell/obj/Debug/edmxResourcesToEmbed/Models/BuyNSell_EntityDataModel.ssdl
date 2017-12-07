@@ -57,6 +57,17 @@
     <Property Name="ContentType3" Type="varchar" MaxLength="50" />
     <Property Name="Price" Type="int" />
   </EntityType>
+  <EntityType Name="RatingMaster">
+    <Key>
+      <PropertyRef Name="RatingId" />
+    </Key>
+    <Property Name="RatingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Rate" Type="int" />
+    <Property Name="RatingAddedDate" Type="datetime" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
   <EntityType Name="UserMaster">
     <Key>
       <PropertyRef Name="UserId" />
@@ -84,6 +95,7 @@
     <EntitySet Name="PictureMaster" EntityType="Self.PictureMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductCategoryMaster" EntityType="Self.ProductCategoryMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RatingMaster" EntityType="Self.RatingMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserTypeMaster" EntityType="Self.UserTypeMaster" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

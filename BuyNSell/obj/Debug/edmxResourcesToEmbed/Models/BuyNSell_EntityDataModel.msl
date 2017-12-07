@@ -86,5 +86,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="RatingMasters">
+      <EntityTypeMapping TypeName="BuyNSell_Model.RatingMaster">
+        <MappingFragment StoreEntitySet="RatingMaster">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RatingAddedDate" ColumnName="RatingAddedDate" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
