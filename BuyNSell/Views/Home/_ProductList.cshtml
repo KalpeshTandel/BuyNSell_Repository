@@ -26,6 +26,17 @@
             });
             e.stopImmediatePropagation();
         }
+
+        function Callback() {
+            debugger;
+            $("#divAddOrder").empty();
+            $("#divAddOrderBackground").empty();
+            $("#divAddOrder").hide();
+            $("#divAddOrderBackground").hide();
+
+        }
+
+
     </script>
 
 
@@ -67,8 +78,8 @@
                 @Html.DisplayFor(m => item.Quantity)
             </div>
 
-            <div id="divRating"  style="padding-top:4%">
-                @Html.Action("Rating", "Rating", new { ProductId = item.ProductId })
+            <div id="divAverageRating"  style="padding-top:4%">
+                @Html.Action("AverageRating", "Rating", new { ProductId = item.ProductId })
             </div>
 
             <div id="divOrder" style="margin: 4% 3% 0% 2%;">

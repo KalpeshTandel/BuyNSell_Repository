@@ -20,5 +20,6 @@ namespace BuyNSell.Models
         public Nullable<int> Rate { get; set; }
         public Nullable<System.DateTime> RatingAddedDate { get; set; }
         public Nullable<bool> Active { get; set; }
+        public Nullable<System.DateTime> RatingModifiedDate { get; set; }
     }
 }

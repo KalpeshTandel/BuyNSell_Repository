@@ -43,7 +43,7 @@ $(document).ready(function () {
 
 
 
-    debugger;
+//    debugger;
 
         var SearchText = "";
 
@@ -275,7 +275,7 @@ $(document).ready(function () {
 
 
     $("#btnOrderNow").click(function () {
-        debugger;
+        //debugger;
         var DeliveryAddress = $("#DeliveryAddress").val();
         var ContactNum = $("#ContactNum").val();
         $("#lblErrorDelivery").hide();
@@ -316,7 +316,14 @@ $(document).ready(function () {
 
     });
 
+    function Callback() {
+        debugger;
+        $("#divAddOrder").empty();
+        $("#divAddOrderBackground").empty();
+        $("#divAddOrder").hide();
+        $("#divAddOrderBackground").hide();
 
+    }
 
 
 });

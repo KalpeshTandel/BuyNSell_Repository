@@ -67,6 +67,7 @@
     <Property Name="Rate" Type="int" />
     <Property Name="RatingAddedDate" Type="datetime" />
     <Property Name="Active" Type="bit" />
+    <Property Name="RatingModifiedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="UserMaster">
     <Key>

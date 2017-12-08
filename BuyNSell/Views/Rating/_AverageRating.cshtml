@@ -1,0 +1,49 @@
+﻿
+<script type="text/javascript">
+    function imgAverageRating_Click(ProductId)
+    {
+        $("#divAddOrderBackground").show();
+        $("#divAddRate").show();
+        $.ajax({
+            type: "Get",
+            url: "../Rating/AddOwnRate",
+            datatype: "json",
+            data: { ProductId: ProductId },
+            success:function(result){
+                $("#divAddRate").html(result);
+            }
+
+        });
+    }
+</script>
+
+
+@if (ViewBag.Rate == 0)
+{
+    <img id="imgAverageRating" src="~/Images/NoStar.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)" />
+}
+
+else if(ViewBag.Rate == 1)
+{
+<img id="imgAverageRating" src="~/Images/OneStar.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+}
+else if (ViewBag.Rate == 2)
+{
+    <img id="imgAverageRating" src="~/Images/TwoStars.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+}
+else if (ViewBag.Rate == 3)
+{
+    <img id="imgAverageRating" src="~/Images/ThreeStars.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+}
+else if (ViewBag.Rate == 4)
+{
+    <img id="imgAverageRating" src="~/Images/FourStars.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+}
+else if (ViewBag.Rate == 5)
+{
+    <img id="imgAverageRating" src="~/Images/FiveStars.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+}
+else
+{
+    <img id="imgAverageRating" src="~/Images/NoStar.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+}

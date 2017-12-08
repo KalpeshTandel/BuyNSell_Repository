@@ -72,6 +72,7 @@
           <Property Name="Rate" Type="int" />
           <Property Name="RatingAddedDate" Type="datetime" />
           <Property Name="Active" Type="bit" />
+          <Property Name="RatingModifiedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -206,6 +207,7 @@
           <Property Name="Rate" Type="Int32" />
           <Property Name="RatingAddedDate" Type="DateTime" Precision="3" />
           <Property Name="Active" Type="Boolean" />
+          <Property Name="RatingModifiedDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -301,6 +303,7 @@
           <EntitySetMapping Name="RatingMasters">
             <EntityTypeMapping TypeName="BuyNSell_Model.RatingMaster">
               <MappingFragment StoreEntitySet="RatingMaster">
+                <ScalarProperty Name="RatingModifiedDate" ColumnName="RatingModifiedDate" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="RatingAddedDate" ColumnName="RatingAddedDate" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />

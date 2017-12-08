@@ -1,0 +1,169 @@
+﻿
+@model BuyNSell.Models.RatingMaster
+
+@using BuyNSell.Models
+
+@{ 
+    RatingMaster RatingMaster = ViewBag.RatingMaster as RatingMaster;
+}
+
+<script type="text/javascript">
+
+    function imgAddOwnRate_Click(Rate) {
+        debugger;
+        $("#divAddOrderBackground").show();
+        $("#divAddRate").show();
+        $.ajax({
+            type: "Post",
+            url: "../Rating/AddOwnRate_Click",
+            datatype: "json",
+            data: { Rate: Rate },
+            success: function (result) {
+                $("#divAddRate").html(result);
+            }
+
+        });
+    }
+
+    $(document).ready(function () {
+
+        var RateLog = '@(ViewBag.RateLog)';
+
+        if (RateLog == 0)
+        {
+           //Nothing
+        }
+        else if (RateLog == 1)
+        {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+        }
+        else if (RateLog == 2)
+        {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+        }
+        else if (RateLog == 3) {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarThree").attr("src", "/Images/YellowStar.jpg");
+        }
+        else if (RateLog == 4) {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarThree").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarFour").attr("src", "/Images/YellowStar.jpg");
+        }
+        else if (RateLog == 5) {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarThree").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarFour").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarFive").attr("src", "/Images/YellowStar.jpg");
+        }
+
+
+
+        //MouseOver Start
+        $("#imgStarOne").mouseover(function ()
+        {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarTwo").attr("src", "/Images/GrayStar.jpg");
+            $("#imgStarThree").attr("src", "/Images/GrayStar.jpg");
+            $("#imgStarFour").attr("src", "/Images/GrayStar.jpg");
+            $("#imgStarFive").attr("src", "/Images/GrayStar.jpg");
+        })
+
+        $("#imgStarTwo").mouseover(function () {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarThree").attr("src", "/Images/GrayStar.jpg");
+            $("#imgStarFour").attr("src", "/Images/GrayStar.jpg");
+            $("#imgStarFive").attr("src", "/Images/GrayStar.jpg");
+        })
+
+        $("#imgStarThree").mouseover(function () {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarThree").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarFour").attr("src", "/Images/GrayStar.jpg");
+            $("#imgStarFive").attr("src", "/Images/GrayStar.jpg");
+        })
+
+        $("#imgStarFour").mouseover(function () {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarThree").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarFour").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarFive").attr("src", "/Images/GrayStar.jpg");
+        })
+
+        $("#imgStarFive").mouseover(function () {
+            $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarThree").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarFour").attr("src", "/Images/YellowStar.jpg");
+            $("#imgStarFive").attr("src", "/Images/YellowStar.jpg");
+
+        })
+        //MouseOver End
+
+        //MouseOut Start
+        $(".Stars").mouseout(function () {
+            debugger;
+                $("#imgStarOne").attr("src", "/Images/GrayStar.jpg");
+                $("#imgStarTwo").attr("src", "/Images/GrayStar.jpg");
+                $("#imgStarThree").attr("src", "/Images/GrayStar.jpg");
+                $("#imgStarFour").attr("src", "/Images/GrayStar.jpg");
+                $("#imgStarFive").attr("src", "/Images/GrayStar.jpg");
+       
+            if (RateLog == 1) {
+                $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+            }
+            else if (RateLog == 2) {
+                $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+            }
+            else if (RateLog == 3) {
+                $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarThree").attr("src", "/Images/YellowStar.jpg");
+            }
+            else if (RateLog == 4) {
+                $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarThree").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarFour").attr("src", "/Images/YellowStar.jpg");
+            }
+            else if (RateLog == 5) {
+                $("#imgStarOne").attr("src", "/Images/GrayStar.jpg");
+                $("#imgStarTwo").attr("src", "/Images/GrayStar.jpg");
+                $("#imgStarThree").attr("src", "/Images/GrayStar.jpg");
+                $("#imgStarFour").attr("src", "/Images/GrayStar.jpg");
+                $("#imgStarFive").attr("src", "/Images/GrayStar.jpg");
+            }
+
+        })
+
+    });
+
+</script>
+
+
+
+<div id="divOrder" style="padding-left:14%; padding-top:5%; width:90%;height:90%">
+
+    <h3>@ViewBag.RatingLog</h3>
+
+
+    <img id="imgStarOne" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(1)" class="Stars"  />
+
+    <img id="imgStarTwo" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(2)" class="Stars"  />
+
+    <img id="imgStarThree" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(3)" class="Stars"  />
+
+    <img id="imgStarFour" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(4)" class="Stars"  />
+
+    <img id="imgStarFive" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(5)" class="Stars"  />
+
+
+    </div>

@@ -98,5 +98,6 @@
     <Property Name="Rate" Type="Int32" />
     <Property Name="RatingAddedDate" Type="DateTime" Precision="3" />
     <Property Name="Active" Type="Boolean" />
+    <Property Name="RatingModifiedDate" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

@@ -72,7 +72,8 @@ namespace BuyNSell.Controllers
                         objDB.OrderMasters.Add(objOM);
                         objDB.SaveChanges();
 
-                        return RedirectToAction("Home", "Home");
+                        return JavaScript("Callback()");
+                        //return RedirectToAction("Home", "Home");
                     }
                     else
                     {

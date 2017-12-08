@@ -298,8 +298,8 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\_ProductList.cshtml" />
     <Content Include="Views\Order\_AddOrder.cshtml" />
-    <Content Include="Views\Rating\_Rating.cshtml" />
-    <Content Include="Views\Rating\_AddRate.cshtml" />
+    <Content Include="Views\Rating\_AverageRating.cshtml" />
+    <Content Include="Views\Rating\_AddOwnRate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
