@@ -34,6 +34,8 @@ namespace BuyNSell.Controllers
 
                     ViewBag.Rate = Rate;
 
+                    ViewBag.UserCountRate = CountRate;
+
                     return PartialView("_AverageRating", ProductId);
                 }
                 else

@@ -32,7 +32,7 @@ namespace BuyNSell.Controllers
                     Session["SearchText"] = "";
 
                     List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
-                    ProductList = GetProductList("", 1, 5, "ProductName");
+                    ProductList = GetProductList("", 1, 5, "AverageRate desc,CountUserRate desc");
 
                     Session["LastPageNumber"] = Math.Ceiling( Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
 

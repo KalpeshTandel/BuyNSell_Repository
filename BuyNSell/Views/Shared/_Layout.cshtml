@@ -51,7 +51,7 @@
                     @Html.ActionLink("My Cart", "Index", "Home",null, new { @class = "MenuItem" })
                 </div>
 
-                <div class="divMenu" >
+                <div id="divMyProfile" class="divMenu" >
                     @Html.ActionLink("My Profile", "Index", "Home",null, new { @class = "MenuItem" })
                 </div>
             </div>
@@ -84,6 +84,11 @@
 
     <div id="divAddProducts" style="margin-left:36%;" class="divSubMenu">
         @Html.ActionLink("Add Product", "AddProduct", "Product", null,new { @class= "MenuItem" })
+    </div>
+
+    <div id="divMyProfileItems" style="margin-left:83.9%%" class="divSubMenu">
+        @Html.ActionLink("LogOut","Home","Home")
+
     </div>
 
 

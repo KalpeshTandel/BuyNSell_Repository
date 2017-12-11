@@ -51,16 +51,16 @@
                 <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent1)" style="height:150px;width:250px;" />
             </div>
             
-            <div id="divProductName" style="margin: 4% 3% 0% 2%;" class="LabelProductList">
+            <div id="divProductName" style="margin: 4% 1% 0% 1%;" class="LabelProductList">
                 @Html.DisplayFor(m => item.ProductName)
             </div>
 
-            <div id="divPrice" style="margin: 4% 3% 0% 2%;" class="LabelProductList">
+            <div id="divPrice" style="margin: 4% 1% 0% 1%;" class="LabelProductList">
                 @Html.Label("Price:- ")
                 @Html.DisplayFor(m => item.Price)
             </div>
 
-            <div id="divQuantity" style="margin: 4% 3% 0% 2%;" class="LabelProductList">
+            <div id="divQuantity" style="margin: 4% 1% 0% 1%;" class="LabelProductList">
                 @Html.Label("Available Quantity:- ")
                 @Html.DisplayFor(m => item.Quantity)
             </div>
@@ -69,7 +69,7 @@
                 @Html.Action("AverageRating", "Rating", new { ProductId = item.ProductId })
             </div>
 
-            <div id="divOrder" style="margin: 4% 3% 0% 2%;">
+            <div id="divOrder" style="margin: 4% 1% 0% 1%;">
                 @*<input id="btnOrder" type="button" value="Order" class="SubmitButton" onclick="location.href='@Url.Action("AddOrder","Order",new {ProductId = item.ProductId})'" />*@
            
                  <button id="btnAddOrder" class="SubmitButton" onclick="btnAddOrder_Click(@item.ProductId)" > Place Order </button>

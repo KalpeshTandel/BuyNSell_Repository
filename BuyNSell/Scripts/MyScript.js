@@ -40,7 +40,10 @@ $(document).ready(function () {
         $("#divAddProducts").hide();
     });
 
-
+    $("#divMyProfile").mouseover(function () {
+        debugger;
+        $("#divMyProfileItems").show();
+    });
 
 
 //    debugger;
