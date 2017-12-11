@@ -10,7 +10,7 @@ namespace BuyNSell.Controllers
 {
     public class LoginController : Controller
     {
-        BuyNSell_DbEntities objDb = new BuyNSell_DbEntities();
+        BuyNSell_DbEntities objDbEntities = new BuyNSell_DbEntities();
 
         // GET: Login
         public ActionResult Login()
@@ -34,7 +34,7 @@ namespace BuyNSell.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    UserMaster UserInfo = objDb.UserMasters.Where(a => a.EmailId.Equals(objUM.EmailId) && a.Password.Equals(objUM.Password)).FirstOrDefault();
+                    UserMaster UserInfo = objDbEntities.UserMasters.Where(a => a.EmailId.Equals(objUM.EmailId) && a.Password.Equals(objUM.Password)).FirstOrDefault();
 
                     if (UserInfo != null)
                     {
@@ -81,8 +81,8 @@ namespace BuyNSell.Controllers
                     objUM.Deleted = false;
                     objUM.UserTypeId = 2;
 
-                    objDb.UserMasters.Add(objUM);
-                    objDb.SaveChanges();
+                    objDbEntities.UserMasters.Add(objUM);
+                    objDbEntities.SaveChanges();
 
                     StoreUserInfoInSession(objUM);
 

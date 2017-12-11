@@ -274,54 +274,56 @@ $(document).ready(function () {
 
 
 
-    $("#btnOrderNow").click(function () {
-        //debugger;
-        var DeliveryAddress = $("#DeliveryAddress").val();
-        var ContactNum = $("#ContactNum").val();
-        $("#lblErrorDelivery").hide();
-        $("#lblErrorContact").hide();
+    //$("#btnOrderNow").click(function () {
+    //    debugger;
+    //    var DeliveryAddress = $("#DeliveryAddress").val();
+    //    var ContactNum = $("#ContactNum").val();
+    //    $("#lblErrorDelivery").hide();
+    //    $("#lblErrorContact").hide();
 
-        if (DeliveryAddress == "" && ContactNum == "") {
-            $("#lblErrorDelivery").show();
-            $("#lblErrorContact").show();
-            return false;
-        }
+    //    if (DeliveryAddress == "" && ContactNum == "") {
+    //        $("#lblErrorDelivery").show();
+    //        $("#lblErrorContact").show();
+    //        return false;
+    //    }
 
-        else if (DeliveryAddress == "") {
-            $("#lblErrorDelivery").show();
-            return false;
-        }
-        else if (ContactNum == "") {
-            $("#lblErrorContact").show();
-            return false;
-        }
+    //    else if (DeliveryAddress == "") {
+    //        $("#lblErrorDelivery").show();
+    //        return false;
+    //    }
+    //    else if (ContactNum == "") {
+    //        $("#lblErrorContact").show();
+    //        return false;
+    //    }
 
-        else
-        {
-            $("#divAddOrder").empty();
-            $("#divAddOrderBackground").empty();
-            $("#divAddOrder").hide();
-            $("#divAddOrderBackground").hide();
-        }
+    //    else
+    //    {
+    //        $("#divAddOrder").empty();
+    //        $("#divPopupBackground").empty();
+    //        $("#divAddOrder").hide();
+    //        $("#divPopupBackground").hide();
+    //        $("#divSuccess").show();
+    //        $("#lblSuccess").val("Order placed Sccessfully!Thank You")
+    //    }
 
-    });
+    //});
 
 
     $("#btnOrderNowCancel").click(function () {
         debugger;
         $("#divAddOrder").empty();
-        $("#divAddOrderBackground").empty();
+        $("#divPopupBackground").empty();
         $("#divAddOrder").hide();
-        $("#divAddOrderBackground").hide();
+        $("#divPopupBackground").hide();
 
     });
 
     function Callback() {
         debugger;
         $("#divAddOrder").empty();
-        $("#divAddOrderBackground").empty();
+        $("#divPopupBackground").empty();
         $("#divAddOrder").hide();
-        $("#divAddOrderBackground").hide();
+        $("#divPopupBackground").hide();
 
     }
 

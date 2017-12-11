@@ -12,9 +12,14 @@ namespace BuyNSell.Controllers
 {
     public class HomeController : Controller
     {
-        BuyNSell_DbEntities objDB = new BuyNSell_DbEntities();
+        BuyNSell_DbEntities objDbEntities = new BuyNSell_DbEntities();
 
         // GET: Home
+
+
+
+        //[ChildActionOnly]
+        //[NonAction]          
         public ActionResult Home()
         {
             try
@@ -31,9 +36,7 @@ namespace BuyNSell.Controllers
 
                     Session["LastPageNumber"] = Math.Ceiling( Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
 
-                    ViewBag.ProductCategory = new SelectList(objDB.ProductCategoryMasters.ToList(), "ProductCategoryId", "ProductCategoryName");
-
-
+                    ViewBag.ProductCategory = new SelectList(objDbEntities.ProductCategoryMasters.ToList(), "ProductCategoryId", "ProductCategoryName");
 
                     return View(ProductList);
                 }
@@ -49,13 +52,7 @@ namespace BuyNSell.Controllers
               
         }
 
-
-        //public void SetProductSession()
-        //{
-
-        //}
-        
-        
+              
         public List<ProductList_ViewModel> GetProductList(string SearchText, int Start, int End, string OrderBy)
         {
             try
@@ -71,7 +68,6 @@ namespace BuyNSell.Controllers
                 throw ex;
             }
         }
-
 
 
 
@@ -109,7 +105,7 @@ namespace BuyNSell.Controllers
             }
         }
 
-        //[HttpPost]
+
         public ActionResult NextPage_Click(string SearchText,string OrderBy,int PageSize)/*string SearchText, int Start, int End, string OrderBy,int PageSize)*/
         {
             try
@@ -147,7 +143,7 @@ namespace BuyNSell.Controllers
         }
 
 
-        //[HttpPost]
+
         public ActionResult PreviousPage_Click(string SearchText,string OrderBy, int PageSize)
         {
             try

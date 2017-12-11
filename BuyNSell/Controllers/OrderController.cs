@@ -10,9 +10,13 @@ namespace BuyNSell.Controllers
 {
     public class OrderController : Controller
     {
-        BuyNSell_DbEntities objDB = new BuyNSell_DbEntities();
+        BuyNSell_DbEntities objDbEntities = new BuyNSell_DbEntities();
 
         // GET: Order
+
+
+        //[ChildActionOnly]
+        //[NonAction]
         public ActionResult AddOrder(int ProductId)
         {
             try
@@ -20,7 +24,7 @@ namespace BuyNSell.Controllers
                 if (Session["UserId"] != null)
                 {
 
-                    ProductMaster ProductMaster = objDB.ProductMasters.Where(p => p.ProductId == ProductId).FirstOrDefault();
+                    ProductMaster ProductMaster = objDbEntities.ProductMasters.Where(p => p.ProductId == ProductId).FirstOrDefault();
 
                     Session["OrderProductId"] = ProductId;
                     Session["PaymentAmount"] = ProductMaster.Price;
@@ -69,11 +73,21 @@ namespace BuyNSell.Controllers
                         objOM.Deleted = false;
                         objOM.OrderAddedDate = DateTime.Now;
 
-                        objDB.OrderMasters.Add(objOM);
-                        objDB.SaveChanges();
+                        objDbEntities.OrderMasters.Add(objOM);
+                        objDbEntities.SaveChanges();
 
-                        return JavaScript("Callback()");
-                        //return RedirectToAction("Home", "Home");
+                        return RedirectToAction("Home", "Home");
+
+
+                        //return JavaScript("alert('hello')");
+                        //return Content("<script language='javascript' type='text/javascript'>alert('hello');</script>");
+                        //return Content("<script language='javascript' type='text/javascript'>$('#divAddOrder').empty();$('#divPopupBackground').empty();$('#divAddOrder').hide();$('#divPopupBackground').hide();</script>");
+
+
+                        //return JavaScript("alert('Order Placed Succesfully');");
+                        //return Json(" Order Placed Succesfully ");
+                        //return JavaScript("</script>Callback()</script>");
+                        // return RedirectToAction("Home", "Home");
                     }
                     else
                     {
@@ -95,16 +109,22 @@ namespace BuyNSell.Controllers
 
         public JsonResult OrderQuantity_Change(int OrderQuantity)
         {
+            try
+            {
+                int OrderProductId = Convert.ToInt16(Session["OrderProductId"]);
 
-            int OrderProductId = Convert.ToInt16(Session["OrderProductId"]);
+                var Price = objDbEntities.ProductMasters.Where(p => p.ProductId == OrderProductId).Select(p => p.Price).FirstOrDefault();
 
-            var Price = objDB.ProductMasters.Where(p => p.ProductId == OrderProductId).Select(p => p.Price).FirstOrDefault();
+                int PaymentAmount = Convert.ToInt32(Price * OrderQuantity);
 
-            int PaymentAmount = Convert.ToInt32(Price * OrderQuantity);
+                Session["PaymentAmount"] = PaymentAmount;
 
-            Session["PaymentAmount"] = PaymentAmount;
-
-            return Json(PaymentAmount, JsonRequestBehavior.AllowGet);
+                return Json(PaymentAmount, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
 
         }
 

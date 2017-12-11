@@ -2,15 +2,15 @@
 <script type="text/javascript">
     function imgAverageRating_Click(ProductId)
     {
-        $("#divAddOrderBackground").show();
-        $("#divAddRate").show();
+        $("#divPopupBackground").show();
+        $("#divAddOwnRating").show();
         $.ajax({
             type: "Get",
-            url: "../Rating/AddOwnRate",
+            url: "../Rating/AddOwnRating",
             datatype: "json",
             data: { ProductId: ProductId },
             success:function(result){
-                $("#divAddRate").html(result);
+                $("#divAddOwnRating").html(result);
             }
 
         });

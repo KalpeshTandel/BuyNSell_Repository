@@ -13,83 +13,129 @@ namespace BuyNSell.Controllers
     {
 
 
-        BuyNSell_DbEntities objDB = new BuyNSell_DbEntities();
+        BuyNSell_DbEntities objDbEntities = new BuyNSell_DbEntities();
 
         // GET: Rating
+
+
         public ActionResult AverageRating(int ProductId)
         {
-            var SumRate = objDB.RatingMasters.Where(m => m.ProductId == ProductId).Sum(m => m.Rate);
+            try
+            {
+                if (Session["UserId"] != null)
+                {
+                    var SumRate = objDbEntities.RatingMasters.Where(m => m.ProductId == ProductId).Sum(m => m.Rate);
 
-            var CountRate = objDB.RatingMasters.Where(m => m.ProductId == ProductId).Count();
+                    var CountRate = objDbEntities.RatingMasters.Where(m => m.ProductId == ProductId).Count();
 
-            int Rate = Convert.ToInt32(SumRate / CountRate);
+                    int Rate = Convert.ToInt32(SumRate / CountRate);
 
-            ViewBag.ProductId = ProductId;
+                    ViewBag.ProductId = ProductId;
 
-            ViewBag.Rate = Rate;  
-           
+                    ViewBag.Rate = Rate;
 
-            return PartialView("_AverageRating", ProductId);
+                    return PartialView("_AverageRating", ProductId);
+                }
+                else
+                {
+                    return RedirectToAction("LogInAgain", "Login");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
 
-        public ActionResult AddOwnRate(int ProductId)
+        public ActionResult AddOwnRating(int ProductId)
         {
-            int UserId = Convert.ToInt32(Session["UserId"]);
-            Session["RatingProductId"] = ProductId;
-
-            RatingMaster RatingMaster = objDB.RatingMasters.Where(m => m.ProductId == ProductId && m.UserId == UserId).FirstOrDefault();
-
-            if(RatingMaster != null)
+            try
             {
-                ViewBag.RatingLog = "You aleady rated this Product";
-                Session["RatingMaster"] = RatingMaster;
-                ViewBag.RateLog = RatingMaster.Rate;
-            }
-            else
-            {
-                ViewBag.RatingLog = "  Please Rate this Product !";
-                Session["RatingMaster"] = null;
-                ViewBag.RateLog = 0;
-            }
+                if (Session["UserId"] != null)
+                {
+                    int UserId = Convert.ToInt32(Session["UserId"]);
+                    Session["RatingProductId"] = ProductId;
 
-            return PartialView("_AddOwnRate");
+                    RatingMaster RatingMaster = objDbEntities.RatingMasters.Where(m => m.ProductId == ProductId && m.UserId == UserId).FirstOrDefault();
+
+                    if (RatingMaster != null)
+                    {
+                        ViewBag.RatingLog = "You aleady rated this Product";
+                        Session["RatingMaster"] = RatingMaster;
+                        ViewBag.RateLog = RatingMaster.Rate;
+                    }
+                    else
+                    {
+                        ViewBag.RatingLog = "  Please Rate this Product !";
+                        Session["RatingMaster"] = null;
+                        ViewBag.RateLog = 0;
+                    }
+
+                    return PartialView("_AddOwnRating");
+                }
+                else
+                {
+                    return RedirectToAction("LogInAgain", "Login");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
 
 
         [HttpPost]
-        public ActionResult AddOwnRate_Click(int Rate)
+        public ActionResult AddOwnRating_Click(int Rate)
         {
-            int UserId = Convert.ToInt32(Session["UserId"]);
-            int RatingProductId = Convert.ToInt32(Session["RatingProductId"]);
-
-            if(Session["RatingMaster"] != null)
+            try
             {
-                RatingMaster RatingMaster = Session["RatingMaster"] as RatingMaster;
-                RatingMaster objRM = objDB.RatingMasters.Single(m => m.ProductId == RatingProductId && m.UserId == UserId);
+                if (Session["UserId"] != null)
+                {
+                    int UserId = Convert.ToInt32(Session["UserId"]);
+                    int RatingProductId = Convert.ToInt32(Session["RatingProductId"]);
 
-                objRM.Rate = Rate;
-                objRM.RatingModifiedDate = DateTime.Now;
-                objDB.SaveChanges();
+                    if (Session["RatingMaster"] != null)
+                    {
+                        RatingMaster RatingMaster = Session["RatingMaster"] as RatingMaster;
+                        RatingMaster objRM = objDbEntities.RatingMasters.Single(m => m.ProductId == RatingProductId && m.UserId == UserId);
+
+                        objRM.Rate = Rate;
+                        objRM.RatingModifiedDate = DateTime.Now;
+                        objDbEntities.SaveChanges();
+                    }
+                    else
+                    {
+                        RatingMaster objRM = new RatingMaster();
+                        objRM.ProductId = RatingProductId;
+                        objRM.UserId = UserId;
+                        objRM.Rate = Rate;
+                        objRM.RatingAddedDate = DateTime.Now;
+                        objRM.Active = true;
+
+                        objDbEntities.RatingMasters.Add(objRM);
+                        objDbEntities.SaveChanges();
+
+                    }
+                    return JavaScript("fnAfter_AddOwnRating_Click()");
+                }
+                else
+                {
+                    return RedirectToAction("LogInAgain", "Login");
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                RatingMaster objRM = new RatingMaster();
-                objRM.ProductId = RatingProductId;
-                objRM.UserId = UserId;
-                objRM.Rate = Rate;
-                objRM.RatingAddedDate = DateTime.Now;
-                objRM.Active = true;
-
-                objDB.RatingMasters.Add(objRM);
-                objDB.SaveChanges();
-
+                throw ex;
             }
 
-            return JavaScript("alert('hello')");
+
         }
-
-
     }
 }

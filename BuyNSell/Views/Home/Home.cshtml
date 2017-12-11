@@ -14,17 +14,6 @@
 <head>
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
     <script src="~/Scripts/MyScript.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        function Callback() {
-            debugger;
-            $("#divAddOrder").empty();
-            $("#divAddOrderBackground").empty();
-            $("#divAddOrder").hide();
-            $("#divAddOrderBackground").hide();
-
-        }
-    </script>
-
 
 </head>
 <body>
@@ -99,9 +88,16 @@
 
     </div>
 
-    <div id="divAddRate" style="display:none; position:fixed;background-color:white;z-index:2;left:37%;top:35%;width: 25%;height: 25%; border:solid; border-radius:50px"></div>
+    <div id="divAddOwnRating" style="display:none; position:fixed;background-color:white;z-index:2;left:37%;top:35%;width: 25%;height: 25%; border:solid; border-radius:50px">
+    </div>
 
-    <div id="divAddOrderBackground" style="display:none;position:fixed;height: 100%;width:100%;top:0px;left:0px;opacity:0.2;background-color:black; z-index:1">
+    <div id="divPopupBackground" style="display:none;position:fixed;height: 100%;width:100%;top:0px;left:0px;opacity:0.2;background-color:black; z-index:1">
+    </div>
+
+    <div id="divSuccess" style="display:none;position:fixed; background-color:white;z-index:2;left:37%;top:35%;width: 20%;height: 20%; border:solid; border-radius:50px" >
+        <label id="lblSuccess" style="font-weight:bold; font-size:20px"></label>
+        <button id="btnSucessOk" type="button" class="SubmitButton" style="margin-left: 40%;margin-top: 30%;"> OK </button>
+
     </div>
 
 

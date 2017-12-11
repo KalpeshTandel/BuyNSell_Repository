@@ -10,7 +10,7 @@ namespace BuyNSell.Controllers
 {
     public class ProductController : Controller
     {
-        BuyNSell_DbEntities objDb = new BuyNSell_DbEntities();
+        BuyNSell_DbEntities objDbEntities = new BuyNSell_DbEntities();
 
         // GET: Product
         public ActionResult Index()
@@ -41,7 +41,7 @@ namespace BuyNSell.Controllers
                 if (Session["UserId"] != null)
                 {
                     //ShowPhoto(1);
-                    ViewBag.CategoryList = new SelectList(objDb.ProductCategoryMasters.ToList(), "ProductCategoryId", "ProductCategoryName");
+                    ViewBag.CategoryList = new SelectList(objDbEntities.ProductCategoryMasters.ToList(), "ProductCategoryId", "ProductCategoryName");
 
                     return View();
                 }
@@ -49,8 +49,6 @@ namespace BuyNSell.Controllers
                 {
                     return RedirectToAction("LogInAgain", "Login");
                 }
-
-
 
             }
             catch (Exception ex)
@@ -62,7 +60,6 @@ namespace BuyNSell.Controllers
 
 
         [HttpPost]
-        //[AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddProduct(ProductMaster objPM)
         {
             try
@@ -70,7 +67,7 @@ namespace BuyNSell.Controllers
                 if (Session["UserId"] != null)
                 {
 
-                    ViewBag.CategoryList = new SelectList(objDb.ProductCategoryMasters.ToList(), "ProductCategoryId", "ProductCategoryName");
+                    ViewBag.CategoryList = new SelectList(objDbEntities.ProductCategoryMasters.ToList(), "ProductCategoryId", "ProductCategoryName");
                     if (ModelState.IsValid)
                     {
                         objPM.ProductId = 0;
@@ -81,13 +78,8 @@ namespace BuyNSell.Controllers
 
                         ProductPicture(objPM);
 
-
-                        objDb.ProductMasters.Add(objPM);
-                        objDb.SaveChanges();
-
-                        //int ProductId = objPM.ProductId;
-
-                        //ProductPicture(ProductId);
+                        objDbEntities.ProductMasters.Add(objPM);
+                        objDbEntities.SaveChanges();
                     }
 
                     return View();
@@ -119,7 +111,6 @@ namespace BuyNSell.Controllers
 
                     objPM.ContentType1 = file1.ContentType;
                   
-
                     Int32 Length = file1.ContentLength;
                     byte[] tempImage = new byte[Length];
                     file1.InputStream.Read(tempImage, 0, Length);
@@ -132,7 +123,6 @@ namespace BuyNSell.Controllers
 
                     objPM.ContentType2 = file2.ContentType;
                    
-
                     Int32 Length = file2.ContentLength;
                     byte[] tempImage = new byte[Length];
                     file2.InputStream.Read(tempImage, 0, Length);
@@ -145,13 +135,11 @@ namespace BuyNSell.Controllers
 
                     objPM.ContentType3 = file3.ContentType;
                    
-
                     Int32 Length = file3.ContentLength;
                     byte[] tempImage = new byte[Length];
                     file3.InputStream.Read(tempImage, 0, Length);
                     objPM.PictureContent3 = tempImage;
-
-                   
+                  
                 }
 
                 return objPM;
@@ -244,7 +232,7 @@ namespace BuyNSell.Controllers
                     // including the image byte array from the image column in
                     // a database.
                     //PictureMaster image = objDb.PictureMasters.Where(s => s.PictureId == 1).FirstOrDefault();
-                    ProductMaster image = objDb.ProductMasters.Where(s => s.ProductId == value).FirstOrDefault();
+                    ProductMaster image = objDbEntities.ProductMasters.Where(s => s.ProductId == value).FirstOrDefault();
                     //As you can see the use is stupid simple.  Just get the image bytes and the
                     //  saved content type.  See this is where the contentType comes in real handy.
                     //ImageResult result = new ImageResult(image.PictureContent, image.ContentType);
@@ -257,9 +245,6 @@ namespace BuyNSell.Controllers
                 {
                     return RedirectToAction("LogInAgain", "Login");
                 }
-
-
-
 
             }
             catch(Exception ex)

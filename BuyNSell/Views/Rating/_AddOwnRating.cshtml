@@ -9,21 +9,31 @@
 
 <script type="text/javascript">
 
-    function imgAddOwnRate_Click(Rate) {
-        debugger;
-        $("#divAddOrderBackground").show();
-        $("#divAddRate").show();
+    function imgAddOwnRating_Click(Rate) {
         $.ajax({
             type: "Post",
-            url: "../Rating/AddOwnRate_Click",
+            url: "../Rating/AddOwnRating_Click",
             datatype: "json",
             data: { Rate: Rate },
+
             success: function (result) {
-                $("#divAddRate").html(result);
             }
 
         });
     }
+
+    function fnAfter_AddOwnRating_Click() {
+        debugger;
+        $("#divAddOwnRating").empty();
+        $("#divPopupBackground").empty();
+        $("#divAddOwnRating").hide();
+        $("#divPopupBackground").hide();
+
+    }
+
+
+
+
 
     $(document).ready(function () {
 
@@ -135,14 +145,24 @@
                 $("#imgStarFour").attr("src", "/Images/YellowStar.jpg");
             }
             else if (RateLog == 5) {
-                $("#imgStarOne").attr("src", "/Images/GrayStar.jpg");
-                $("#imgStarTwo").attr("src", "/Images/GrayStar.jpg");
-                $("#imgStarThree").attr("src", "/Images/GrayStar.jpg");
-                $("#imgStarFour").attr("src", "/Images/GrayStar.jpg");
-                $("#imgStarFive").attr("src", "/Images/GrayStar.jpg");
+                $("#imgStarOne").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarTwo").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarThree").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarFour").attr("src", "/Images/YellowStar.jpg");
+                $("#imgStarFive").attr("src", "/Images/YellowStar.jpg");
             }
 
         })
+
+
+        $("#btnCloseAddOwnRating").click(function () {
+            $("#divAddOwnRating").empty();
+            $("#divPopupBackground").empty();
+            $("#divAddOwnRating").hide();
+            $("#divPopupBackground").hide();
+        });
+
+
 
     });
 
@@ -150,20 +170,22 @@
 
 
 
-<div id="divOrder" style="padding-left:14%; padding-top:5%; width:90%;height:90%">
+<div id="divOwnRate" style="padding-left:14%; padding-top:3%; width:90%;height:90%">
+    <img id="btnCloseAddOwnRating" src="~/Images/Close.jpg" style="width:8%; margin-left:80%" />
+
 
     <h3>@ViewBag.RatingLog</h3>
 
 
-    <img id="imgStarOne" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(1)" class="Stars"  />
+    <img id="imgStarOne" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRating_Click(1)" class="Stars"  />
 
-    <img id="imgStarTwo" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(2)" class="Stars"  />
+    <img id="imgStarTwo" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRating_Click(2)" class="Stars"  />
 
-    <img id="imgStarThree" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(3)" class="Stars"  />
+    <img id="imgStarThree" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRating_Click(3)" class="Stars"  />
 
-    <img id="imgStarFour" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(4)" class="Stars"  />
+    <img id="imgStarFour" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRating_Click(4)" class="Stars"  />
 
-    <img id="imgStarFive" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRate_Click(5)" class="Stars"  />
+    <img id="imgStarFive" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRating_Click(5)" class="Stars"  />
 
 
     </div>

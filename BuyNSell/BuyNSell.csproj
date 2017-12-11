@@ -232,6 +232,7 @@
     <Content Include="Images\AllStars.jpg" />
     <Content Include="Images\buy-and-sell.png" />
     <Content Include="Images\BuyNSell.jpg" />
+    <Content Include="Images\Close.jpg" />
     <Content Include="Images\FiveStars.jpg" />
     <Content Include="Images\FourStars.jpg" />
     <Content Include="Images\GrayStar.jpg" />
@@ -299,7 +300,7 @@
     <Content Include="Views\Home\_ProductList.cshtml" />
     <Content Include="Views\Order\_AddOrder.cshtml" />
     <Content Include="Views\Rating\_AverageRating.cshtml" />
-    <Content Include="Views\Rating\_AddOwnRate.cshtml" />
+    <Content Include="Views\Rating\_AddOwnRating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

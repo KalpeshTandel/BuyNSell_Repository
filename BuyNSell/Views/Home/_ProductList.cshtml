@@ -11,7 +11,7 @@
     <script type="text/javascript">
         function btnAddOrder_Click(ProductId) {
             debugger;
-            $("#divAddOrderBackground").show();
+            $("#divPopupBackground").show();
             $("#divAddOrder").show();
             $.ajax({
                 type: "Get",
@@ -27,20 +27,7 @@
             e.stopImmediatePropagation();
         }
 
-        function Callback() {
-            debugger;
-            $("#divAddOrder").empty();
-            $("#divAddOrderBackground").empty();
-            $("#divAddOrder").hide();
-            $("#divAddOrderBackground").hide();
-
-        }
-
-
     </script>
-
-
-
 
 </head>
 
