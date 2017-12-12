@@ -12,6 +12,7 @@ namespace BuyNSell.Models
     {
 
         [Required(ErrorMessage ="*")]
+        [StringLength(50,ErrorMessage = "Must be between {2} and {1} characters long.", MinimumLength = 5)]
         public string ProductName { get; set; }
 
 

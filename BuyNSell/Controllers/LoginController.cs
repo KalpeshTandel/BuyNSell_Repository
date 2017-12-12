@@ -97,8 +97,6 @@ namespace BuyNSell.Controllers
 
 
         }
-
-
         public void StoreUserInfoInSession(UserMaster objUM)
         {
             try
@@ -116,7 +114,6 @@ namespace BuyNSell.Controllers
 
         public ActionResult LogInAgain()
         {
-
             try
             {
                 return View();
@@ -126,6 +123,24 @@ namespace BuyNSell.Controllers
                 throw ex;
             }         
         }
+
+
+        public ActionResult Logout()
+        {
+            try
+            {              
+                Session.Clear();
+                Session.Abandon();
+          
+                return RedirectToAction("Login", "Login");
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

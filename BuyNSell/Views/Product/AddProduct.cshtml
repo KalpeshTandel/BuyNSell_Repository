@@ -44,7 +44,7 @@
 
         <div style="padding-bottom:5%">
             @Html.Label("Price", new { @class = "Label", style = "padding-right: 10%;" })
-            @Html.TextBoxFor(m => m.Price, new { placeholder = "Quantity" })
+            @Html.TextBoxFor(m => m.Price, new { placeholder = "Price" })
             @Html.ValidationMessageFor(m => m.Price, "", new { @class = "ErrorMsg" })
         </div>
 

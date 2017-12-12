@@ -31,6 +31,7 @@ font-weight:bold
     font-size: 25px;
     margin-left: 25%;
     text-decoration: none;
+    color:blue;
 }
 
 .divMenu{
@@ -49,11 +50,22 @@ font-weight:bold
     width:15%;
     background-color: #70A2AB;
     position:absolute;
-    padding-bottom:1%
+    padding-bottom:1%;
+    color:blue;
 }
 
 
-.LabelProductList{
+.LabelProductListBold{
     font-size:25px;
+    font-weight:bold;
+}
+
+.LabelProductList{
+     font-size:25px;
+}
+
+
+
+.btnConfirm{
     font-weight:bold;
 }

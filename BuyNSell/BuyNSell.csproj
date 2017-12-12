@@ -238,6 +238,7 @@
     <Content Include="Images\GrayStar.jpg" />
     <Content Include="Images\NoStar.jpg" />
     <Content Include="Images\OneStar.jpg" />
+    <Content Include="Images\question-mark-icon.jpg" />
     <Content Include="Images\ThreeStars.jpg" />
     <Content Include="Images\TwoStars.jpg" />
     <Content Include="Images\YellowStar.jpg" />

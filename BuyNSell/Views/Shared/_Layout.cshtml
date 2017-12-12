@@ -86,10 +86,45 @@
         @Html.ActionLink("Add Product", "AddProduct", "Product", null,new { @class= "MenuItem" })
     </div>
 
-    <div id="divMyProfileItems" style="margin-left:83.9%%" class="divSubMenu">
-        @Html.ActionLink("LogOut","Home","Home")
+    @*<div id="divMyProfileItems" style="margin-left:83.9%" class="divSubMenu">
+        @Html.ActionLink("LogOut","Home","Home",null,new { @class = "MenuItem" })
+        <button type="button">LogOff</button>
+    </div>*@
+
+    @*<div id="divMyProfileItems" class="div-email-content email">
+        <a href="../Login/Logout"><input value="Logout" class="logout-email border-none" type="button" /></a>
+    </div>*@
+
+    <div id="divMyProfileItems" style="margin-left:83.9%;display:none;width:15%;background-color: #70A2AB;position:absolute;">
+        <button id="btnLogout"type="button"style="width:100%;background-color: #70A2AB;position:absolute;padding-bottom:4%;font-size: 25px;color:blue; text-decoration: none;border: none;">LogOut</button>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div id="divPopupBackground" style="display:none; position:fixed;height: 100%;width:100%;top:0px;left:0px;opacity:0.2;background-color:black; z-index:1">
+    </div>
+
+    <div id="divLogoutConfirm" style="display:none;position:fixed;background-color:white; z-index:2;left:35%;top:25%;width: 25%;height: 25%; border:solid; border-radius:50px">
+        
+        <div style="margin-left:10%; margin-top:10%">
+            <img src="~/Images/question-mark-icon.jpg" style="width:10%;"/>
+            <label style="font-weight:bold; padding-left:2%">Are You Sure You Want To Logout ?</label>
+        </div>
+
+        <div style="margin-top: 10%;margin-left: 20%;">
+            <button type="button" id="btnLogoutConfirmYes" class="btnConfirm" onclick="location.href='@Url.Action("Logout","Login")'">Yes,logOut</button>
+            <button type="button" id="btnLogoutConfirmNo" style="margin-left:4%" class="btnConfirm">No,Keep me Login</button>
+
+        </div>
 
     </div>
+
 
 
     <div>

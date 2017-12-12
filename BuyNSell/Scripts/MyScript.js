@@ -8,7 +8,7 @@ $(document).ready(function () {
     });
 
     
-    $("#divCategory").mouseleave(function () {
+    $("#divCategory").mouseout(function () {
         $("#divCategoryItems").hide();
     });
 
@@ -17,7 +17,7 @@ $(document).ready(function () {
     });
 
 
-    $("#divCategoryItems").mouseleave(function () {
+    $("#divCategoryItems").mouseout(function () {
         $("#divCategoryItems").hide();
     });
 
@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
 
 
-    $("#divMyProducts").mouseleave(function () {
+    $("#divMyProducts").mouseout(function () {
         $("#divAddProducts").hide();
     });
 
@@ -36,16 +36,29 @@ $(document).ready(function () {
     });
 
 
-    $("#divAddProducts").mouseleave(function () {
+    $("#divAddProducts").mouseout(function () {
         $("#divAddProducts").hide();
     });
 
     $("#divMyProfile").mouseover(function () {
-        debugger;
+        
         $("#divMyProfileItems").show();
     });
 
+    $("#divMyProfile").mouseout(function () {
+        
+        $("#divMyProfileItems").hide();
+    });
 
+    $("#divMyProfileItems").mouseover(function () {
+       
+        $("#divMyProfileItems").show();
+    });
+
+    $("#divMyProfileItems").mouseout(function () {
+       
+        $("#divMyProfileItems").hide();
+    });
 //    debugger;
 
         var SearchText = "";
@@ -277,39 +290,39 @@ $(document).ready(function () {
 
 
 
-    //$("#btnOrderNow").click(function () {
-    //    debugger;
-    //    var DeliveryAddress = $("#DeliveryAddress").val();
-    //    var ContactNum = $("#ContactNum").val();
-    //    $("#lblErrorDelivery").hide();
-    //    $("#lblErrorContact").hide();
+    $("#btnOrderNow").click(function () {
+        debugger;
+        var DeliveryAddress = $("#DeliveryAddress").val();
+        var ContactNum = $("#ContactNum").val();
+        $("#lblErrorDelivery").hide();
+        $("#lblErrorContact").hide();
 
-    //    if (DeliveryAddress == "" && ContactNum == "") {
-    //        $("#lblErrorDelivery").show();
-    //        $("#lblErrorContact").show();
-    //        return false;
-    //    }
+        if (DeliveryAddress == "" && ContactNum == "") {
+            $("#lblErrorDelivery").show();
+            $("#lblErrorContact").show();
+            return false;
+        }
 
-    //    else if (DeliveryAddress == "") {
-    //        $("#lblErrorDelivery").show();
-    //        return false;
-    //    }
-    //    else if (ContactNum == "") {
-    //        $("#lblErrorContact").show();
-    //        return false;
-    //    }
+        else if (DeliveryAddress == "") {
+            $("#lblErrorDelivery").show();
+            return false;
+        }
+        else if (ContactNum == "") {
+            $("#lblErrorContact").show();
+            return false;
+        }
 
-    //    else
-    //    {
-    //        $("#divAddOrder").empty();
-    //        $("#divPopupBackground").empty();
-    //        $("#divAddOrder").hide();
-    //        $("#divPopupBackground").hide();
-    //        $("#divSuccess").show();
-    //        $("#lblSuccess").val("Order placed Sccessfully!Thank You")
-    //    }
+        else
+        {
+            $("#divAddOrder").empty();
+            $("#divPopupBackground").empty();
+            $("#divAddOrder").hide();
+            $("#divPopupBackground").hide();
+            $("#divSuccess").show();
+            $("#lblSuccess").val("Order placed Sccessfully!Thank You")
+        }
 
-    //});
+    });
 
 
     $("#btnOrderNowCancel").click(function () {
@@ -329,6 +342,32 @@ $(document).ready(function () {
         $("#divPopupBackground").hide();
 
     }
+
+    $("#btnLogout").click(function () {
+        $("#divPopupBackground").show();
+        $("#divLogoutConfirm").show();
+    });
+
+
+    $("#btnLogoutConfirmNo").click(function () {
+        $("#divPopupBackground").hide();
+        $("#divLogoutConfirm").hide();
+    });
+
+
+    //$("#btnLogoutConfirmYes").click(function () {
+    //    debugger;
+    //    $.ajax({
+    //        type: "Post",
+    //        //url:'@Url.Action("Home","Home")'
+    //        url: "../Login/Logout"
+    //    });
+
+    //});
+
+
+   
+
 
 
 });
