@@ -2,6 +2,8 @@
 <script type="text/javascript">
     function imgAverageRating_Click(ProductId)
     {
+       
+        debugger;
         $("#divPopupBackground").show();
         $("#divAddOwnRating").show();
         $.ajax({
@@ -49,6 +51,6 @@ else
 }
 
 <div style="margin-left: 5%;">
-    <label style="font-weight:bold;">(Rated By:- @ViewBag.UserCountRate)</label>
+    <label style="font-size: 20px;">(Rated By:- @ViewBag.UserCountRate)</label>
 
 </div>

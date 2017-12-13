@@ -97,6 +97,76 @@ namespace BuyNSell.Controllers
         }
 
 
+        public ActionResult ViewProductDetails(int ProductId)
+        {
+            try
+            {
+                if (Session["UserId"] != null)
+                {
+                    ProductList_ViewModel ProductDetails = new ProductList_ViewModel();
+
+                    var Result = objDbEntities.ProductMasters
+                               .Join(objDbEntities.UserMasters, p => p.UserId, u => u.UserId, (p, u) => new { p, u })
+                               .Join(objDbEntities.ProductCategoryMasters, pc => pc.p.ProductCategoryId, p => p.ProductCategoryId, (p, pc) =>
+                               new
+                               {
+                                   ProductId = p.p.ProductId,
+                                   ProductName = p.p.ProductName,
+                                   ProductDescription = p.p.ProductDescription,
+                                   UserId = p.u.UserId,
+                                  // UserName = p.u.FirstName + ' ' + p.u.LastName,
+                                   ProductCategoryId = pc.ProductCategoryId,
+                                   ProductCategoryName = pc.ProductCategoryName,
+                                   Quantity = p.p.Quantity,
+                                   Active = p.p.Active,
+                                   Deleted = p.p.Deleted,
+                                   AddedDate = p.p.AddedDate,
+                                   PictureContent1 = p.p.PictureContent1,
+                                   ContentType1 = p.p.ContentType1,
+                                   Price = p.p.Price
+                               })
+                               .Where(c => c.ProductId == ProductId)
+                               .Select(a => new
+                               {
+                                   ProductId = a.ProductId,
+                                   ProductCategoryName = a.ProductCategoryName
+
+                               }).FirstOrDefault();
+
+
+
+                    ProductDetails.ProductId = Result.ProductId;
+                    //ProductDetails.ProductName = Result.ProductName;
+                    //ProductDetails.ProductDescription = Result.ProductDescription;
+                    //ProductDetails.UserId = Result.UserId;
+                    //ProductDetails.UserName = Result.UserName;
+                    //ProductDetails.ProductCategoryId = Result.ProductCategoryId;
+                    ProductDetails.ProductCategoryName = Result.ProductCategoryName;
+                    //ProductDetails.Quantity = Result.Quantity;
+                    //ProductDetails.Active = Result.Active;
+                    //ProductDetails.Deleted = Result.Deleted;
+                    //ProductDetails.AddedDate = Result.AddedDate;
+                    //ProductDetails.PictureContent1 = Result.PictureContent1;
+                    //ProductDetails.ContentType1 = Result.ContentType1;
+                    //ProductDetails.Price = Result.Price;
+
+                    return View();
+
+                }
+                else
+                {
+                    return RedirectToAction("LogInAgain", "Login");
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
         public ProductMaster ProductPicture(ProductMaster objPM)
         {
             try

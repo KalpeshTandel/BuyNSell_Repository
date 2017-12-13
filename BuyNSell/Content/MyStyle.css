@@ -62,10 +62,16 @@ font-weight:bold
 
 .LabelProductList{
      font-size:25px;
+     /*margin-top: 50%;*/
+     padding-top: 40px;
 }
-
 
 
 .btnConfirm{
     font-weight:bold;
+}
+
+.divProductList{
+    margin: 2% 1% 0% 1%;
+        text-align: center;
 }

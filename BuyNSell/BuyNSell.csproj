@@ -302,6 +302,7 @@
     <Content Include="Views\Order\_AddOrder.cshtml" />
     <Content Include="Views\Rating\_AverageRating.cshtml" />
     <Content Include="Views\Rating\_AddOwnRating.cshtml" />
+    <Content Include="Views\Product\_ViewProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

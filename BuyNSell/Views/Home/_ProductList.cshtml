@@ -27,6 +27,18 @@
             e.stopImmediatePropagation();
         }
 
+        function btnViewProductDetails_Click(ProductId) {
+            //debugger;
+            //alert(ProductId);
+            $.ajax({
+                type: "Post",
+                url: "../Product/ViewProductDetails",
+                datatype: "json",
+                data:{ProductId : ProductId}
+            });
+        }
+
+
     </script>
 
 </head>
@@ -47,41 +59,55 @@
                 @Html.DisplayFor(m => item.SrNo)
             </div>
 
-            <div id="divpicture">
+            <div id="divpicture" style="margin-right:1%">
                 <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent1)" style="height:150px;width:250px;" />
             </div>
             
-            <div id="divProductName" style="margin: 4% 1% 0% 1%;">
-                <span class="LabelProductListBold">
+            <div id="divProductName" class="divProductList" style="width: 15%;">
+                <div class="LabelProductListBold">
+                    @Html.Label("Product Name")
+                </div>
+                <div class="LabelProductList">
                     @Html.DisplayFor(m => item.ProductName)
-                </span>
+                </div>
             </div>
 
-            <div id="divPrice" style="margin: 4% 1% 0% 1%;">
-                <span class="LabelProductListBold">
-                    @Html.Label("Price:- ")
-                </span>
-                <span class="LabelProductList">
+            <div id="divPrice" class="divProductList" style="width: 7%;">
+                <div class="LabelProductListBold">
+                    @Html.Label("Price")
+                </div>
+                <div class="LabelProductList">
                     @Html.DisplayFor(m => item.Price)
-                    </span>
+                    </div>
              </div>
 
-            <div id="divQuantity" style="margin: 4% 1% 0% 1%;">
-                <span class="LabelProductListBold">
-                    @Html.Label("Available Quantity:- ")
-                    </span>
-                <span class="LabelProductList">
+            <div id="divQuantity" class="divProductList">
+                <div class="LabelProductListBold">
+                    @Html.Label("Quantity")
+                    </div>
+                <div class="LabelProductList">
                     @Html.DisplayFor(m => item.Quantity)
-                </span>
+                </div>
             </div>
 
-            <div id="divAverageRating"  style="padding-top:4%">
-                @Html.Action("AverageRating", "Rating", new { ProductId = item.ProductId })
+            <div id="divAverageRating"  class="divProductList">
+                <div class="LabelProductListBold">
+                    @Html.Label("Rating")
+                </div>
+                <div class="LabelProductList">
+                    @Html.Action("AverageRating", "Rating", new { ProductId = item.ProductId })
+                </div>
+           </div>
+
+            <div id="ViewProductDetailsButton" style="margin:4% 0% 0% 0%">
+                <button id="btnViewProductDetails" type="button" class="SubmitButton" onclick="btnViewProductDetails_Click(@item.ProductId)" >View Details</button>
             </div>
+
+
 
             @if (item.UserId != Convert.ToInt32(Session["UserId"]))
             {
-                <div id="divOrder" style="margin: 4% 1% 0% 1%;">
+                <div id="divOrder" style="margin:4% 0% 0% 0%" >
                     @*<input id="btnOrder" type="button" value="Order" class="SubmitButton" onclick="location.href='@Url.Action("AddOrder","Order",new {ProductId = item.ProductId})'" />*@
 
                     <button id="btnAddOrder" class="SubmitButton" onclick="btnAddOrder_Click(@item.ProductId)"> Place Order </button>
@@ -89,8 +115,6 @@
                 </div>
 
             }
-
-
 
         </div>
     }

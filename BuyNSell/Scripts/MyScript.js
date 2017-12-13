@@ -365,7 +365,11 @@ $(document).ready(function () {
 
     //});
 
+    //function btnViewProductDetails_Click(ProductId) {
+    //    debugger;
+    //    alert(ProductId);
 
+    //}
    
 
 
