@@ -75,3 +75,19 @@ font-weight:bold
     margin: 2% 1% 0% 1%;
         text-align: center;
 }
+
+.divViewProductDetails{
+        display: flex;
+        margin: 1% 0% 1% 15%;
+
+}
+
+.LabelProductDetailsBold{
+font-size: 22px;
+    font-weight: bold;
+}
+
+.LabelProductDetails{
+font-size: 22px;
+/*padding-left: 10%;*/
+}

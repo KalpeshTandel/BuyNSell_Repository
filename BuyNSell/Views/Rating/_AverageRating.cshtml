@@ -4,8 +4,7 @@
     {
        
         debugger;
-        $("#divPopupBackground").show();
-        $("#divAddOwnRating").show();
+
         $.ajax({
             type: "Get",
             url: "../Rating/AddOwnRating",
@@ -13,6 +12,8 @@
             data: { ProductId: ProductId },
             success:function(result){
                 $("#divAddOwnRating").html(result);
+                $("#divPopupBackground").show();
+                $("#divAddOwnRating").show();
             }
 
         });

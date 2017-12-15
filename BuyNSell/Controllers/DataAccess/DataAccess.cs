@@ -95,12 +95,7 @@ namespace BuyNSell.Controllers.DataAccess
                         context.Session["TotalRecords"] = Convert.ToInt32(sqldr["TotalRecords"]);
                     }
 
-                    
-
-                  
-                //}
                 sqldr.Close();
-
 
                 return ProductList;
             }
@@ -133,49 +128,22 @@ namespace BuyNSell.Controllers.DataAccess
                 objProduct.Active = Convert.ToBoolean(Record["Active"]);
                 objProduct.Deleted = Convert.ToBoolean(Record["Deleted"]);
                 objProduct.AddedDate = Convert.ToDateTime(Record["AddedDate"]);
-                objProduct.PictureContent1 = (byte[])Record["PictureContent1"];
-                objProduct.ContentType1 = Record["ContentType1"].ToString();
-                //objProduct.PictureContent2 = (byte[])Record["PictureContent2"];
-                //objProduct.ContentType2 = Record["ContentType2"].ToString();
-                //objProduct.PictureContent3 = (byte[])Record["PictureContent3"];
-                //objProduct.ContentType3 = Record["ContentType3"].ToString();
+                objProduct.PictureId = Convert.ToInt32(Record["PictureId"]);
+                objProduct.PictureContent = (byte[])Record["PictureContent"];
                 objProduct.Price = Convert.ToInt32(Record["Price"]);
                 objProduct.UserName = Record["UserName"].ToString();
                 objProduct.ProductCategoryName = Record["ProductCategoryName"].ToString();
                 //objProduct.TotalRecords = Convert.ToInt32(Record["TotalRecords"]);
-
-   
+  
                 return objProduct;
-
-
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public class GenericDataPopulator<T>
             {
-
                 public List<T> CreateList(SqlDataReader dr)
                 {
                     // create list of whatso soever list type
@@ -206,7 +174,6 @@ namespace BuyNSell.Controllers.DataAccess
                     }
                     return lst;
                 }
-
 
             }
 

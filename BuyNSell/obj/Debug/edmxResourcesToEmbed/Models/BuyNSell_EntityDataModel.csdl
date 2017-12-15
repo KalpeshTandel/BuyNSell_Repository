@@ -53,12 +53,6 @@
     <Property Name="Active" Type="Boolean" />
     <Property Name="Deleted" Type="Boolean" />
     <Property Name="AddedDate" Type="DateTime" Precision="3" />
-    <Property Name="PictureContent1" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="ContentType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="PictureContent2" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="ContentType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="PictureContent3" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="ContentType3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Price" Type="Int32" />
   </EntityType>
   <EntityType Name="PictureMaster">
@@ -71,6 +65,7 @@
     <Property Name="PictureContent" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="ContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Deleted" Type="Boolean" />
+    <Property Name="PictureAddedDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="OrderMaster">
     <Key>

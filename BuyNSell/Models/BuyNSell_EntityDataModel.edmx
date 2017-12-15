@@ -31,6 +31,7 @@
           <Property Name="PictureContent" Type="image" />
           <Property Name="ContentType" Type="varchar" MaxLength="50" />
           <Property Name="Deleted" Type="bit" />
+          <Property Name="PictureAddedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="ProductCategoryMaster">
           <Key>
@@ -54,12 +55,6 @@
           <Property Name="Active" Type="bit" />
           <Property Name="Deleted" Type="bit" />
           <Property Name="AddedDate" Type="datetime" />
-          <Property Name="PictureContent1" Type="image" />
-          <Property Name="ContentType1" Type="varchar" MaxLength="50" />
-          <Property Name="PictureContent2" Type="image" />
-          <Property Name="ContentType2" Type="varchar" MaxLength="50" />
-          <Property Name="PictureContent3" Type="image" />
-          <Property Name="ContentType3" Type="varchar" MaxLength="50" />
           <Property Name="Price" Type="int" />
         </EntityType>
         <EntityType Name="RatingMaster">
@@ -162,12 +157,6 @@
           <Property Name="Active" Type="Boolean" />
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="AddedDate" Type="DateTime" Precision="3" />
-          <Property Name="PictureContent1" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ContentType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PictureContent2" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ContentType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PictureContent3" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ContentType3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Int32" />
         </EntityType>
         <EntityType Name="PictureMaster">
@@ -180,6 +169,7 @@
           <Property Name="PictureContent" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Deleted" Type="Boolean" />
+          <Property Name="PictureAddedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="OrderMaster">
           <Key>
@@ -253,12 +243,6 @@
             <EntityTypeMapping TypeName="BuyNSell_Model.ProductMaster">
               <MappingFragment StoreEntitySet="ProductMaster">
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="ContentType3" ColumnName="ContentType3" />
-                <ScalarProperty Name="PictureContent3" ColumnName="PictureContent3" />
-                <ScalarProperty Name="ContentType2" ColumnName="ContentType2" />
-                <ScalarProperty Name="PictureContent2" ColumnName="PictureContent2" />
-                <ScalarProperty Name="ContentType1" ColumnName="ContentType1" />
-                <ScalarProperty Name="PictureContent1" ColumnName="PictureContent1" />
                 <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
@@ -274,6 +258,7 @@
           <EntitySetMapping Name="PictureMasters">
             <EntityTypeMapping TypeName="BuyNSell_Model.PictureMaster">
               <MappingFragment StoreEntitySet="PictureMaster">
+                <ScalarProperty Name="PictureAddedDate" ColumnName="PictureAddedDate" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="ContentType" ColumnName="ContentType" />
                 <ScalarProperty Name="PictureContent" ColumnName="PictureContent" />

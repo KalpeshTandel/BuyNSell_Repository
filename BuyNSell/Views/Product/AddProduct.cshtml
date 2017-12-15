@@ -57,11 +57,12 @@
 
         <div style="padding-bottom:5%">
             @Html.Label("Product Pictures", new { @class = "Label", style = "padding-right: 1%;" })
-            <input type="file" name="SelectPicture1" id="SelectPicture1" style="margin-left:40%"/>
+            <input type="file" name="SelectPicture1" id="SelectPicture1" style="margin-left:40%" multiple="multiple"/>
+            @Html.ValidationMessageFor(m => m.ProductId,"*")
 
-            <input type="file" name="SelectPicture2" id="SelectPicture2" style="margin-left:40%" />
 
-            <input type="file" name="SelectPicture2" id="SelectPicture2" style="margin-left:40%" />
+            @*<input type="file" name="SelectPicture2" id="SelectPicture2" style="margin-left:40%" />
+            <input type="file" name="SelectPicture2" id="SelectPicture2" style="margin-left:40%" />*@
 
             @*@Html.TextBoxFor(m => m.ProductPicture, new {type="file",multiple="multiple" })*@
             @*@Html.ValidationMessageFor(m => m.ProductPicture, "", new { @class = "ErrorMsg" })*@

@@ -17,12 +17,8 @@ namespace BuyNSell.Models
         public Nullable<bool> Active { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public Nullable<System.DateTime> AddedDate { get; set; }
-        public byte[] PictureContent1 { get; set; }
-        public string ContentType1 { get; set; }
-        public byte[] PictureContent2 { get; set; }
-        public string ContentType2 { get; set; }
-        public byte[] PictureContent3 { get; set; }
-        public string ContentType3 { get; set; }
+        public int PictureId { get; set; }
+        public byte[] PictureContent { get; set; }
         public Nullable<int> Price { get; set; }
 
 

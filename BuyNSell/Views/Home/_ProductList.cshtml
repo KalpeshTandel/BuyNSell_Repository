@@ -11,8 +11,6 @@
     <script type="text/javascript">
         function btnAddOrder_Click(ProductId) {
             debugger;
-            $("#divPopupBackground").show();
-            $("#divAddOrder").show();
             $.ajax({
                 type: "Get",
                 url: "../Order/AddOrder",
@@ -20,6 +18,8 @@
                 data: { ProductId: ProductId },
                 success: function (result) {
                     $("#divAddOrder").html(result);
+                    $("#divPopupBackground").show();
+                    $("#divAddOrder").show();
                     //$('#divAddOrder').dialog('open');
                 }
 
@@ -34,7 +34,13 @@
                 type: "Post",
                 url: "../Product/ViewProductDetails",
                 datatype: "json",
-                data:{ProductId : ProductId}
+                data: { ProductId: ProductId },
+                success: function (result) {
+                   
+                    $("#divViewProductDetails").html(result);
+                    $("#divPopupBackground").show();
+                    $("#divViewProductDetails").show();
+                }
             });
         }
 
@@ -53,14 +59,14 @@
 <div id="divProductList" style="margin:1% 1% 1% 1%">
     @foreach (var item in Model)
     {
-        <div id="divResultRow" style="border:solid; height:30%; border-radius:10px; padding:1%; margin:1%; display:flex">
+        <div id="divResultRow" style="border:solid; height:30%; border-radius:10px; padding:1%; margin:1%; display:flex"> @*onmouseover="btnViewProductDetails_Click(@item.ProductId)*@
 
-            <div id="divSrNo">
+            @*<div id="divSrNo">
                 @Html.DisplayFor(m => item.SrNo)
-            </div>
+            </div>*@
 
             <div id="divpicture" style="margin-right:1%">
-                <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent1)" style="height:150px;width:250px;" />
+                <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent)" style="height:150px;width:250px;" />
             </div>
             
             <div id="divProductName" class="divProductList" style="width: 15%;">

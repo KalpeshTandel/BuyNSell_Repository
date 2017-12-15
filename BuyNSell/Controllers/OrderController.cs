@@ -23,23 +23,19 @@ namespace BuyNSell.Controllers
             {
                 if (Session["UserId"] != null)
                 {
-
                     ProductMaster ProductMaster = objDbEntities.ProductMasters.Where(p => p.ProductId == ProductId).FirstOrDefault();
 
                     Session["OrderProductId"] = ProductId;
                     Session["PaymentAmount"] = ProductMaster.Price;
 
-                    List <SelectListItem> listOrderQuantity = new List<SelectListItem>();
+                    List<SelectListItem> listOrderQuantity = new List<SelectListItem>();
 
-                    for(int i = 1; i <= ProductMaster.Quantity; i++)
+                    for (int i = 1; i <= ProductMaster.Quantity; i++)
                     {
-                        listOrderQuantity.Add(new SelectListItem { Text = i.ToString(), Value= i.ToString()});
+                        listOrderQuantity.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
                     }
-
-
                     Session["ProductInfo"] = ProductMaster;
                     Session["ddlOrderQuantity"] = listOrderQuantity;
-
 
                     return PartialView("_AddOrder");
                 }
@@ -48,7 +44,6 @@ namespace BuyNSell.Controllers
                     return RedirectToAction("LogInAgain", "Login");
                 }
             }
-
             catch (Exception ex)
             {
                 throw ex;
@@ -63,7 +58,7 @@ namespace BuyNSell.Controllers
             {
                 if (Session["UserId"] != null)
                 {
-                    if(ModelState.IsValid)
+                    if (ModelState.IsValid)
                     {
                         objOM.OrderId = 0;
                         objOM.UserId = Convert.ToInt32(Session["UserId"]);
@@ -77,7 +72,6 @@ namespace BuyNSell.Controllers
                         objDbEntities.SaveChanges();
 
                         return RedirectToAction("Home", "Home");
-
 
                         //return JavaScript("alert('hello')");
                         //return Content("<script language='javascript' type='text/javascript'>alert('hello');</script>");
@@ -99,7 +93,6 @@ namespace BuyNSell.Controllers
                     return RedirectToAction("LogInAgain", "Login");
                 }
             }
-
             catch (Exception ex)
             {
                 throw ex;
@@ -107,21 +100,29 @@ namespace BuyNSell.Controllers
         }
 
 
-        public JsonResult OrderQuantity_Change(int OrderQuantity)
+        public ActionResult OrderQuantity_Change(int OrderQuantity)
         {
             try
             {
-                int OrderProductId = Convert.ToInt16(Session["OrderProductId"]);
+                if (Session["UserId"] != null)
+                {
 
-                var Price = objDbEntities.ProductMasters.Where(p => p.ProductId == OrderProductId).Select(p => p.Price).FirstOrDefault();
+                    int OrderProductId = Convert.ToInt16(Session["OrderProductId"]);
 
-                int PaymentAmount = Convert.ToInt32(Price * OrderQuantity);
+                    var Price = objDbEntities.ProductMasters.Where(p => p.ProductId == OrderProductId).Select(p => p.Price).FirstOrDefault();
 
-                Session["PaymentAmount"] = PaymentAmount;
+                    int PaymentAmount = Convert.ToInt32(Price * OrderQuantity);
 
-                return Json(PaymentAmount, JsonRequestBehavior.AllowGet);
+                    Session["PaymentAmount"] = PaymentAmount;
+
+                    return Json(PaymentAmount, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return RedirectToAction("LogInAgain", "Login");
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

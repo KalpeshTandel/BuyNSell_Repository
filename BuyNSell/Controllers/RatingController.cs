@@ -17,7 +17,6 @@ namespace BuyNSell.Controllers
 
         // GET: Rating
 
-
         public ActionResult AverageRating(int ProductId)
         {
             try
@@ -42,13 +41,11 @@ namespace BuyNSell.Controllers
                 {
                     return RedirectToAction("LogInAgain", "Login");
                 }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
         }
 
 
@@ -75,20 +72,17 @@ namespace BuyNSell.Controllers
                         Session["RatingMaster"] = null;
                         ViewBag.RateLog = 0;
                     }
-
                     return PartialView("_AddOwnRating");
                 }
                 else
                 {
                     return RedirectToAction("LogInAgain", "Login");
                 }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
         }
 
 
@@ -122,7 +116,6 @@ namespace BuyNSell.Controllers
 
                         objDbEntities.RatingMasters.Add(objRM);
                         objDbEntities.SaveChanges();
-
                     }
                     return JavaScript("fnAfter_AddOwnRating_Click()");
                 }
@@ -130,14 +123,13 @@ namespace BuyNSell.Controllers
                 {
                     return RedirectToAction("LogInAgain", "Login");
                 }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
         }
+
+
     }
 }

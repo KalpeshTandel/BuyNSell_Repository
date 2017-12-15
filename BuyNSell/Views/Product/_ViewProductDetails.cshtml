@@ -1,3 +1,185 @@
 ﻿
 
-@
+@model BuyNSell.Models.ProductList_ViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/MyScript.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            debugger;
+            var PictureCount = $("#hfPictureCount").val();
+            var PictureNumber = $("#hfPictureNumber").val();
+
+            if(PictureCount == 1 ){
+                $("#btnPreviousPicture").attr("disabled", true);
+                $("#btnNextPicture").attr("disabled", true);
+            }
+
+            if(PictureNumber == 0){
+                $("#btnPreviousPicture").attr("disabled", true);
+            }
+
+        });
+
+        function btnNextPicture_click(ProductId) {
+            //debugger;
+            $.ajax({
+                type: "Post",
+                url: "../Product/btnnext_Click",
+                datatype: "json",
+                data: { ProductId: ProductId },
+                success: function (result) {
+                    //debugger;
+                    $("#Pic").attr("src", result);
+
+                    var PictureCount = $("#hfPictureCount").val();
+                    var PictureNumberLast = $("#hfPictureNumber").val();
+                    var PictureNumberCurrent = parseInt( PictureNumberLast ) + 1;
+                    $("#hfPictureNumber").val(PictureNumberCurrent);
+
+                    if(PictureNumberCurrent == PictureCount - 1){
+                        $("#btnNextPicture").attr("disabled", true);
+                    }
+                    else{
+                        $("#btnNextPicture").attr("disabled", false);
+                    }
+
+                    if(PictureNumberCurrent == 0 ){
+                        $("#btnPreviousPicture").attr("disabled", true);
+                    }
+                    else{
+                        $("#btnPreviousPicture").attr("disabled", false);
+                    }
+
+                }
+            });
+        }
+
+
+        function btnPreviousPicture_click(ProductId){
+            //debugger;
+            $.ajax({
+                type:"Post",
+                url: "../Product/btnPreviousPicture_click",
+                datatype: "json",
+                data: { ProductId: ProductId },
+                success: function (result) {
+                    debugger;
+                    $("#Pic").attr("src", result);
+
+                    var PictureCount = $("#hfPictureCount").val();
+                    var PictureNumberLast = $("#hfPictureNumber").val();
+                    var PictureNumberCurrent = parseInt( PictureNumberLast ) - 1;
+                    $("#hfPictureNumber").val(PictureNumberCurrent);
+
+                    if (PictureCount == PictureNumberCurrent + 1) {
+                        $("#btnNextPicture").attr("disabled", true);
+                    }
+                    else{
+                        $("#btnNextPicture").attr("disabled", false);
+                    }
+
+                    if(PictureNumberCurrent == 0){
+                        $("#btnPreviousPicture").attr("disabled", true);
+                    }
+                    else{
+                        $("#btnPreviousPicture").attr("disabled", false);
+                    }
+                }
+            });
+
+        }
+
+
+    </script>
+
+</head>
+<body>
+    <div id="divViewProductDetails">
+
+        <input type="hidden" id="hfPictureCount" value="@Convert.ToInt32(Session["PictureCount"])" />
+        <input type="hidden" id="hfPictureNumber" value="@Convert.ToInt32(Session["PictureNumber"])" />
+        
+        <img id="btnCloseViewProductDetails" src="~/Images/Close.jpg" style="width:4%;margin: 2% 0% 0% 93%;" />
+
+        <div id="divProductPicture" style="display:flex;margin:-2% 0% 4% 21%;">
+            <button id="btnPreviousPicture" type="button" onclick="btnPreviousPicture_click(@Model.ProductId)" style="font-weight:bold"><<</button>
+            <img id="Pic" src="data:image;base64,@System.Convert.ToBase64String(Model.PictureContent)" alt="No Image" style="height: 250px;width: 350px; padding:0% 1% 0% 1%" />
+            <button id="btnNextPicture" type="button" onclick="btnNextPicture_click(@Model.ProductId)" style="font-weight:bold">>></button>
+            
+
+        </div>
+
+        <div id="divProductName" class="divViewProductDetails">
+            <div class="LabelProductDetailsBold">
+                @Html.Label("Product Name")
+            </div>
+            <div class="LabelProductDetails" style="margin-left: 83px">
+                @Html.DisplayFor(m => m.ProductName)
+            </div>
+        </div>
+
+        <div id="divProductDescription" class="divViewProductDetails">
+            <div class="LabelProductDetailsBold">
+                @Html.Label("Description")
+            </div>
+            <div class="LabelProductDetails" style="margin-left: 111px;">
+                @Html.DisplayFor(m => m.ProductDescription)
+            </div>
+        </div>
+
+        <div id="divProductBuyerName" class="divViewProductDetails">
+            <div class="LabelProductDetailsBold">
+                @Html.Label("Buyer Name")
+            </div>
+            <div class="LabelProductDetails"   style="margin-left: 99px;">
+                @Html.DisplayFor(m => m.UserName)
+            </div>
+               
+        </div>
+
+
+        <div id="divProductCategoryName" class="divViewProductDetails">
+            <div class="LabelProductDetailsBold">
+                @Html.Label("Category")
+            </div>
+            <div class="LabelProductDetails" style="margin-left: 130px;">
+            @Html.DisplayFor(m => m.ProductCategoryName)
+            </div>
+        </div>
+
+        <div id="divProductQuantity" class="divViewProductDetails">
+            <div class="LabelProductDetailsBold">
+                @Html.Label("Available Quantity")
+            </div>
+            <div class="LabelProductDetails" style="margin-left: 40px;">
+            @Html.DisplayFor(m => m.Quantity)
+            </div>
+        </div>
+
+        <div id="divProductAddedDate" class="divViewProductDetails">
+            <div class="LabelProductDetailsBold">
+                @Html.Label("Added Date")
+            </div>
+            <div class="LabelProductDetails" style="margin-left: 105px;">
+            @Html.DisplayFor(m => m.AddedDate)
+            </div>
+        </div>
+
+        <div id="divProductPrice" class="divViewProductDetails">
+            <div class="LabelProductDetailsBold">
+                @Html.Label("Price")
+            </div>
+            <div class="LabelProductDetails" style="margin-left: 169px;">
+            @Html.DisplayFor(m => m.Price)
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

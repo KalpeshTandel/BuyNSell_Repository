@@ -16,8 +16,6 @@ namespace BuyNSell.Controllers
 
         // GET: Home
 
-
-
         //[ChildActionOnly]
         //[NonAction]          
         public ActionResult Home()
@@ -48,8 +46,7 @@ namespace BuyNSell.Controllers
             catch(Exception ex)
             {
                 throw ex;
-            }
-              
+            }        
         }
 
               
@@ -70,7 +67,6 @@ namespace BuyNSell.Controllers
         }
 
 
-
         public ActionResult SearchProduct(string SearchText, string OrderBy, int PageSize)
         {
             try
@@ -85,7 +81,6 @@ namespace BuyNSell.Controllers
                     int Start = ((Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"])) + 1;
 
                     int End = Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"]);
-
 
                     List<ProductList_ViewModel> ProductList = new List<ProductList_ViewModel>();
                     ProductList = GetProductList(SearchText, Start, End, OrderBy);
@@ -127,15 +122,12 @@ namespace BuyNSell.Controllers
                     Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
 
                     return PartialView("_ProductList", ProductList);
-
                 }
                 else
                 {
                     return RedirectToAction("LogInAgain", "Login");
                 }
-
             }
-
             catch(Exception ex)
             {
                 throw ex;
@@ -165,14 +157,11 @@ namespace BuyNSell.Controllers
                     Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
 
                     return PartialView("_ProductList", ProductList);
-
                 }
                 else
                 {
                     return RedirectToAction("LogInAgain", "Login");
                 }
-
-
             }
             catch(Exception ex)
             {
@@ -186,7 +175,6 @@ namespace BuyNSell.Controllers
         {
             try
             {
-
                 if (Session["UserId"] != null)
                 {
                     Session["PageNumber"] = 1;
@@ -208,7 +196,6 @@ namespace BuyNSell.Controllers
                 {
                     return RedirectToAction("LogInAgain", "Login");
                 }
-
             }
             catch (Exception ex)
             {
@@ -241,7 +228,6 @@ namespace BuyNSell.Controllers
                 {
                     return RedirectToAction("LogInAgain", "Login");
                 }
-
             }
             catch (Exception ex)
             {

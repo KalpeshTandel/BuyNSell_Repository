@@ -372,6 +372,33 @@ $(document).ready(function () {
     //}
    
 
+    $("#btnCloseViewProductDetails").click(function () {
+        $("#divViewProductDetails").empty();
+        $("#divPopupBackground").empty();
+        $("#divViewProductDetails").hide();
+        $("#divPopupBackground").hide();
+
+    });
+
+
+//    $("#btnnext").click(function () {
+//        $.ajax({
+//            type: "Post",
+//            url: "../Product/btnnext_Click",
+//            datatype: "json",
+//            //data: { ProductId: ProductId },
+//            success: function (result) {
+
+////                $("#Pic").html(result);
+
+//                $("#Pic").attr("src", result);
+//                //$("#divPopupBackground").show();
+//                //$("#divViewProductDetails").show();
+//            }
+//        });
+
+//    });
+
 
 
 });

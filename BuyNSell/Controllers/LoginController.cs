@@ -22,8 +22,7 @@ namespace BuyNSell.Controllers
             catch(Exception ex)
             {
                 throw ex;
-            }
-            
+            }            
         }
 
 
@@ -39,8 +38,7 @@ namespace BuyNSell.Controllers
                     if (UserInfo != null)
                     {
                         StoreUserInfoInSession(UserInfo);
-                        return RedirectToAction("Home", "Home");
-                        
+                        return RedirectToAction("Home", "Home");                        
                     }
                     else
                     {

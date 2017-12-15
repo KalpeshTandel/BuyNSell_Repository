@@ -39,12 +39,6 @@
       <EntityTypeMapping TypeName="BuyNSell_Model.ProductMaster">
         <MappingFragment StoreEntitySet="ProductMaster">
           <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="ContentType3" ColumnName="ContentType3" />
-          <ScalarProperty Name="PictureContent3" ColumnName="PictureContent3" />
-          <ScalarProperty Name="ContentType2" ColumnName="ContentType2" />
-          <ScalarProperty Name="PictureContent2" ColumnName="PictureContent2" />
-          <ScalarProperty Name="ContentType1" ColumnName="ContentType1" />
-          <ScalarProperty Name="PictureContent1" ColumnName="PictureContent1" />
           <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
           <ScalarProperty Name="Active" ColumnName="Active" />
@@ -60,6 +54,7 @@
     <EntitySetMapping Name="PictureMasters">
       <EntityTypeMapping TypeName="BuyNSell_Model.PictureMaster">
         <MappingFragment StoreEntitySet="PictureMaster">
+          <ScalarProperty Name="PictureAddedDate" ColumnName="PictureAddedDate" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
           <ScalarProperty Name="ContentType" ColumnName="ContentType" />
           <ScalarProperty Name="PictureContent" ColumnName="PictureContent" />

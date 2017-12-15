@@ -20,5 +20,6 @@ namespace BuyNSell.Models
         public byte[] PictureContent { get; set; }
         public string ContentType { get; set; }
         public Nullable<bool> Deleted { get; set; }
+        public Nullable<System.DateTime> PictureAddedDate { get; set; }
     }
 }
