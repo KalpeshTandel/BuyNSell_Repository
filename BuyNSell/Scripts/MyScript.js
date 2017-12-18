@@ -96,6 +96,8 @@ $(document).ready(function () {
 
     $("#btnSearch").click(function () {
         debugger;
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
 
         var SearchText = "";
 
@@ -124,17 +126,21 @@ $(document).ready(function () {
             datatype: "json",
             data: { SearchText: SearchText, OrderBy: SortBy, PageSize: PageSize },
             success: function (result) {
-
                 $("#divSearchResult").html(result);
-            }
-            
+                $("#divLoadingBackground").hide();
+                $("#divLoadingImage").hide();
+            }          
         });
         e.stopImmediatePropagation();
     });
 
+
+
     //$('#btnNextPage').on('click', function () {
     $("#btnNextPage").click(function () {
         debugger;
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
 
         $.ajax({
             type: "Post",
@@ -143,22 +149,21 @@ $(document).ready(function () {
             //contentType: "application/json; charset=utf-8",
             data: { SearchText: "", OrderBy: SortBy, PageSize: PageSize },
             success: function (result) {
-
                 $("#divSearchResult").html(result);
-                
+                $("#divLoadingBackground").hide();
+                $("#divLoadingImage").hide();                
             }
         });
         // e.preventDefault();
         // e.stopPropagation();
          e.stopImmediatePropagation();
-       
-      
-
     });
 
 
     $("#btnPreviousPage").click(function () {
         debugger;
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
 
         $.ajax({
             type: "Post",
@@ -167,9 +172,9 @@ $(document).ready(function () {
             data: { SearchText: "", OrderBy: SortBy, PageSize: PageSize },
             success: function (result) {
                 $("#divSearchResult").html(result);
-
+                $("#divLoadingBackground").hide();
+                $("#divLoadingImage").hide();
              }
-
         });
         // e.preventDefault();
         // e.stopPropagation();
@@ -180,7 +185,8 @@ $(document).ready(function () {
 
     $("#ddlPageSize").change(function ()  {
         debugger;
-
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
         PageSize = $("#ddlPageSize").val();
 
         $.ajax({
@@ -190,9 +196,9 @@ $(document).ready(function () {
             //contentType: "application/json; charset=utf-8",
             data: { SearchText: SearchText, OrderBy: SortBy, PageSize: PageSize },
             success: function (result) {
-
                 $("#divSearchResult").html(result);
-
+                $("#divLoadingBackground").hide();
+                $("#divLoadingImage").hide();
             }
         });
         e.stopImmediatePropagation();
@@ -202,7 +208,10 @@ $(document).ready(function () {
 
     $("#ddlSortBy").change(function () {
         debugger;
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
         SortBy = $("#ddlSortBy").val();
+
         $.ajax({
             type: "Post",
             url: "../Home/ddlSortBy_Change",
@@ -210,9 +219,9 @@ $(document).ready(function () {
             //contentType: "application/json; charset=utf-8",
             data: { SearchText: SearchText, OrderBy: SortBy, PageSize: PageSize },
             success: function (result) {
-
                 $("#divSearchResult").html(result);
-
+                $("#divLoadingBackground").hide();
+                $("#divLoadingImage").hide();
             }
         });
         e.stopImmediatePropagation();
@@ -271,6 +280,8 @@ $(document).ready(function () {
 
     $("#OrderQuantity").change(function () {
         debugger;
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
         var OrderQuantity = $("#OrderQuantity").val();
 
         $.ajax({
@@ -280,9 +291,9 @@ $(document).ready(function () {
             //contentType: "application/json; charset=utf-8",
             data: { OrderQuantity: OrderQuantity},
             success: function (result) {
-
                 $("#lblPaymentAmount").html(result);
-
+                $("#divLoadingBackground").hide();
+                $("#divLoadingImage").hide();
             }
         });
         e.stopImmediatePropagation();
@@ -311,7 +322,6 @@ $(document).ready(function () {
             $("#lblErrorContact").show();
             return false;
         }
-
         else
         {
             $("#divAddOrder").empty();
@@ -321,7 +331,6 @@ $(document).ready(function () {
             $("#divSuccess").show();
             $("#lblSuccess").val("Order placed Sccessfully!Thank You")
         }
-
     });
 
 

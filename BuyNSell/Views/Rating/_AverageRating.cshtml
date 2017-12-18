@@ -1,9 +1,10 @@
 ﻿
 <script type="text/javascript">
     function imgAverageRating_Click(ProductId)
-    {
-       
+    {     
         debugger;
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
 
         $.ajax({
             type: "Get",
@@ -14,9 +15,11 @@
                 $("#divAddOwnRating").html(result);
                 $("#divPopupBackground").show();
                 $("#divAddOwnRating").show();
+                $("#divLoadingBackground").hide();
+                $("#divLoadingImage").hide();
             }
-
         });
+        e.stopImmediatePropagation();
     }
 </script>
 

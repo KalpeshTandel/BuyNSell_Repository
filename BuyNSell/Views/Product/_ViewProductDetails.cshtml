@@ -28,6 +28,7 @@
 
         function btnNextPicture_click(ProductId) {
             //debugger;
+
             $.ajax({
                 type: "Post",
                 url: "../Product/btnnext_Click",
@@ -55,14 +56,15 @@
                     else{
                         $("#btnPreviousPicture").attr("disabled", false);
                     }
-
                 }
             });
+            e.stopImmediatePropagation();
         }
 
 
         function btnPreviousPicture_click(ProductId){
             //debugger;
+
             $.ajax({
                 type:"Post",
                 url: "../Product/btnPreviousPicture_click",
@@ -92,7 +94,7 @@
                     }
                 }
             });
-
+            e.stopImmediatePropagation();
         }
 
 

@@ -11,6 +11,9 @@
     <script type="text/javascript">
         function btnAddOrder_Click(ProductId) {
             debugger;
+            $("#divLoadingBackground").show();
+            $("#divLoadingImage").show();
+
             $.ajax({
                 type: "Get",
                 url: "../Order/AddOrder",
@@ -20,28 +23,35 @@
                     $("#divAddOrder").html(result);
                     $("#divPopupBackground").show();
                     $("#divAddOrder").show();
+                    $("#divLoadingBackground").hide();
+                    $("#divLoadingImage").hide();
                     //$('#divAddOrder').dialog('open');
                 }
-
             });
             e.stopImmediatePropagation();
         }
 
+
         function btnViewProductDetails_Click(ProductId) {
             //debugger;
             //alert(ProductId);
+            $("#divLoadingBackground").show();
+            $("#divLoadingImage").show();
+
             $.ajax({
                 type: "Post",
                 url: "../Product/ViewProductDetails",
                 datatype: "json",
                 data: { ProductId: ProductId },
-                success: function (result) {
-                   
+                success: function (result) {                   
                     $("#divViewProductDetails").html(result);
                     $("#divPopupBackground").show();
                     $("#divViewProductDetails").show();
+                    $("#divLoadingBackground").hide();
+                    $("#divLoadingImage").hide();
                 }
             });
+            e.stopImmediatePropagation();
         }
 
 
@@ -129,16 +139,16 @@
     <div id="divPageNumber" style="margin-left:42%;margin-bottom:1%">
         <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:20px">Page @Session["PageNumber"] Of @Session["LastPageNumber"] </label>
     </div>
-    <div id="divPaging" style="margin-left:41%">
+    <div id="divPaging" style="margin-left:41%;margin-bottom:2%;">
 
         @if (Convert.ToInt32(Session["LastPageNumber"]) > 1 && Convert.ToInt32(Session["PageNumber"]) > 1)
         {
-            <button id="btnPreviousPage">PreviousPage</button>
+            <button id="btnPreviousPage" style="position:absolute;left:39%;">PreviousPage</button>
         }
 
         @if (Convert.ToInt32(Session["LastPageNumber"]) > 1 && Convert.ToInt32(Session["LastPageNumber"]) != Convert.ToInt32(Session["PageNumber"]))
         {
-            <button id="btnNextPage">NextPage</button>
+            <button id="btnNextPage" style="position:absolute;left:50%">NextPage</button>
         }
 
     </div>

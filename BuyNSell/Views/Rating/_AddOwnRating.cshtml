@@ -10,6 +10,9 @@
 <script type="text/javascript">
 
     function imgAddOwnRating_Click(Rate) {
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
+
         $.ajax({
             type: "Post",
             url: "../Rating/AddOwnRating_Click",
@@ -17,9 +20,11 @@
             data: { Rate: Rate },
 
             success: function (result) {
+                $("#divLoadingBackground").hide();
+                $("#divLoadingImage").hide();
             }
-
         });
+        e.stopImmediatePropagation();
     }
 
     function fnAfter_AddOwnRating_Click() {
@@ -170,11 +175,11 @@
 
 
 
-<div id="divOwnRate" style="padding-left:14%; padding-top:3%; width:90%;height:90%">
+<div id="divOwnRate" style="padding-left:14%;width:90%;height:90%">
     <img id="btnCloseAddOwnRating" src="~/Images/Close.jpg" style="width:8%; margin-left:80%" />
 
 
-    <h3>@ViewBag.RatingLog</h3>
+    <h3 style="margin-top:-1%;">@ViewBag.RatingLog</h3>
 
 
     <img id="imgStarOne" src="~/Images/GrayStar.jpg" onclick="imgAddOwnRating_Click(1)" class="Stars"  />

@@ -101,14 +101,21 @@
 
 
 
-
-
-
-
-
-
     <div id="divPopupBackground" style="display:none; position:fixed;height: 100%;width:100%;top:0px;left:0px;opacity:0.2;background-color:black; z-index:1">
     </div>
+
+    <div id="divLoadingBackground" style="display:none;position:fixed;height:100%;width:100%;top:0px;left:0px;opacity:0.1;background-color:black; z-index:11">
+    </div>
+
+        <div id="divLoadingImage" style="display:none;position:fixed;left:40%;top:40%;z-index:12" >
+            @*<img src="~/Images/Loading.gif" />*@
+            <img src="~/Images/739.gif" />
+            @*  <img src="~/Images/Loading(1).gif" />*@
+        </div>
+
+
+
+
 
     <div id="divLogoutConfirm" style="display:none;position:fixed;background-color:white; z-index:2;left:35%;top:25%;width: 25%;height: 25%; border:solid; border-radius:50px">
         
@@ -135,6 +142,6 @@
 
 </body>
 </html>
-<footer>
-    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+<footer style="position:static;bottom: 0;margin-top:1%">
+    <p>&copy; @DateTime.Now.Year - Kalpesh Tandel ASP.NET Application</p>
 </footer>
