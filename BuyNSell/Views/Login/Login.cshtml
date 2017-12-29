@@ -13,30 +13,35 @@
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
 </head>
-<body>
+<body style="background-color:lightgrey">
     
-    <div style="border:solid; margin:6% 35% 0% 30%; padding:2% 6% 5% 7%; border-radius:50px">
-       
+    <div style="background-color:white; margin:6% 35% 0% 30%; padding:2% 6% 5% 7%; border-radius:50px; box-shadow:30px 20px 17px #888888;">  
         <h2 style="padding-left:28%">LogIn</h2>
         <div>
           @Html.ValidationSummary(true,"", new { @class = "ErrorMsg",style= "list-style-type: none;" })  
         </div> 
    @using(Html.BeginForm())
    {
-        <div style="padding-bottom:10%">
-        @Html.LabelFor(m => m.EmailId, new { @class="Label" })
-        @Html.TextBoxFor(m => m.EmailId, new { placeholder = "Email Id" })
+        <div style="padding-bottom:10%;display:inline-flex;">
+        @*@Html.LabelFor(m => m.EmailId, new { @class="Label" })*@
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                @Html.TextBoxFor(m => m.EmailId, new { placeholder = "Email Id", @class = "form-control" })
+            </div>
         @Html.ValidationMessageFor(m => m.EmailId,"",new {@class = "ErrorMsg" })
         </div>
 
-        <div>
-            @Html.LabelFor(m => m.Password, new { @class="Label",style= "padding-right: 2%;" })
-            @Html.PasswordFor(m => m.Password,new { placeholder="Password"})
+        <div style="display:inline-flex;" >
+            @*@Html.LabelFor(m => m.Password, new { @class="Label",style= "padding-right: 2%;" })*@
+            <div class="input-group">
+               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+               @Html.PasswordFor(m => m.Password,new { placeholder="Password",@class = "form-control" })
+            </div>
             @Html.ValidationMessageFor(m => m.Password,"", new { @class = "ErrorMsg" })
         </div>
         
         <div style="padding:10% 25% 1% 10%">
-            <input type="submit" value="LogIn" class="SubmitButton" style="width:100%" />
+            <input id="btnLogIn" type="submit" value="LogIn" class="btn btnSubmit" style="width:100%" />
         </div>
     
         }
@@ -48,7 +53,7 @@
           </div>
             
            <div style="padding-left:5%">
-               <input type="button" value="SignUp" class="SubmitButton" onclick="location.href='@Url.Action("Signup","Login")'" style="margin-top:-7%" />
+               <input id="btnSignUp" type="button" value="SignUp" class="btn btnSubmit" onclick="location.href='@Url.Action("Signup","Login")'" style="margin-top:-7%" />
            </div>
            
         </div>
@@ -59,5 +64,6 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
+@Styles.Render("~/Content/css")
 
 

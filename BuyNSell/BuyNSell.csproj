@@ -233,6 +233,7 @@
     <Content Include="Images\739 %281%29.gif" />
     <Content Include="Images\739 %282%29.gif" />
     <Content Include="Images\739.gif" />
+    <Content Include="Images\BuyNSellLogo.jpg" />
     <Content Include="Images\Loading%281%29.gif" />
     <Content Include="Images\Loading.gif" />
     <Content Include="Images\AllStars.jpg" />
@@ -297,10 +298,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\Shared\_Layout_Default.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Signup.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout_Old.cshtml" />
     <Content Include="Views\Product\AddProduct.cshtml" />
     <Content Include="Views\Login\LogInAgain.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
@@ -309,6 +310,7 @@
     <Content Include="Views\Rating\_AverageRating.cshtml" />
     <Content Include="Views\Rating\_AddOwnRating.cshtml" />
     <Content Include="Views\Product\_ViewProductDetails.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

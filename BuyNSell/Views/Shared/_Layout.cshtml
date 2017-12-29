@@ -1,105 +1,110 @@
-﻿
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-
 <head>
 
-<meta charset="utf-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>BuyNSell</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BuyNSell</title>
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/MyScript.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".dropdown").hover(
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                        $(this).toggleClass('open');
+                        $('b', this).toggleClass("caret caret-up");
+                    },
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                        $(this).toggleClass('open');
+                        $('b', this).toggleClass("caret caret-up");
+                    });
+        });
+    </script>
+    <style>
+    .caret-up {
+    width: 0; 
+    height: 0; 
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+    
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+      }
+    </style>
+
 </head>
 
-<body>
-    <div style="width:100%; display:flex; background-color:#70A2AB">
-        <div style="width:20%">
-       @*     @Html.ActionLink("BuyNSell", "Index", "Home", new { @class = "Homeicon" })*@
+<body style="padding-top: 0px;padding-bottom: 0px;">
+
+    <div style="width:100%;display:flex; background-color:#71C6ED">
+        <div>
+            @*     @Html.ActionLink("BuyNSell", "Index", "Home", new { @class = "Homeicon" })*@
             <a href="@Url.Action("Home","Home")">
-                <img src="~/Images/BuyNSell.jpg" style="width:70%"/>
-            </a> 
+                <img src="~/Images/BuyNSellLogo.jpg" style="width: 200px;height: 125px;" />
+            </a>
         </div>
 
-        <div style="width:80%">
-            
+        <div style="width:90%">
             <div style="height:50%; display:flex">
                 <div style="padding-left:20%; width:80%">
                     <label style="font-size:250%">India's MegaStore</label>
                 </div>
                 <div style="width:20%;padding-top: 1%;">
-                    <label style="font-size: 23px;">Welcome @Session["FirstName"]</label>
+                    <label style="font-size: 20px;">Welcome @Session["FirstName"]</label>
                 </div>
-            </div>
-
-            <div style="height:50%; display:flex">
-
-               <div id="divCategory" class="divMenu" >
-                   @Html.ActionLink("Category","Index","Home",new { @class= "MenuItem" })                  
-               </div>
-                
-                <div id="divMyProducts" class="divMenu">
-                    @Html.ActionLink("My products", "MyProducts", "Product",null, new { @class = "MenuItem" })
-                </div>
-
-                <div class="divMenu">
-                    @Html.ActionLink("My Orders", "Index", "Home",null, new { @class = "MenuItem" })
-                </div>
-
-                <div class="divMenu">
-                    @Html.ActionLink("My Cart", "Index", "Home",null, new { @class = "MenuItem" })
-                </div>
-
-                <div id="divMyProfile" class="divMenu" >
-                    @Html.ActionLink("My Profile", "Index", "Home",null, new { @class = "MenuItem" })
-                </div>
-            </div>
-
-            @*<div style="height:50%; display:flex">
-           <ul>
-               <li>
-                   @Html.ActionLink("Category", "Index", "Home")
-               </li>
-               <li>
-                   @Html.ActionLink("My products", "Index", "Home")
-               </li>
-               <li>
-                   @Html.ActionLink("My Cart", "Index", "Home")
-               </li>
-               <li>
-                   @Html.ActionLink("My Profile", "Index", "Home")
-               </li>
-           </ul>
-        </div>*@
+            </div>    
         
+      <nav class="navbar navbar-default" style="height: 48%;margin-bottom: 0px;font-weight: bold;font-size: 20px;">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav" style="width:70%">
+                <li class="dropdown" style="width: 20%;">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        My Products
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Add Product", "AddProduct", "Product")</li>
+                        <li><a href="#">Page 1-2</a></li>
+                        <li><a href="#">Page 1-3</a></li>
+                    </ul>
+                </li>
+                <li style="width: 20%;"><a href="#">My Orders</a></li>
+                <li style="width: 20%;"><a href="#">My Cart</a></li>
+                <li style="width: 25%;"><a href="#">Customer Orders</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" style="width: 30%;">
+                <li class="dropdown" style="width: 45%;">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Setting
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">My Profile</a></li>
+                        <li><a href="#">Change Password</a></li>
+                    </ul>
+                </li>
+
+                <li style="width: 45%;">@Html.ActionLink("Log Out", "Logout", "Login")</li>
+
+            </ul>
+
+
+        </div>
+    </nav>
 
     </div>
-</div>
-    <div id="divCategoryItems" style="margin-left: 20%;" class="divSubMenu">
-        @Html.ActionLink("Mobiles", "Index", "Home",null, new { @class = "MenuItem" })
-        @Html.ActionLink("Electronics", "Index", "Home",null, new { @class = "MenuItem" })
-        @Html.ActionLink("Computers", "Index", "Home",null, new { @class = "MenuItem" })
+        </div>
+
+
+    <div>
+        @RenderBody()
     </div>
-
-    <div id="divAddProducts" style="margin-left:36%;" class="divSubMenu">
-        @Html.ActionLink("Add Product", "AddProduct", "Product", null,new { @class= "MenuItem" })
-    </div>
-
-    @*<div id="divMyProfileItems" style="margin-left:83.9%" class="divSubMenu">
-        @Html.ActionLink("LogOut","Home","Home",null,new { @class = "MenuItem" })
-        <button type="button">LogOff</button>
-    </div>*@
-
-    @*<div id="divMyProfileItems" class="div-email-content email">
-        <a href="../Login/Logout"><input value="Logout" class="logout-email border-none" type="button" /></a>
-    </div>*@
-
-    <div id="divMyProfileItems" style="margin-left:83.9%;display:none;width:15%;background-color: #70A2AB;position:absolute;">
-        <button id="btnLogout"type="button"style="width:100%;background-color: #70A2AB;position:absolute;padding-bottom:4%;font-size: 25px;color:blue; text-decoration: none;border: none;">LogOut</button>
-    </div>
-
-
 
     <div id="divPopupBackground" style="display:none; position:fixed;height: 100%;width:100%;top:0px;left:0px;opacity:0.2;background-color:black; z-index:1">
     </div>
@@ -107,20 +112,20 @@
     <div id="divLoadingBackground" style="display:none;position:fixed;height:100%;width:100%;top:0px;left:0px;opacity:0.1;background-color:black; z-index:11">
     </div>
 
-        <div id="divLoadingImage" style="display:none;position:fixed;left:40%;top:40%;z-index:12" >
-            @*<img src="~/Images/Loading.gif" />*@
-            <img src="~/Images/739.gif" />
-            @*  <img src="~/Images/Loading(1).gif" />*@
-        </div>
+    <div id="divLoadingImage" style="display:none;position:fixed;left:40%;top:40%;z-index:12">
+        @*<img src="~/Images/Loading.gif" />*@
+        <img src="~/Images/739.gif" />
+        @*  <img src="~/Images/Loading(1).gif" />*@
+    </div>
 
 
 
 
 
     <div id="divLogoutConfirm" style="display:none;position:fixed;background-color:white; z-index:2;left:35%;top:25%;width: 25%;height: 25%; border:solid; border-radius:50px">
-        
+
         <div style="margin-left:10%; margin-top:10%">
-            <img src="~/Images/question-mark-icon.jpg" style="width:10%;"/>
+            <img src="~/Images/question-mark-icon.jpg" style="width:10%;" />
             <label style="font-weight:bold; padding-left:2%">Are You Sure You Want To Logout ?</label>
         </div>
 
@@ -129,19 +134,12 @@
             <button type="button" id="btnLogoutConfirmNo" style="margin-left:4%" class="btnConfirm">No,Keep me Login</button>
 
         </div>
+        </div>
+        @RenderSection("Scripts", false)
 
-    </div>
-
-
-
-    <div>
-        @RenderBody()
-    </div>
-
-    @RenderSection("Scripts",false)
 
 </body>
 </html>
-<footer style="position:static;bottom: 0;margin-top:1%">
-    <p>&copy; @DateTime.Now.Year - Kalpesh Tandel ASP.NET Application</p>
-</footer>
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/bootstrap")

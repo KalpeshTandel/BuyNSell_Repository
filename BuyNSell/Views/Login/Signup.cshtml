@@ -14,53 +14,71 @@
     <meta name="viewport" content="width=device-width" />
     <title>Signup</title>
 </head>
-<body>
-    <div style="border:solid; margin:2% 30% 0% 30%; padding:2% 6% 5% 7%; border-radius:50px">
+<body style="background-color:lightgrey">
+    <div style="background-color:white; margin:0% 30% 0% 30%; padding:1% 6% 3% 7%; border-radius:50px; box-shadow:30px 20px 17px #888888;">
         <h2 style="padding-left:28%">SignUp</h2> 
         
         @using (Html.BeginForm())
         {
-            <div style="padding-bottom:10%">
+            <div style="margin-bottom: 2%;">
                @Html.Label("First Name",new { @class="Label",style= "padding-right: 16%;" })
-               @Html.TextBoxFor(m => m.FirstName, new { placeholder="First Name"})
-                @Html.ValidationMessageFor(m => m.FirstName,"",new { @class= "ErrorMsg" })
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name", @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "ErrorMsg", style = "display: inline-block;" })
             </div>
 
-            <div style="padding-bottom:10%">
+            <div style="margin-bottom: 2%;">
                 @Html.Label("Last Name", new { @class = "Label", style = "padding-right: 17%;" })
-                @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name" })
-                @Html.ValidationMessageFor(m => m.LastName,"", new { @class = "ErrorMsg" })
-            </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name", @class = "form-control" })
+                 </div>
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "ErrorMsg", style = "display: inline-block;" })
+                </div>
 
-            <div style="padding-bottom:10%">
+            <div style="margin-bottom: 2%;">
                 @Html.Label("Email Id", new { @class = "Label", style = "padding-right: 21%;" })
-                @Html.TextBoxFor(m => m.EmailId, new { placeholder = "Email Id" })
-                @Html.ValidationMessageFor(m => m.EmailId,"", new { @class = "ErrorMsg",style= "padding-left: 48%;" })
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                    @Html.TextBoxFor(m => m.EmailId, new { placeholder = "Email Id", @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.EmailId, "", new { @class = "ErrorMsg", style = "display: inline-block;" })
             </div>
 
-            <div style="padding-bottom:10%">
-                @Html.Label("Mobile Number", new { @class = "Label", style = "padding-right: 8%;" })
-                @Html.TextBoxFor(m => m.MobileNum, new { placeholder = "Mobile Number" })
-                @Html.ValidationMessageFor(m => m.MobileNum,"", new { @class = "ErrorMsg",style= "padding-left: 42%;" })
-            </div>
+            <div style="margin-bottom: 2%;">
+                @Html.Label("Mobile Number", new { @class = "Label"})
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                    @Html.TextBoxFor(m => m.MobileNum, new { placeholder = "Mobile Number", @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.MobileNum, "", new { @class = "ErrorMsg", style = "display: inline-block;" })
+             </div>
 
-            <div style="padding-bottom:10%">
+            <div style="margin-bottom: 2%;">
                 @Html.Label("Password", new { @class = "Label", style = "padding-right: 20%;" })
-                @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
-                @Html.ValidationMessageFor(m => m.Password,"", new { @class = "ErrorMsg" })
-            </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "ErrorMsg", style = "display: inline-block;" })
+                </div>
 
-            <div style="padding-bottom:10%">
+            <div style="margin-bottom: 2%;">
                 @Html.Label("Confirm Password", new { @class = "Label", style = "padding-right: 2%;" })
-                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password" })
-                @Html.ValidationMessageFor(m => m.ConfirmPassword,"", new { @class = "ErrorMsg" })
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "ErrorMsg",style= "display: inline-block;" })
             </div>
 
-            <div style="padding:10% 15% 0% 5%">
-                <input type="submit" value="SignUp" class="SubmitButton" style="width:100%" />
+            <div style="margin:5% 0% 0% 0%"> 
+                <input type="submit" value="SignUp" class="btn btnSubmit" style="width:50%;margin-right:5%" />
+                <input id="btnBackToLogIn" type="button" value="Back To LogIn" class="btn btnSubmit" onclick="location.href='@Url.Action("Login","Login")'" />
+
             </div>
-
-
         }
 
             </div>
@@ -70,3 +88,5 @@
 </html>
 
 @Scripts.Render("~/bundles/jqueryval")
+@Styles.Render("~/Content/css")
+
