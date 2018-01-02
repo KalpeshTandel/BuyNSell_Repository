@@ -26,35 +26,35 @@
 
 @if (ViewBag.Rate == 0)
 {
-    <img id="imgAverageRating" src="~/Images/NoStar.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)" />
+    <img id="imgAverageRating" src="~/Images/NoStar.jpg" style="width: 70%;cursor:pointer" onclick="imgAverageRating_Click(@ViewBag.ProductId)" />
 }
 
 else if(ViewBag.Rate == 1)
 {
-<img id="imgAverageRating" src="~/Images/OneStar.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+<img id="imgAverageRating" src="~/Images/OneStar.jpg" style="width: 70%;cursor:pointer" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
 }
 else if (ViewBag.Rate == 2)
 {
-    <img id="imgAverageRating" src="~/Images/TwoStars.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+    <img id="imgAverageRating" src="~/Images/TwoStars.jpg" style="width: 70%;cursor:pointer" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
 }
 else if (ViewBag.Rate == 3)
 {
-    <img id="imgAverageRating" src="~/Images/ThreeStars.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+    <img id="imgAverageRating" src="~/Images/ThreeStars.jpg" style="width: 70%;cursor:pointer" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
 }
 else if (ViewBag.Rate == 4)
 {
-    <img id="imgAverageRating" src="~/Images/FourStars.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+    <img id="imgAverageRating" src="~/Images/FourStars.jpg" style="width: 70%;cursor:pointer" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
 }
 else if (ViewBag.Rate == 5)
 {
-    <img id="imgAverageRating" src="~/Images/FiveStars.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+    <img id="imgAverageRating" src="~/Images/FiveStars.jpg" style="width: 70%;cursor:pointer" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
 }
 else
 {
-    <img id="imgAverageRating" src="~/Images/NoStar.jpg" style="width: 70%;" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
+    <img id="imgAverageRating" src="~/Images/NoStar.jpg" style="width: 70%;cursor:pointer" onclick="imgAverageRating_Click(@ViewBag.ProductId)"  />
 }
 
 <div style="margin-left: 5%;">
-    <label style="font-size: 20px;">(Rated By:- @ViewBag.UserCountRate)</label>
+    <label style="font-size: 17px;font-weight: normal;">(Rated By:- @ViewBag.UserCountRate)</label>
 
 </div>

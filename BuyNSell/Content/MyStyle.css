@@ -4,8 +4,9 @@
 
 
 .Label{
-padding-right:5%;
-font-weight:bold
+/*padding-right:5%;*/
+font-weight:bold;
+    font-size: 17px;
 }
 
 .SubmitButton{
@@ -56,14 +57,14 @@ font-weight:bold
 
 
 .LabelProductListBold{
-    font-size:25px;
+    font-size:18px;
     font-weight:bold;
 }
 
 .LabelProductList{
-     font-size:25px;
+     font-size:17px;
      /*margin-top: 50%;*/
-     padding-top: 40px;
+     /*padding-top: 40px;*/
 }
 
 
@@ -78,17 +79,18 @@ font-weight:bold
 
 .divViewProductDetails{
         display: flex;
-        margin: 1% 0% 1% 15%;
+        margin: 1% 0% 1% 12%;
 
 }
 
 .LabelProductDetailsBold{
-font-size: 22px;
+font-size: 18px;
     font-weight: bold;
 }
 
 .LabelProductDetails{
-font-size: 22px;
+font-size: 18px;
+    font-weight: normal;
 /*padding-left: 10%;*/
 }
 
@@ -107,4 +109,15 @@ font-size: 22px;
     display: inline-block;
     margin-left: 2px;
     vertical-align: middle;
-      }
+   }
+
+
+    .LabelAddOrderBold{
+        font-weight:bold;
+    font-size: 17px;
+    }
+
+        .LabelAddOrder{
+            font-weight:normal;
+    font-size: 17px;
+    }

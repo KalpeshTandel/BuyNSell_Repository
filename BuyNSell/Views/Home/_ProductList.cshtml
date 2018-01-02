@@ -51,7 +51,7 @@
                     $("#divLoadingImage").hide();
                 }
             });
-            e.stopImmediatePropagation();
+            //e.stopImmediatePropagation();
         }
 
 
@@ -62,21 +62,21 @@
 <body>
 
 
-<div id="divTotalProduct" style="font-weight: bold;font-size: 20px; margin-left:2%">
-    <label id="lblTotalProducts">Total Products: @Session["TotalRecords"]</label>
+<div id="divTotalProduct" style="margin-left:2%">
+    <label id="lblTotalProducts" style="font-weight: bold;font-size: 18px;">Total Products:<span style="font-weight:normal">@Session["TotalRecords"]</span></label>
 </div>
 
-<div id="divProductList" style="margin:1% 1% 1% 1%">
+<div id="divProductList" style="margin:-1% 1% 1% 1%; ">
     @foreach (var item in Model)
     {
-        <div id="divResultRow" style="border:solid; height:30%; border-radius:10px; padding:1%; margin:1%; display:flex"> @*onmouseover="btnViewProductDetails_Click(@item.ProductId)*@
+        <div id="divResultRow" style="background-color:white; height:30%; border-radius:10px; padding:1%; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;"> @*onmouseover="btnViewProductDetails_Click(@item.ProductId)*@
 
             @*<div id="divSrNo">
                 @Html.DisplayFor(m => item.SrNo)
             </div>*@
 
             <div id="divpicture" style="margin-right:1%">
-                <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent)" style="height:150px;width:250px;" />
+                <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent)" style="height:125px;width:250px;" />
             </div>
             
             <div id="divProductName" class="divProductList" style="width: 15%;">
@@ -116,17 +116,17 @@
            </div>
 
             <div id="ViewProductDetailsButton" style="margin:4% 0% 0% 0%">
-                <button id="btnViewProductDetails" type="button" class="SubmitButton" onclick="btnViewProductDetails_Click(@item.ProductId)" >View Details</button>
+                <button id="btnViewProductDetails" type="button" class="btn btnSubmit" onclick="btnViewProductDetails_Click(@item.ProductId)" >View Details</button>
             </div>
 
 
 
             @if (item.UserId != Convert.ToInt32(Session["UserId"]))
             {
-                <div id="divOrder" style="margin:4% 0% 0% 0%" >
+                <div id="divOrder" style="margin:4% 0% 0% 2%" >
                     @*<input id="btnOrder" type="button" value="Order" class="SubmitButton" onclick="location.href='@Url.Action("AddOrder","Order",new {ProductId = item.ProductId})'" />*@
 
-                    <button id="btnAddOrder" class="SubmitButton" onclick="btnAddOrder_Click(@item.ProductId)"> Place Order </button>
+                    <button id="btnAddOrder" class="btn btnSubmit" onclick="btnAddOrder_Click(@item.ProductId)"> Place Order </button>
 
                 </div>
 
@@ -137,18 +137,22 @@
 </div>
 
     <div id="divPageNumber" style="margin-left:42%;margin-bottom:1%">
-        <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:20px">Page @Session["PageNumber"] Of @Session["LastPageNumber"] </label>
+        <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:18px">Page <span style="font-weight:normal">@Session["PageNumber"]</span> Of <span style="font-weight:normal">@Session["LastPageNumber"]</span> </label>
     </div>
-    <div id="divPaging" style="margin-left:41%;margin-bottom:2%;">
+    <div id="divPaging"  style="margin-left:41%;margin-bottom:2%;">
 
         @if (Convert.ToInt32(Session["LastPageNumber"]) > 1 && Convert.ToInt32(Session["PageNumber"]) > 1)
         {
-            <button id="btnPreviousPage" style="position:absolute;left:39%;">PreviousPage</button>
+            <button id="btnPreviousPage" class="btn btnSubmit" style="position:absolute;left:39%;">
+              <span class="glyphicon glyphicon-chevron-left"></span>PreviousPage
+            </button>
         }
 
         @if (Convert.ToInt32(Session["LastPageNumber"]) > 1 && Convert.ToInt32(Session["LastPageNumber"]) != Convert.ToInt32(Session["PageNumber"]))
         {
-            <button id="btnNextPage" style="position:absolute;left:50%">NextPage</button>
+            <button id="btnNextPage" class="btn btnSubmit" style="position:absolute;left:50%">NextPage
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
         }
 
     </div>

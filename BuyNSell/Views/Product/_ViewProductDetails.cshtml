@@ -18,10 +18,13 @@
             if(PictureCount == 1 ){
                 $("#btnPreviousPicture").attr("disabled", true);
                 $("#btnNextPicture").attr("disabled", true);
+                $("#btnNextPicture").css("cursor", "not-allowed");
+                $("#btnPreviousPicture").css("cursor", "not-allowed");
             }
 
             if(PictureNumber == 0){
                 $("#btnPreviousPicture").attr("disabled", true);
+                $("#btnPreviousPicture").css("cursor", "not-allowed");
             }
 
         });
@@ -35,12 +38,12 @@
                 datatype: "json",
                 data: { ProductId: ProductId },
                 success: function (result) {
-                    //debugger;
-                    //$("#Pic").attr("src", result).fadeIn(5000);
+                    debugger;
+                    $("#imgProductPicture").attr("src", result);
 
-                    $("#imgProductPicture").fadeOut(500,function(){
-                        $("#imgProductPicture").attr("src", result).fadeIn(500);
-                    });
+                    //$("#imgProductPicture").fadeOut(500,function(){
+                    //    $("#imgProductPicture").attr("src", result).fadeIn(500);
+                    //});
 
                     var PictureCount = $("#hfPictureCount").val();
                     var PictureNumberLast = $("#hfPictureNumber").val();
@@ -49,20 +52,25 @@
 
                     if(PictureNumberCurrent == PictureCount - 1){
                         $("#btnNextPicture").attr("disabled", true);
+                        $("#btnNextPicture").css("cursor", "not-allowed");
                     }
                     else{
                         $("#btnNextPicture").attr("disabled", false);
+                        $("#btnNextPicture").css("cursor", "pointer");
                     }
 
                     if(PictureNumberCurrent == 0 ){
                         $("#btnPreviousPicture").attr("disabled", true);
+                        $("#btnPreviousPicture").css("cursor", "not-allowed");
                     }
                     else{
                         $("#btnPreviousPicture").attr("disabled", false);
+                        $("#btnPreviousPicture").css("cursor", "pointer");
+
                     }
                 }
             });
-            e.stopImmediatePropagation();
+           // e.stopImmediatePropagation();
         }
 
 
@@ -76,11 +84,11 @@
                 data: { ProductId: ProductId },
                 success: function (result) {
                     debugger;
-                    //$("#Pic").attr("src", result);
+                    $("#imgProductPicture").attr("src", result);
 
-                    $("#imgProductPicture").fadeOut(500,function(){
-                        $("#imgProductPicture").attr("src", result).fadeIn(500);
-                    });
+                    //$("#imgProductPicture").fadeOut(500,function(){
+                    //    $("#imgProductPicture").attr("src", result).fadeIn(500);
+                    //});
 
                     var PictureCount = $("#hfPictureCount").val();
                     var PictureNumberLast = $("#hfPictureNumber").val();
@@ -89,20 +97,24 @@
 
                     if (PictureCount == PictureNumberCurrent + 1) {
                         $("#btnNextPicture").attr("disabled", true);
+                        $("#btnNextPicture").css("cursor", "not-allowed");
                     }
                     else{
                         $("#btnNextPicture").attr("disabled", false);
+                        $("#btnNextPicture").css("cursor", "pointer");
                     }
 
                     if(PictureNumberCurrent == 0){
                         $("#btnPreviousPicture").attr("disabled", true);
+                        $("#btnPreviousPicture").css("cursor", "not-allowed");
                     }
                     else{
                         $("#btnPreviousPicture").attr("disabled", false);
+                        $("#btnPreviousPicture").css("cursor", "pointer");
                     }
                 }
             });
-            e.stopImmediatePropagation();
+          //  e.stopImmediatePropagation();
         }
 
 
@@ -115,12 +127,25 @@
         <input type="hidden" id="hfPictureCount" value="@Convert.ToInt32(Session["PictureCount"])" />
         <input type="hidden" id="hfPictureNumber" value="@Convert.ToInt32(Session["PictureNumber"])" />
         
-        <img id="btnCloseViewProductDetails" src="~/Images/Close.jpg" style="width:4%;margin: 2% 0% 0% 93%;" />
+        <img id="btnCloseViewProductDetails" src="~/Images/Close.jpg" style="width:30px;cursor: pointer;margin: 2% 0% 0% 93%;" />
+        
+        @*Image changes start*@
 
-        <div id="divProductPicture" style="display:flex;margin:-2% 0% 4% 21%;">
-            <button id="btnPreviousPicture" type="button" onclick="btnPreviousPicture_click(@Model.ProductId)" style="font-weight:bold"><<</button>
-            <img id="imgProductPicture" src="data:image;base64,@System.Convert.ToBase64String(Model.PictureContent)" alt="No Image" style="height: 250px;width: 350px; padding:0% 1% 0% 1%" />
-            <button id="btnNextPicture" type="button" onclick="btnNextPicture_click(@Model.ProductId)" style="font-weight:bold">>></button>
+        <div id="divProductPicture" style="display:flex;margin:-2% 0% 4% 15%;height: 280px;width: 430px;" class="carousel slide" data-ride="carousel">
+
+            <button id="btnPreviousPicture" class="left carousel-control" type="button" onclick="btnPreviousPicture_click(@Model.ProductId)" style="border: none;"><span class="glyphicon glyphicon-chevron-left"></span></button>
+            @*<a id="btnPreviousPicture" class="left carousel-control" style="cursor: pointer;" data-slide="prev" onclick="btnPreviousPicture_click(@Model.ProductId)">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>*@
+
+            <img id="imgProductPicture" src="data:image;base64,@System.Convert.ToBase64String(Model.PictureContent)" alt="No Image" style="height: 280px;width: 430px;" />
+
+            <button id="btnNextPicture" type="button" class="right carousel-control" onclick="btnNextPicture_click(@Model.ProductId)" style="border: none;"><span class="glyphicon glyphicon-chevron-right"></span></button>
+            @*<a id="btnNextPicture" class="right carousel-control" style="cursor: pointer;" data-slide="next" onclick="btnNextPicture_click(@Model.ProductId)" >
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>*@
         </div>
 
         <div id="divProductName" class="divViewProductDetails">
@@ -136,7 +161,7 @@
             <div class="LabelProductDetailsBold">
                 @Html.Label("Description")
             </div>
-            <div class="LabelProductDetails" style="margin-left: 111px;">
+            <div class="LabelProductDetails" style="margin-left: 107px;">
                 @Html.DisplayFor(m => m.ProductDescription)
             </div>
         </div>
@@ -145,7 +170,7 @@
             <div class="LabelProductDetailsBold">
                 @Html.Label("Buyer Name")
             </div>
-            <div class="LabelProductDetails"   style="margin-left: 99px;">
+            <div class="LabelProductDetails"   style="margin-left: 101px;">
                 @Html.DisplayFor(m => m.UserName)
             </div>
                
@@ -156,7 +181,7 @@
             <div class="LabelProductDetailsBold">
                 @Html.Label("Category")
             </div>
-            <div class="LabelProductDetails" style="margin-left: 130px;">
+            <div class="LabelProductDetails" style="margin-left: 126px;">
             @Html.DisplayFor(m => m.ProductCategoryName)
             </div>
         </div>
@@ -165,7 +190,7 @@
             <div class="LabelProductDetailsBold">
                 @Html.Label("Available Quantity")
             </div>
-            <div class="LabelProductDetails" style="margin-left: 40px;">
+            <div class="LabelProductDetails" style="margin-left: 50px;">
             @Html.DisplayFor(m => m.Quantity)
             </div>
         </div>
@@ -183,7 +208,7 @@
             <div class="LabelProductDetailsBold">
                 @Html.Label("Price")
             </div>
-            <div class="LabelProductDetails" style="margin-left: 169px;">
+            <div class="LabelProductDetails" style="margin-left: 162px;">
             @Html.DisplayFor(m => m.Price)
             </div>
         </div>

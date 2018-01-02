@@ -19,56 +19,56 @@
     @using (Html.BeginForm())
     {
 
-        <div id="divOrder" style="padding-left:14%;width:90%;height:90%">
+        <div id="divOrder" style="padding-left:40px;">@*width:90%;height:90%*@
 
-            <h3 style="padding-left:20%">Place Order</h3>
+            <h3 style="padding-left:25%;font-weight:bold">Place Order</h3>
 
            
             <div style="padding-bottom:4%">
-                @Html.Label("Product Name", new { @class = "Label" })
-                @Html.Label(@ProductMaster.ProductName)
+                @Html.Label("Product Name", new { @class = "LabelAddOrderBold",style="margin-right: 48px;" })
+                @Html.Label(@ProductMaster.ProductName, new { @class = "LabelAddOrder" })
             </div>
 
             <div style="padding-bottom:4%">
-                @Html.Label("Available Quantity", new { @class = "Label" })
-                @Html.Label(@ProductMaster.Quantity.ToString())               
+                @Html.Label("Available Quantity", new { @class = "LabelAddOrderBold", style = "margin-right: 18px;" })
+                @Html.Label(@ProductMaster.Quantity.ToString(), new { @class = "LabelAddOrder" })               
             </div>
 
             <div style="padding-bottom:4%">
-                @Html.Label("Price", new { @class = "Label" })
-                @Html.Label(@ProductMaster.Price.ToString())
+                @Html.Label("Price", new { @class = "LabelAddOrderBold", style = "margin-right: 124px;" })
+                @Html.Label(@ProductMaster.Price.ToString(), new { @class = "LabelAddOrder" })
             </div>
 
             <div style="padding-bottom:4%">
-                @Html.Label("Order Quantity", new { @class = "Label" })
+                @Html.Label("Order Quantity", new { @class = "LabelAddOrderBold", style = "margin-right: 45px;" })
                 @Html.DropDownListFor(m => m.OrderQuantity, new SelectList((List<SelectListItem>)Session["ddlOrderQuantity"], "Value", "Text"))
                 @Html.ValidationMessageFor(m => m.OrderQuantity)
             </div>
 
             <div style="padding-bottom:4%">
-                @Html.Label("Payment Amount", new { @class = "Label" })
-                @Html.Label(@ProductMaster.Price.ToString(),new { id= "lblPaymentAmount" })
+                @Html.Label("Payment Amount", new { @class = "LabelAddOrderBold", style = "margin-right: 26px;" })
+                @Html.Label(@ProductMaster.Price.ToString(),new { id= "lblPaymentAmount", @class = "LabelAddOrder" })
             </div>
 
             <div style="padding-bottom:4%">
-                @Html.Label("Delivery Address", new { @class = "Label" })
+                @Html.Label("Delivery Address", new { @class = "LabelAddOrderBold", style = "margin-right: 26px;" })
                 @Html.TextAreaFor(m => m.DeliveryAddress)
                 @Html.ValidationMessageFor(m => m.DeliveryAddress)
                 @Html.Label("*",new {id="lblErrorDelivery", @class= "ErrorMsg", style="display:None" })
             </div>
 
             <div style="padding-bottom:4%">
-                @Html.Label("Contact Number", new { @class = "Label" })
+                @Html.Label("Contact Number", new { @class = "LabelAddOrderBold",style = "margin-right: 32px;" })
                 @Html.TextBoxFor(m => m.ContactNum)
                 @Html.ValidationMessageFor(m => m.ContactNum)
                 @Html.Label("*", new {id="lblErrorContact", @class = "ErrorMsg", style = "display:None" })
             </div>
 
 
-            <div style="margin-left:10%">
-                <input id="btnOrderNow" type="submit" value="Order Now" class="SubmitButton" />
+            <div style="margin-left:13%">
+                <input id="btnOrderNow" type="submit" value="Order Now" class="btn btnSubmit" />
 
-                <button id="btnOrderNowCancel" type="button" class="SubmitButton" style="margin-left:5%">Cancel</button>
+                <button id="btnOrderNowCancel" type="button" class="btn btnSubmit" style="margin-left:11%">Cancel</button>
             </div>
 
 

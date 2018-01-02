@@ -17,92 +17,99 @@
 
 </head>
 <body>
+    <div style="background-color:lightgrey;padding:1% 0% 0% 0%">
+        <div id="divSearch" style="background-color:white;border-radius:10px;padding:1% 1% 1% 4%; margin:1% 1% 1% 1%; display:flex;box-shadow: 5px 10px 10px #888888;">
+           
+                @*<div>*@
+                @*<label style="font-weight:bold; font-size:20px;margin-right: 25px;">Product Name</label>*@
+                <input type="text" id="txtProductName" class="form-control" placeholder="Search Product Name Here.." style="font-size:17px;width:25%;font-weight: bold;" />
 
+                @*<label style="font-weight:bold; font-size:20px;margin-right: 25px;margin-left: 4%;">Product Category</label>*@
+                @Html.DropDownList("ddlProductCategory", new SelectList(ViewBag.ProductCategory, "Value", "Text"), " Select Product Category ", new { style = "font-size:17px;font-weight: bold;margin-left:1%;width:20%", @class = "form-control" })
+                @*</div>*@
+                
+                    <label id="lblFromDate" style="margin-left: 2%;">From Date</label>
+                    <input type="date" id="txtFromDate" style="margin-left: 1%;" />
 
-    <div id="divSearch" style="border:solid; border-radius:10px;padding-left: 14%;padding-bottom: 2%;padding-top: 2%; margin:1%; display:flex">
-        <div style="width:80%">
-            @*<div>*@
-                <label style="font-weight:bold; font-size:20px;margin-right: 25px;">Product Name</label>
-                <input type="text" id="txtProductName" placeholder="Product Name" style="font-size:17px" />
+                    <label id="lblToDate" style="margin-left: 2%;">To Date</label>
+                    <input type="date" id="txtToDate" style="margin-left: 1%;" />
+                     
+           
+            
+                <button id="btnSearch" class="btn btnSubmit" style="margin-left:5%">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+           
+                 
+            
 
-            <label style="font-weight:bold; font-size:20px;margin-right: 25px;margin-left: 4%;">Product Category</label>
-                @Html.DropDownList("ddlProductCategory", new SelectList(ViewBag.ProductCategory, "Value", "Text"), " Select Product Category ", new { style = "font-size:17px;" })
-            @*</div>*@
-            <div style="margin-top:2%">
-                <label id="lblFromDate" style="font-weight:bold; font-size:20px;margin-right: 58px;">From Date</label>
-                <input type="date" id="txtFromDate" />
-
-                <label id="lblToDate" style="font-weight:bold; font-size:20px;margin-left: 12%;margin-right: 110px;">To Date</label>
-                <input type="date" id="txtToDate" />
-            </div>
-        </div>
-        <div>
-            <button id="btnSearch" class="SubmitButton"> Search </button>
-        </div>
-
-    </div>
-
-
-
-        <div id="divSortBy" style="margin-left:55%;">
-            <label id="lblSortBy" style="font-weight:bold; font-size:20px">Sort By</label>
-            <select id="ddlSortBy" style="font-size:17px;font-weight: bold;width: 26%;padding-left: 1%;">
-                <option value="AverageRate desc,CountUserRate desc">Most Rated First</option>
-                <option value="ProductName">Product Name</option>
-                <option value="AddedDate Desc">Newest First</option>
-                <option value="Price">Price</option>
-            </select>
         </div>
 
 
-        <div id="divPageSize" style="margin-left:74%; margin-top:-24px">
-            <label id="lblPageSize" style="font-weight:bold; font-size:20px">Products Per Page</label>
-            <select id="ddlPageSize" style="font-size:17px;font-weight: bold;width: 32%;padding-left: 7%;">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-            </select>
-        </div>
-
-
-    <div id="divSearchResult">
-
-        @Html.Partial("_ProductList")
-
-    @*@foreach (var item in Model)
-    {
-        <div id="divResultRow" style="border:solid; height:30%; border-radius:10px; padding:1%; margin:1%; display:flex">
-
-            <div id="divpicture">
-                <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent1)" style="height:150px;width:250px;" />
-            </div>
-            <div id="divPrice" style="margin-top:4%;margin-left:1%" class="LabelProductList">
-                @Html.DisplayFor(m => item.ProductName)
+        <div style="display:flex;margin-left: 55%;margin-top: 2%;">
+            <div id="divSortBy" style="display: flex; width:50%">
+                <label id="lblSortBy" style="font-weight:bold; font-size:20px">Sort By</label>
+                <select id="ddlSortBy" class="form-control" style="width:60%; font-size:17px;font-weight: bold;">
+                    <option value="AverageRate desc,CountUserRate desc">Most Rated First</option>
+                    <option value="ProductName">Product Name</option>
+                    <option value="AddedDate Desc">Newest First</option>
+                    <option value="Price">Price</option>
+                </select>
             </div>
 
 
+            <div id="divPageSize" style="display: flex;width:50%">
+                <label id="lblPageSize" style="font-weight:bold; font-size:20px">Products Per Page</label>
+                <select id="ddlPageSize" class="form-control" style="width:25%; font-size:17px;font-weight: bold;">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
+
         </div>
-    }*@
+
+
+
+        <div id="divSearchResult">
+
+            @Html.Partial("_ProductList")
+
+            @*@foreach (var item in Model)
+                {
+                    <div id="divResultRow" style="border:solid; height:30%; border-radius:10px; padding:1%; margin:1%; display:flex">
+
+                        <div id="divpicture">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(@item.PictureContent1)" style="height:150px;width:250px;" />
+                        </div>
+                        <div id="divPrice" style="margin-top:4%;margin-left:1%" class="LabelProductList">
+                            @Html.DisplayFor(m => item.ProductName)
+                        </div>
+
+
+                    </div>
+                }*@
+        </div>
+        @*;width: 30%;height: 50%*@
+        <div id="divAddOrder" style="display:none; position:fixed;min-height:500px;min-width:500px; padding:1% 1% 2% 1%;background-color:white; z-index:2;left:35%;top:22%; border-radius:35px;box-shadow:30px 20px 17px;">
+        </div>
+
+        <div id="divAddOwnRating" style="display:none;position:fixed;height: 150px;width: 350px;padding:1% 1% 1% 1%;background-color:white;z-index:2;left:37%;top:35%; border-radius:20px;box-shadow:30px 20px 17px;">
+        </div>
+
+        @*<div id="divPopupBackground" style="display:none;position:fixed;height: 100%;width:100%;top:0px;left:0px;opacity:0.2;background-color:black; z-index:1">
+            </div>*@
+
+        <div id="divSuccess" style="display:none;position:fixed; background-color:white;z-index:2;left:37%;top:35%;width: 20%;height: 20%; border:solid; border-radius:50px">
+            <label id="lblSuccess" style="font-weight:bold; font-size:20px"></label>
+            <button id="btnSucessOk" type="button" class="SubmitButton" style="margin-left: 40%;margin-top: 30%;"> OK </button>
+        </div>
+
+        <div id="divViewProductDetails" style="display:none;position:fixed;padding:1% 1% 2% 1%;background-color:white;min-height:600px;min-width:650px;left:27%;top:15%;border-radius:35px;z-index:2;box-shadow:30px 20px 17px;">
+        </div>
+
+
     </div>
-
-    <div id="divAddOrder" style="display:none; position:fixed;padding:1% 1% 2% 1%;background-color:white; z-index:2;left:35%;top:25%;width: 30%;height: 50%; border:solid; border-radius:50px">
-    </div>
-
-    <div id="divAddOwnRating" style="display:none; position:fixed;padding:1% 1% 1% 1%;background-color:white;z-index:2;left:37%;top:35%;width: 25%;height: 15%; border:solid; border-radius:50px">
-    </div>
-
-    @*<div id="divPopupBackground" style="display:none;position:fixed;height: 100%;width:100%;top:0px;left:0px;opacity:0.2;background-color:black; z-index:1">
-    </div>*@
-
-    <div id="divSuccess" style="display:none;position:fixed; background-color:white;z-index:2;left:37%;top:35%;width: 20%;height: 20%; border:solid; border-radius:50px" >
-        <label id="lblSuccess" style="font-weight:bold; font-size:20px"></label>
-        <button id="btnSucessOk" type="button" class="SubmitButton" style="margin-left: 40%;margin-top: 30%;"> OK </button>
-    </div>
-
-    <div id="divViewProductDetails" style="display:none;position:fixed;padding:1% 1% 2% 1%;background-color:white; width:50%;height:70%;left:27%;top:15%;border:solid;border-radius:50px;z-index:2">
-    </div>
-
-
 
 
     </body>

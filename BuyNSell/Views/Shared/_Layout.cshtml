@@ -8,6 +8,17 @@
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/MyScript.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
     <script type="text/javascript">
         $(function () {
             $(".dropdown").hover(
@@ -22,7 +33,7 @@
                         $('b', this).toggleClass("caret caret-up");
                     });
         });
-    </script>
+   </script>
     <style>
     .caret-up {
     width: 0; 
@@ -106,7 +117,7 @@
         @RenderBody()
     </div>
 
-    <div id="divPopupBackground" style="display:none; position:fixed;height: 100%;width:100%;top:0px;left:0px;opacity:0.2;background-color:black; z-index:1">
+    <div id="divPopupBackground" style="display:none; position:fixed;height: 100%;width:100%;top:0px;left:0px;opacity:0.5;background-color:black; z-index:1">
     </div>
 
     <div id="divLoadingBackground" style="display:none;position:fixed;height:100%;width:100%;top:0px;left:0px;opacity:0.1;background-color:black; z-index:11">
@@ -139,7 +150,15 @@
 
 
 </body>
+
+
+
 </html>
 
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/bootstrap")
+
+<footer style="position:static;bottom: 0;margin-top:1%">
+    <p>&copy; @DateTime.Now.Year - Kalpesh Tandel ASP.NET Application</p>
+</footer>
+
+@*@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/bootstrap")*@
