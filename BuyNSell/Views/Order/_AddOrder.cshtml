@@ -39,9 +39,9 @@
                 @Html.Label(@ProductMaster.Price.ToString(), new { @class = "LabelAddOrder" })
             </div>
 
-            <div style="padding-bottom:4%">
+            <div style="padding-bottom:4%;display:flex">
                 @Html.Label("Order Quantity", new { @class = "LabelAddOrderBold", style = "margin-right: 45px;" })
-                @Html.DropDownListFor(m => m.OrderQuantity, new SelectList((List<SelectListItem>)Session["ddlOrderQuantity"], "Value", "Text"))
+                @Html.DropDownListFor(m => m.OrderQuantity, new SelectList((List<SelectListItem>)Session["ddlOrderQuantity"], "Value", "Text"), new { @class = "form-control",style= "width: 15%;" })
                 @Html.ValidationMessageFor(m => m.OrderQuantity)
             </div>
 
@@ -50,16 +50,16 @@
                 @Html.Label(@ProductMaster.Price.ToString(),new { id= "lblPaymentAmount", @class = "LabelAddOrder" })
             </div>
 
-            <div style="padding-bottom:4%">
+            <div style="padding-bottom:4%;display:flex">
                 @Html.Label("Delivery Address", new { @class = "LabelAddOrderBold", style = "margin-right: 26px;" })
-                @Html.TextAreaFor(m => m.DeliveryAddress)
+                @Html.TextAreaFor(m => m.DeliveryAddress, new { @class = "form-control",style= "width: 56%;" })
                 @Html.ValidationMessageFor(m => m.DeliveryAddress)
                 @Html.Label("*",new {id="lblErrorDelivery", @class= "ErrorMsg", style="display:None" })
             </div>
 
-            <div style="padding-bottom:4%">
+            <div style="padding-bottom:4%;display:flex">
                 @Html.Label("Contact Number", new { @class = "LabelAddOrderBold",style = "margin-right: 32px;" })
-                @Html.TextBoxFor(m => m.ContactNum)
+                @Html.TextBoxFor(m => m.ContactNum, new { @class = "form-control",style = "width: 56%;" })
                 @Html.ValidationMessageFor(m => m.ContactNum)
                 @Html.Label("*", new {id="lblErrorContact", @class = "ErrorMsg", style = "display:None" })
             </div>

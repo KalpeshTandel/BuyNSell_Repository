@@ -101,7 +101,9 @@
                     </ul>
                 </li>
 
-                <li style="width: 45%;">@Html.ActionLink("Log Out", "Logout", "Login")</li>
+                @*<li style="width: 45%;">@Html.ActionLink("Log Out", "Logout", "Login")</li>*@
+
+                <li style="width: 45%;"><button id="btnLogout" class="btn btn-danger navbar-btn" style="margin-top: 10px;margin-bottom: 10px;">LogOut</button></li>
 
             </ul>
 
@@ -133,17 +135,16 @@
 
 
 
-    <div id="divLogoutConfirm" style="display:none;position:fixed;background-color:white; z-index:2;left:35%;top:25%;width: 25%;height: 25%; border:solid; border-radius:50px">
+    <div id="divLogoutConfirm" style="display:none; position:fixed;background-color:white; z-index:2;left:35%;top:25%; height: 170px;width: 360px; border-radius:35px;box-shadow:30px 20px 17px;">
 
         <div style="margin-left:10%; margin-top:10%">
-            <img src="~/Images/question-mark-icon.jpg" style="width:10%;" />
-            <label style="font-weight:bold; padding-left:2%">Are You Sure You Want To Logout ?</label>
+            @*<img src="~/Images/question-mark-icon.jpg" style="width:10%;" />*@
+            <label style="font-weight:bold;font-size: 17px; padding-left:2%">Are You Sure You Want To Logout ?</label>
         </div>
 
-        <div style="margin-top: 10%;margin-left: 20%;">
-            <button type="button" id="btnLogoutConfirmYes" class="btnConfirm" onclick="location.href='@Url.Action("Logout","Login")'">Yes,logOut</button>
-            <button type="button" id="btnLogoutConfirmNo" style="margin-left:4%" class="btnConfirm">No,Keep me Login</button>
-
+        <div style="margin-top: 10%;margin-left: 12%;">
+            <button type="button" id="btnLogoutConfirmYes" class="btnConfirm btn btn-danger" onclick="location.href='@Url.Action("Logout","Login")'">Yes,LogOut</button>
+            <button type="button" id="btnLogoutConfirmNo" style="margin-left:4%" class="btnConfirm btn btn-success">No,Keep me Login</button>
         </div>
         </div>
         @RenderSection("Scripts", false)
@@ -156,8 +157,8 @@
 </html>
 
 
-<footer style="position:static;bottom: 0;margin-top:1%">
-    <p>&copy; @DateTime.Now.Year - Kalpesh Tandel ASP.NET Application</p>
+<footer style="position:fixed;bottom: 0;margin-top:1%">
+    <label>&copy; @DateTime.Now.Year - Kalpesh Tandel ASP.NET Application</label>
 </footer>
 
 @*@Styles.Render("~/Content/css")
