@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    @section Scripts{
+    @*<script src="~/Scripts/angular.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="~/AngularJs/CustomerOrderController.js"></script>
+        }
+
+
+</head>
+
+
+<body>
+
+    <div ng-app="IndexApp" style="background-color:lightgrey;padding:1% 1% 1% 1%;">
+        <div ng-controller="IndexController">
+
+            <div id="divOrderResult" ng-repeat="item in OrderList" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%;">
+
+                <div id="divOrderId" class="divProductList" style="width: 15%;">
+                    <div class="LabelProductListBold">
+                        <label>Order Id</label>
+                    </div>
+                    <div class="LabelProductList">
+                        {{item.OrderId}}
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</body>
+</html>
+
