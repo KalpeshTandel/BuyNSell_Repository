@@ -13,14 +13,16 @@ namespace BuyNSell.Models
         public Nullable<int> CustomerId { get; set; }
         public string CustomerName { get; set; }
         public Nullable<int> OrderQuantity { get; set; }
+        public Nullable<int> AvailableQuantity { get; set; }
         public Nullable<int> PaymentAmount { get; set; }
         public string DeliveryAddress { get; set; }
         public string ContactNum { get; set; }
         public Nullable<System.DateTime> OrderAddedDate { get; set; }
         public Nullable<int> OrderStatusId { get; set; }
+        public string OrderStatusName { get; set; }       
         public Nullable<bool> Active { get; set; }
         public Nullable<bool> Deleted { get; set; }
 
-
+        public List<OrderStatusMaster> OrderStatusList { get; set; }
     }
 }

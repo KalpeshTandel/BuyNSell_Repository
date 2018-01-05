@@ -21,6 +21,16 @@
           <Property Name="Deleted" Type="bit" />
           <Property Name="OrderAddedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="OrderStatusMaster">
+          <Key>
+            <PropertyRef Name="OrderStatusId" />
+          </Key>
+          <Property Name="OrderStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderStatusName" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="AccessFor" Type="int" />
+        </EntityType>
         <EntityType Name="PictureMaster">
           <Key>
             <PropertyRef Name="PictureId" />
@@ -93,6 +103,7 @@
         </EntityType>
         <EntityContainer Name="BuyNSell_ModelStoreContainer">
           <EntitySet Name="OrderMaster" EntityType="Self.OrderMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatusMaster" EntityType="Self.OrderStatusMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PictureMaster" EntityType="Self.PictureMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategoryMaster" EntityType="Self.ProductCategoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
@@ -134,6 +145,7 @@
           <EntitySet Name="PictureMasters" EntityType="BuyNSell_Model.PictureMaster" />
           <EntitySet Name="OrderMasters" EntityType="BuyNSell_Model.OrderMaster" />
           <EntitySet Name="RatingMasters" EntityType="BuyNSell_Model.RatingMaster" />
+          <EntitySet Name="OrderStatusMasters" EntityType="BuyNSell_Model.OrderStatusMaster" />
         </EntityContainer>
         <EntityType Name="ProductCategoryMaster">
           <Key>
@@ -198,6 +210,16 @@
           <Property Name="RatingAddedDate" Type="DateTime" Precision="3" />
           <Property Name="Active" Type="Boolean" />
           <Property Name="RatingModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrderStatusMaster">
+          <Key>
+            <PropertyRef Name="OrderStatusId" />
+          </Key>
+          <Property Name="OrderStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="AccessFor" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -295,6 +317,17 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatusMasters">
+            <EntityTypeMapping TypeName="BuyNSell_Model.OrderStatusMaster">
+              <MappingFragment StoreEntitySet="OrderStatusMaster">
+                <ScalarProperty Name="AccessFor" ColumnName="AccessFor" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -112,12 +112,18 @@ font-size: 18px;
    }
 
 
-    .LabelAddOrderBold{
+.LabelAddOrderBold{
         font-weight:bold;
     font-size: 17px;
-    }
+}
 
-        .LabelAddOrder{
+.LabelAddOrder{
             font-weight:normal;
     font-size: 17px;
-    }
+}
+
+
+.divOrderList{
+    margin: 2% 0% 0% 1%;
+    text-align: center;
+}

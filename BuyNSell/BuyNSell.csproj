@@ -196,6 +196,9 @@
     <Compile Include="Models\OrderMaster.cs">
       <DependentUpon>BuyNSell_EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrderStatusMaster.cs">
+      <DependentUpon>BuyNSell_EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PartialClasses\OrderMaster.cs" />
     <Compile Include="Models\PartialClasses\ProductMaster.cs" />
     <Compile Include="Models\PartialClasses\RatingMaster.cs" />

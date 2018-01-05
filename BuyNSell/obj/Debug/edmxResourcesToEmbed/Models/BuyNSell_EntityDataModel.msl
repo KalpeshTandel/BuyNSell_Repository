@@ -94,5 +94,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="OrderStatusMasters">
+      <EntityTypeMapping TypeName="BuyNSell_Model.OrderStatusMaster">
+        <MappingFragment StoreEntitySet="OrderStatusMaster">
+          <ScalarProperty Name="AccessFor" ColumnName="AccessFor" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
+          <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

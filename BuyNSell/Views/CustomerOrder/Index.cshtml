@@ -21,9 +21,9 @@
     <div ng-app="IndexApp" style="background-color:lightgrey;padding:1% 1% 1% 1%;">
         <div ng-controller="IndexController">
 
-            <div id="divOrderResult" ng-repeat="item in OrderList" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%;">
+            <div id="divOrderResult" ng-repeat="item in OrderList" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;">
 
-                <div id="divOrderId" class="divProductList" style="width: 15%;">
+                <div id="divOrderId" class="divOrderList" style="width: 10%;">
                     <div class="LabelProductListBold">
                         <label>Order Id</label>
                     </div>
@@ -32,7 +32,101 @@
                     </div>
                 </div>
 
+                <div id="divProductName" class="divOrderList" style="width: 15%;">
+                    <div class="LabelProductListBold">
+                        <label>Product Name</label>
+                    </div>
+                    <div class="LabelProductList">
+                        {{item.ProductName}}
+                    </div>
+                </div>
 
+                <div id="divCustomerName" class="divOrderList" style="width: 15%;">
+                    <div class="LabelProductListBold">
+                        <label>Customer Name</label>
+                    </div>
+                    <div class="LabelProductList">
+                        {{item.CustomerName}}
+                    </div>
+                </div>
+
+                <div id="divOrderQuantity" class="divOrderList" style="width: 10%;">
+                    <div class="LabelProductListBold">
+                        <label>Order Quantity</label>
+                    </div>
+                    <div class="LabelProductList">
+                        {{item.OrderQuantity}}
+                    </div>
+                </div>
+
+                <div id="divAvailableQuantity" class="divOrderList" style="width: 10%;">
+                    <div class="LabelProductListBold">
+                        <label>Available Quantity</label>
+                    </div>
+                    <div class="LabelProductList">
+                        {{item.AvailableQuantity}}
+                    </div>
+                </div>
+
+                <div id="divPaymentAmmount" class="divOrderList" style="width: 10%;">
+                    <div class="LabelProductListBold">
+                        <label>Payment Amount</label>
+                    </div>
+                    <div class="LabelProductList">
+                        {{item.PaymentAmount}}
+                    </div>
+                </div>
+
+                <div id="divDeliveryAddress" class="divOrderList" style="width: 15%;">
+                    <div class="LabelProductListBold">
+                        <label>Delivery Address</label>
+                    </div>
+                    <div class="LabelProductList">
+                        {{item.DeliveryAddress}}
+                    </div>
+                </div>
+
+                <div id="divContactNum" class="divOrderList" style="width: 15%;">
+                    <div class="LabelProductListBold">
+                        <label>Contact Number</label>
+                    </div>
+                    <div class="LabelProductList">
+                        {{item.ContactNum}}
+                    </div>
+                </div>
+
+                <div id="divOrderAddedDate" class="divOrderList" style="width: 15%;">
+                    <div class="LabelProductListBold">
+                        <label>Order Date</label>
+                    </div>
+                    <div class="LabelProductList">
+                        {{item.OrderAddedDate}}
+                    </div>
+                </div>
+
+                <div id="divOrderStatus" class="divOrderList" style="width:30%;min-width:200px">
+                    <div class="LabelProductListBold">
+                        <label>Order Status</label>
+                    </div>
+                    <div class="LabelProductList" id="DivOrderStatusLabel" style="display:none" >
+                        {{item.OrderStatusName}}
+                    <input type="button" value="Change" class="btn btnSubmit" style="display:block; margin: 2% 0% 0% 35%;" />
+                    </div>
+                    <div id="DivOrderStatusChange" @*style="display:none"*@>
+                        <select class="form-control" style="width:80%;margin:0% 0% 2% 10%" data-ng-model="OrderStatusName" data-ng-options="O.OrderStatusId as O.OrderStatusName for O in item.OrderStatusList">
+                            <option value="">--Select--</option>
+                        </select>
+                        <input type="button" value="Save" class="btn btn-success" />
+                        <input type="button" value="Cancel" class="btn btn-danger" />
+                    </div>
+                        @*<select ng-model="OrderStatus">
+                            <option ng-repeat="i in item.OrderStatusList" value="{{i.OrderStatusId}}">{{i.OrderStatusName}}</option>
+                        </select>*@
+
+                        @*<select ng-options="OrderStatusItem "*@
+                    </div>
+
+                </div>
             </div>
 
         </div>
