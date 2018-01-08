@@ -40,7 +40,7 @@ namespace BuyNSell.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("LogInAgain", "Login");
+                    return RedirectToAction("Login", "Login");
                 }
             }
             catch(Exception ex)
@@ -91,7 +91,7 @@ namespace BuyNSell.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("LogInAgain", "Login");
+                    return RedirectToAction("Login", "Login");
                 }
             }
             catch (Exception ex)
@@ -125,7 +125,7 @@ namespace BuyNSell.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("LogInAgain", "Login");
+                    return RedirectToAction("Login", "Login");
                 }
             }
             catch(Exception ex)
@@ -160,7 +160,7 @@ namespace BuyNSell.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("LogInAgain", "Login");
+                    return RedirectToAction("Login", "Login");
                 }
             }
             catch(Exception ex)
@@ -194,7 +194,7 @@ namespace BuyNSell.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("LogInAgain", "Login");
+                    return RedirectToAction("Login", "Login");
                 }
             }
             catch (Exception ex)
@@ -226,7 +226,7 @@ namespace BuyNSell.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("LogInAgain", "Login");
+                    return RedirectToAction("Login", "Login");
                 }
             }
             catch (Exception ex)
