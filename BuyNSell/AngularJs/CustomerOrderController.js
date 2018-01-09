@@ -31,7 +31,7 @@ app.controller("IndexController", function ($scope, $http) {
     $scope.selected = {};
 
     $scope.GetTemplate = function (item) {
-        debugger;
+        //debugger;
         if (item.OrderId === $scope.selected.OrderId) {
             //$(this).css("background-color", "#71C6ED");
             return 'Edit';
@@ -84,6 +84,24 @@ app.controller("IndexController", function ($scope, $http) {
         $("#divPopupBackground").hide();
         $("#divSaveStatusConfirm").hide();
     }
+
+    $scope.btnViewOrderDetails_Click = function (OrderId) {
+        //debugger;
+        $http({
+            method: "Post",
+            url: "../CustomerOrder/ViewCustomerOrderDetails",
+            datatype: "json",
+            data:{OrderId : OrderId}
+        }).then(function (result) {
+            debugger;
+            $("#divViewOrderDetails").html(result.data);
+            $("#divViewOrderDetails").show();        
+        }, function (error) {
+            debugger;
+            alert("Error");
+        });
+    }
+
 
 
 

@@ -1097,6 +1097,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\CustomerOrder\Index.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\CustomerOrder\_ViewCustomerOrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

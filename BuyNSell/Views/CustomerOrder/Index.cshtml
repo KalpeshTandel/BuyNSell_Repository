@@ -131,6 +131,12 @@
                     @*<select ng-options="OrderStatusItem "*@
                 </div>
 
+                <div id="ViewOrderDetailsButton" style="margin:4% 0% 0% 0%">
+                    <button id="btnViewOrderDetails" type="button" class="btn btnSubmit" ng-click="btnViewOrderDetails_Click(item.OrderId)">View Details</button>
+                </div>
+
+
+
             </script>
 
 
@@ -259,6 +265,11 @@
                 </div>
             </div>
 
+
+
+
+            <div id="divViewOrderDetails" style="display:none;position:fixed;padding:1% 1% 2% 1%;background-color:white;min-height:600px;min-width:650px;left:27%;top:15%;border-radius:35px;z-index:2;box-shadow:30px 20px 17px;">
+            </div>
 
 
 
