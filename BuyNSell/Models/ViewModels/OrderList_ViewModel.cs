@@ -10,6 +10,9 @@ namespace BuyNSell.Models
         public int OrderId { get; set; }
         public Nullable<int> ProductId { get; set; }
         public string ProductName { get; set; }
+        public int PictureId { get; set; }
+        public byte[] PictureContent { get; set; }
+        public Nullable<int> Price { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public string CustomerName { get; set; }
         public Nullable<int> OrderQuantity { get; set; }

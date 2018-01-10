@@ -87,6 +87,8 @@ app.controller("IndexController", function ($scope, $http) {
 
     $scope.btnViewOrderDetails_Click = function (OrderId) {
         //debugger;
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
         $http({
             method: "Post",
             url: "../CustomerOrder/ViewCustomerOrderDetails",
@@ -95,15 +97,17 @@ app.controller("IndexController", function ($scope, $http) {
         }).then(function (result) {
             debugger;
             $("#divViewOrderDetails").html(result.data);
-            $("#divViewOrderDetails").show();        
+            $("#divPopupBackground").show();
+            $("#divViewOrderDetails").show();
+            $("#divLoadingBackground").hide();
+            $("#divLoadingImage").hide();
         }, function (error) {
             debugger;
+            $("#divLoadingBackground").hide();
+            $("#divLoadingImage").hide();
             alert("Error");
         });
     }
-
-
-
 
 
 });

@@ -127,3 +127,18 @@ font-size: 18px;
     margin: 2% 0% 0% 1%;
     text-align: center;
 }
+
+.LabelViewCustomerOrderDetailsBold{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.LabelViewCustomerOrderDetails{
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.divViewCustomerOrderDetails{
+    display:flex;
+        margin: 1% 0% 0% 5%;
+}

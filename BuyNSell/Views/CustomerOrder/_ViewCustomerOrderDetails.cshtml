@@ -1,7 +1,100 @@
 ﻿
 @model BuyNSell.Models.OrderList_ViewModel
 
-<div>
-    <label> Hii </label>
-    @Html.DisplayFor(m => m.OrderId)
+@section Scripts{
+<script src="~/AngularJs/CustomerOrderController.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<script src="~/Scripts/MyScript.js"></script>
+    }
+
+
+<div id="divViewCustomerOrderDetails"  style="padding: 2% 1% 1% 5%;">
+    <img id="btnCloseViewCustomerOrderDetails" onclick="btnCloseViewCustomerOrderDetails_Click()" src="~/Images/Close.jpg" style="width:30px;cursor: pointer;margin: 0% 0% 0% 93%;" />
+
+    <h3 style="margin:0% 0% 5% 30%;font-weight:bold">Order Details</h3>
+
+   <div id="divOrderId" class="divViewCustomerOrderDetails">
+       <div class="LabelViewCustomerOrderDetailsBold">
+           @Html.Label("OrderId")
+       </div>
+       <div class="LabelViewCustomerOrderDetails" style="margin-left: 109px;">
+           @Html.DisplayFor(m => m.OrderId)
+           @*@Html.Label(Model.OrderId.ToString())*@
+       </div>
+   </div>
+
+    <div id="divProductName" class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Product Name")
+        </div>
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 53px;">
+            @Html.DisplayFor(m => m.ProductName)
+        </div>
+    </div>
+
+    <div id="divCustomerName" class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Customer Name")
+        </div>
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 37px;">
+            @Html.DisplayFor(m => m.CustomerName)
+        </div>
+    </div>
+
+    <div id="divOrderQuantity" class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Order Quantity")
+        </div>
+        <div class="LabelViewCustomerOrderDetails"style="margin-left: 46px;">
+            @Html.DisplayFor(m => m.OrderQuantity)
+        </div>      
+    </div>
+
+    <div id="divAvailableQuantity"  class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Available Quantity")
+        </div>
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 17px;">
+            @Html.DisplayFor(m => m.AvailableQuantity)
+        </div>
+    </div>
+    
+    <div id="divPaymentAmount"  class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Payment Amount")
+        </div>
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 25px;">
+            @Html.DisplayFor(m => m.PaymentAmount)
+        </div>
+    </div>
+
+    <div id="divDeliveryAddress" class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Delivery Address")
+        </div>
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 29px;">
+            @Html.DisplayFor(m => m.DeliveryAddress)
+        </div>
+    </div>
+
+    <div id="divContactNum"  class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Contact Number")
+        </div>
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 34px;">
+            @Html.DisplayFor(m => m.ContactNum)
+        </div>
+    </div>
+
+    <div id="divOrderAddedDate" class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Order Date")
+        </div>
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 81px;">
+            @Html.DisplayFor(m => m.OrderAddedDate)
+        </div>
+    </div>
+
+                        
 </div>

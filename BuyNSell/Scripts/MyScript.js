@@ -2,7 +2,8 @@
 
 
 $(document).ready(function () {
-   // debugger;
+    // debugger;
+
     $("#divCategory").mouseover(function () {
         $("#divCategoryItems").show();
     });
@@ -407,7 +408,11 @@ $(document).ready(function () {
 //        });
 
 //    });
-
-
+    $("#btnCloseViewCustomerOrderDetails").click(function () {
+        debugger;
+        $("#divViewOrderDetails").hide();
+        $("#divViewOrderDetails").empty();
+    });
+    
 
 });
