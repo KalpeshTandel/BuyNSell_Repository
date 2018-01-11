@@ -19,5 +19,6 @@ namespace BuyNSell.Models
         public Nullable<bool> Active { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public Nullable<int> AccessFor { get; set; }
+        public Nullable<int> StageNumber { get; set; }
     }
 }

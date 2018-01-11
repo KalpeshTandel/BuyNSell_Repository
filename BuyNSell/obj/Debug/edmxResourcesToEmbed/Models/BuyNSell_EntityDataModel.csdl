@@ -105,5 +105,6 @@
     <Property Name="Active" Type="Boolean" />
     <Property Name="Deleted" Type="Boolean" />
     <Property Name="AccessFor" Type="Int32" />
+    <Property Name="StageNumber" Type="Int32" />
   </EntityType>
 </Schema>

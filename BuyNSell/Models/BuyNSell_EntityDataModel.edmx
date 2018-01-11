@@ -30,6 +30,7 @@
           <Property Name="Active" Type="bit" />
           <Property Name="Deleted" Type="bit" />
           <Property Name="AccessFor" Type="int" />
+          <Property Name="StageNumber" Type="int" />
         </EntityType>
         <EntityType Name="PictureMaster">
           <Key>
@@ -220,6 +221,7 @@
           <Property Name="Active" Type="Boolean" />
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="AccessFor" Type="Int32" />
+          <Property Name="StageNumber" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -323,6 +325,7 @@
           <EntitySetMapping Name="OrderStatusMasters">
             <EntityTypeMapping TypeName="BuyNSell_Model.OrderStatusMaster">
               <MappingFragment StoreEntitySet="OrderStatusMaster">
+                <ScalarProperty Name="StageNumber" ColumnName="StageNumber" />
                 <ScalarProperty Name="AccessFor" ColumnName="AccessFor" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Active" ColumnName="Active" />

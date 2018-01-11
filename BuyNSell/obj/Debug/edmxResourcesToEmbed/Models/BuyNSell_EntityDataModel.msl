@@ -97,6 +97,7 @@
     <EntitySetMapping Name="OrderStatusMasters">
       <EntityTypeMapping TypeName="BuyNSell_Model.OrderStatusMaster">
         <MappingFragment StoreEntitySet="OrderStatusMaster">
+          <ScalarProperty Name="StageNumber" ColumnName="StageNumber" />
           <ScalarProperty Name="AccessFor" ColumnName="AccessFor" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
           <ScalarProperty Name="Active" ColumnName="Active" />

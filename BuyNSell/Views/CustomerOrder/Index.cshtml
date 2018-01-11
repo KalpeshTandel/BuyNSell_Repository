@@ -130,7 +130,8 @@
                     </div>
                     <div class="LabelProductList" id="DivOrderStatusLabel">
                         {{item.OrderStatusName}}
-                        <input type="button" value="Change" class="btn btnSubmit" ng-click="ChangeStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" />
+                        
+                        <input type="button" value="Change" ng-if="item.OrderStatusList != 0"  class="btn btnSubmit" ng-click="ChangeStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" />
                     </div>
                     @*<div id="DivOrderStatusChange" style="display:none">
                         <select class="form-control" style="width:80%;margin:0% 0% 2% 10%" data-ng-model="OrderStatusName" data-ng-options="O.OrderStatusId as O.OrderStatusName for O in item.OrderStatusList">
@@ -290,7 +291,7 @@
             </div>
 
 
-    <div id="divViewOrderDetails" style="display:none;position:fixed;padding:1% 1% 2% 1% ;background-color:white;min-height:530px;min-width:550px;left:27%;top:15%;border-radius:35px;z-index:2;box-shadow:30px 20px 17px;">
+    <div id="divViewOrderDetails" style="display:none;position:fixed;padding:1% 1% 1% 1% ;background-color:white;min-height:530px;min-width:550px;left:27%;top:4%;border-radius:35px;z-index:2;box-shadow:30px 20px 17px;">
     </div>
 
 </body>

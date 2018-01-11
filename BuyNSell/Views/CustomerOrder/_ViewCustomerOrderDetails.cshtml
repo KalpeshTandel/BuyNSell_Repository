@@ -9,10 +9,15 @@
     }
 
 
-<div id="divViewCustomerOrderDetails"  style="padding: 2% 1% 1% 5%;">
+<div id="divViewCustomerOrderDetails">
     <img id="btnCloseViewCustomerOrderDetails" onclick="btnCloseViewCustomerOrderDetails_Click()" src="~/Images/Close.jpg" style="width:30px;cursor: pointer;margin: 0% 0% 0% 93%;" />
 
-    <h3 style="margin:0% 0% 5% 30%;font-weight:bold">Order Details</h3>
+    <h3 style="margin:0% 0% 0% 30%;font-weight:bold">Order Details</h3>
+
+    <div id="divProductPicture" style="margin: 4% 0% 4% 4%;">
+        <img id="imgProductPicture" src="data:image;base64,@System.Convert.ToBase64String(Model.PictureContent)" alt="No Image" style="height: 280px;width: 430px;" />
+    </div>
+
 
    <div id="divOrderId" class="divViewCustomerOrderDetails">
        <div class="LabelViewCustomerOrderDetailsBold">
@@ -66,6 +71,15 @@
         </div>
         <div class="LabelViewCustomerOrderDetails" style="margin-left: 25px;">
             @Html.DisplayFor(m => m.PaymentAmount)
+        </div>
+    </div>
+
+    <div id="divProductPrice" class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Price Per Unit")
+        </div>
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 55px;">
+            @Html.DisplayFor(m => m.Price)
         </div>
     </div>
 

@@ -25,6 +25,7 @@
     <Property Name="Active" Type="bit" />
     <Property Name="Deleted" Type="bit" />
     <Property Name="AccessFor" Type="int" />
+    <Property Name="StageNumber" Type="int" />
   </EntityType>
   <EntityType Name="PictureMaster">
     <Key>
