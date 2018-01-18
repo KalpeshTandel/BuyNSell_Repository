@@ -3,30 +3,50 @@
 var app = angular.module("IndexApp", [])
 
 app.controller("IndexController", function ($scope, $http) {
-
-    $http({
-        method: "Get",
-        url: "../CustomerOrder/GetOrderList"
-    }).then(function (response) {
-        $scope.OrderList = response.data;
-
-    }, function (error) {
-        alert("Error")
-    });
-
-
-    $scope.GetOrderList = function(){
+    
+    $scope.CustomerOrder_PageLoad = function () {
+        $http({
+            method: "Get",
+            url: "../CustomerOrder/CustomerOrder_PageLoad"
+        }).then(function (response) {
+            $scope.OrderList = response.data.OrderList;
+        }, function (error) {
+            alert("Error")
+        });
+    }
+     
+    $scope.CustomerOrder_PageLoad();
+    
+    $scope.GetOrderList = function () {
+        
         $http({
             method: "Get",
             url: "../CustomerOrder/GetOrderList"
         }).then(function (response) {
-            $scope.OrderList = response.data;
+            debugger;
+            $scope.OrderList = response.data.Data.OrderList;
 
         }, function (error) {
             alert("Error")
         });
     }
 
+    $scope.ddlSortByList = [
+        { Id: 1, Text: "Newest First" },
+        { Id: 2, Text: "Product Name" },
+        { Id: 3, Text: "Order Quantity" },
+        { Id: 4, Text: "Payment Amount" }
+    ];
+
+    $scope.ddlSortBySelected = 1;
+
+    $scope.ddlPageSizeList = [
+        { Id: 1, Text: "5" },
+        { Id: 2, Text: "10" },
+        { Id: 3, Text: "15" }
+    ];
+
+    $scope.ddlPageSizeSelected = 1;
 
     $scope.selected = {};
 

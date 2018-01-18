@@ -10,6 +10,17 @@ namespace BuyNSell.Controllers
 {
     public class CustomerOrderController : Controller
     {
+        #region ClassLevel Variabels
+        int CurrentPageNumber;
+        int PageSize;
+        int NumberOfPages;
+        int StartRecord;
+        int EndRecord;
+        int TotalNumberOfRecords;
+        #endregion
+
+
+
         BuyNSell_DbEntities objDbEntities = new BuyNSell_DbEntities();
 
         // GET: CustomerOrder
@@ -19,7 +30,6 @@ namespace BuyNSell.Controllers
             {
                 if (Session["UserId"] != null)
                 {
-
                     return View();
                 }
                 else
@@ -33,15 +43,32 @@ namespace BuyNSell.Controllers
             }
         }
 
-        public JsonResult GetOrderList()
+        public JsonResult CustomerOrder_PageLoad()
+        {
+            try
+            {
+                StartRecord = 0;
+                EndRecord = 4;
+                var Response = GetOrderList(StartRecord, EndRecord);
+                return Json(Response, JsonRequestBehavior.AllowGet);
+                //return Response;
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public dynamic GetOrderList(int StartRecord, int EndRecord)
         {
             try
             {
 
                 int UserId = Convert.ToInt16(Session["UserId"]);
-                //List<OrderList_ViewModel> OrderList = new List<OrderList_ViewModel>();
 
-                List<OrderList_ViewModel> OrderList = (from om in objDbEntities.OrderMasters
+                List<OrderList_ViewModel> FullOrderList = (from om in objDbEntities.OrderMasters
                                                        join pm in objDbEntities.ProductMasters on om.ProductId equals pm.ProductId
                                                        join um in objDbEntities.UserMasters on om.UserId equals um.UserId
                                                        join os in objDbEntities.OrderStatusMasters on om.OrderStatusId equals os.OrderStatusId
@@ -60,35 +87,24 @@ namespace BuyNSell.Controllers
                                                            OrderStatusId = om.OrderStatusId,
                                                            OrderStatusName = os.OrderStatusName,
                                                        }).ToList();
+                TotalNumberOfRecords = FullOrderList.Count;
+
+                //int Start = (Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"]) ;
+                //int End = (Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - 1;
+
+                //Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
+
+                List<OrderList_ViewModel> SpecificOrderList = new List<OrderList_ViewModel>() ;
+
+                for (int i = StartRecord; i <= EndRecord && i < TotalNumberOfRecords ; i++)
+                {
+                        SpecificOrderList.Add(FullOrderList[i]);
+                }
+
 
                 List<OrderStatusMaster> OrderStatusList = objDbEntities.OrderStatusMasters.Where(s => s.AccessFor == 2).ToList();
 
-                //foreach (var item in Result)
-                //{
-                //    OrderList.Add(new OrderList_ViewModel()
-                //    {
-                //        OrderId = item.OrderId,
-                //        ProductId = item.ProductId,
-                //        ProductName = item.ProductName,
-                //        CustomerId = item.CustomerId,
-                //        CustomerName = item.CustomerFirstName + ' ' + item.CustomerLastName,
-                //        OrderQuantity = item.OrderQuantity,
-                //        AvailableQuantity = item.AvailableQuantity,
-                //        PaymentAmount = item.PaymentAmount,
-                //        DeliveryAddress = item.DeliveryAddress,
-                //        ContactNum = item.ContactNum,
-                //        OrderAddedDate = item.OrderAddedDate,
-                //        OrderStatusId = item.OrderStatusId,
-                //        OrderStatusName = item.OrderStatusName,
-                //        Active = item.Active,
-                //        Deleted = item.Deleted,
-                //        //OrderStatusList.OrderStatusName = item.OrderStatusName
-
-                //    });
-                //}
-
-
-                foreach (var OrderItem in OrderList)
+                foreach (var OrderItem in SpecificOrderList)
                 {
                     OrderItem.OrderStatusList = new List<OrderStatusMaster>();
                     //var OrderStageNumber = (from o in objDbEntities.OrderStatusMasters
@@ -112,7 +128,9 @@ namespace BuyNSell.Controllers
                     }
                 }
 
-                return Json(OrderList, JsonRequestBehavior.AllowGet);
+                var Response = new { OrderList = SpecificOrderList, Moredata = "Hii Kalpesh" };
+
+                return Response;
 
             }
             catch (Exception ex)

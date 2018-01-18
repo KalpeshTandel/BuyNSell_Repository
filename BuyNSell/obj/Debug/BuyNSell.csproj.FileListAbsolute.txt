@@ -228,4 +228,3 @@ D:\A-Kalpesh\Personal\Development\BuyNSell\BuyNSell\bin\Antlr3.Runtime.pdb
 D:\A-Kalpesh\Personal\Development\BuyNSell\BuyNSell\bin\Newtonsoft.Json.xml
 D:\A-Kalpesh\Personal\Development\BuyNSell\BuyNSell\obj\Debug\BuyNSell.dll
 D:\A-Kalpesh\Personal\Development\BuyNSell\BuyNSell\obj\Debug\BuyNSell.pdb
-D:\A-Kalpesh\Personal\Development\BuyNSell\BuyNSell\obj\Debug\BuyNSell.csprojResolveAssemblyReference.cache
