@@ -10,13 +10,15 @@ namespace BuyNSell.Controllers
 {
     public class CustomerOrderController : Controller
     {
-        #region ClassLevel Variabels
-        int CurrentPageNumber;
-        int PageSize;
-        int NumberOfPages;
-        int StartRecord;
-        int EndRecord;
-        int TotalNumberOfRecords;
+        //static variables are used when only one copy of the variable is required.
+        //A static variable shares the value of it among all instances of the class.
+        #region ClassLevel Variabels Static        
+        static int PageSize = 5;
+        static int LastPageNumber;
+        static int StartRecord;
+        static int EndRecord;
+        static int TotalNumberOfRecords;
+        static int CurrentPageNumber;
         #endregion
 
 
@@ -47,6 +49,8 @@ namespace BuyNSell.Controllers
         {
             try
             {
+                CurrentPageNumber = 1;
+                PageSize = 5;
                 StartRecord = 0;
                 EndRecord = 4;
                 var Response = GetOrderList(StartRecord, EndRecord);
@@ -59,6 +63,16 @@ namespace BuyNSell.Controllers
                 throw ex;
             }
         }
+
+        public JsonResult ddlPageSize_Change(int ddlPageSizeSelected)
+        {
+            PageSize = ddlPageSizeSelected;
+            StartRecord = (PageSize * CurrentPageNumber) - PageSize;
+            EndRecord = (PageSize * CurrentPageNumber) - 1;
+            var Response = GetOrderList(StartRecord, EndRecord);
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
+
 
 
         public dynamic GetOrderList(int StartRecord, int EndRecord)
@@ -87,13 +101,15 @@ namespace BuyNSell.Controllers
                                                            OrderStatusId = om.OrderStatusId,
                                                            OrderStatusName = os.OrderStatusName,
                                                        }).ToList();
-                TotalNumberOfRecords = FullOrderList.Count;
+
 
                 //int Start = (Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"]) ;
                 //int End = (Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - 1;
-
                 //Session["LastPageNumber"] = Math.Ceiling(Convert.ToDecimal(Session["TotalRecords"]) / Convert.ToDecimal(Session["PageSize"]));
 
+                TotalNumberOfRecords = FullOrderList.Count;
+                LastPageNumber = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(TotalNumberOfRecords) / Convert.ToDecimal(PageSize)));
+            
                 List<OrderList_ViewModel> SpecificOrderList = new List<OrderList_ViewModel>() ;
 
                 for (int i = StartRecord; i <= EndRecord && i < TotalNumberOfRecords ; i++)
@@ -128,7 +144,7 @@ namespace BuyNSell.Controllers
                     }
                 }
 
-                var Response = new { OrderList = SpecificOrderList, Moredata = "Hii Kalpesh" };
+                var Response = new { OrderList = SpecificOrderList, TotalRecords = TotalNumberOfRecords, CurrentPageNumber = CurrentPageNumber,LastPageNumber = LastPageNumber };
 
                 return Response;
 

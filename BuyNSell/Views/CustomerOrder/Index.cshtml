@@ -31,10 +31,11 @@
 </head>
 
 
-<body>
+<body >
 
     <div ng-app="IndexApp" style="background-color:lightgrey;padding:1% 1% 1% 1%;">
         <div ng-controller="IndexController">
+
 
             <div style="display:flex;margin-left: 55%;margin-top: 2%;">
                 <div id="divSortBy" style="display: flex; width:50%">
@@ -45,14 +46,22 @@
 
                 <div id="divPageSize" style="display: flex;width:50%">
                     <label id="lblPageSize" style="font-weight:bold; font-size:20px">Products Per Page</label>
-                    <select class="form-control" style="width:25%;font-size:17px;font-weight: bold;" ng-model="ddlPageSizeSelected" ng-options="P.Id as P.Text for P in ddlPageSizeList"></select>
+                    <select class="form-control" style="width:25%;font-size:17px;font-weight: bold;" ng-model="ddlPageSizeSelected" ng-options="P.Id as P.Text for P in ddlPageSizeList" ng-change="ddlPageSize_Change()"></select>
                 {{ddlPageSizeSelected}}
                 </div>
                 </div>
 
-                <div id="divOrderResult" ng-repeat="item in OrderList" ng-include="GetTemplate(item)" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;">
+            <div id="divTotalProduct" style="margin-left:2%">
+                <label id="lblTotalProducts" style="font-weight: bold;font-size: 18px;">Total Orders:<span style="font-weight:normal">{{TotalRecords}}</span></label>
+            </div>
+
+                <div id="divOrderResult" ng-repeat="item in OrderListData" ng-include="GetOrderTemplate(item)" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;">
 
                 </div>
+
+            <div id="divPageNumber" style="margin-left:42%;margin-bottom:1%">
+                <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:18px">Page <span style="font-weight:normal">{{CurrentPageNumber}}</span> Of <span style="font-weight:normal">{{LastPageNumber}}</span> </label>
+            </div>
 
 
                 <script type="text/ng-template" id="Display">
@@ -145,7 +154,7 @@
                         <div class="LabelProductList" id="DivOrderStatusLabel">
                             {{item.OrderStatusName}}
 
-                            <input type="button" value="Change" ng-if="item.OrderStatusList != 0" class="btn btnSubmit" ng-click="ChangeStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" />
+                            <input type="button" value="Change" ng-if="item.OrderStatusList != 0" class="btn btnSubmit" ng-click="ChangeOrderStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" />
                         </div>
                         @*<div id="DivOrderStatusChange" style="display:none">
                         <select class="form-control" style="width:80%;margin:0% 0% 2% 10%" data-ng-model="OrderStatusName" data-ng-options="O.OrderStatusId as O.OrderStatusName for O in item.OrderStatusList">
@@ -267,8 +276,8 @@
                             <select class="form-control" style="width:80%;margin:0% 0% 2% 10%" data-ng-model="item.OrderStatusId" data-ng-options="O.OrderStatusId as O.OrderStatusName for O in item.OrderStatusList">
                                 <option value="">--Select--</option>
                             </select>
-                            <input type="button" value="Save" ng-click="SaveStatus(item)" class="btn btn-success" />
-                            <input type="button" value="Cancel" ng-click="CancelStatus()" class="btn btn-danger" />
+                            <input type="button" value="Save" ng-click="SaveOrderStatus(item)" class="btn btn-success" />
+                            <input type="button" value="Cancel" ng-click="CancelOrderStatus()" class="btn btn-danger" />
                         </div>
                         @*<select ng-model="OrderStatus">
                         <option ng-repeat="i in item.OrderStatusList" value="{{i.OrderStatusId}}">{{i.OrderStatusName}}</option>

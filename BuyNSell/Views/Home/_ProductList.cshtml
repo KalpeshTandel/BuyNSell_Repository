@@ -139,6 +139,7 @@
     <div id="divPageNumber" style="margin-left:42%;margin-bottom:1%">
         <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:18px">Page <span style="font-weight:normal">@Session["PageNumber"]</span> Of <span style="font-weight:normal">@Session["LastPageNumber"]</span> </label>
     </div>
+
     <div id="divPaging"  style="margin-left:41%;margin-bottom:2%;">
 
         @if (Convert.ToInt32(Session["LastPageNumber"]) > 1 && Convert.ToInt32(Session["PageNumber"]) > 1)
@@ -156,12 +157,6 @@
         }
 
     </div>
-
-
-
-    
-
-
 
 
 </body>
