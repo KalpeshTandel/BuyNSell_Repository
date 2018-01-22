@@ -40,14 +40,12 @@
             <div style="display:flex;margin-left: 55%;margin-top: 2%;">
                 <div id="divSortBy" style="display: flex; width:50%">
                     <label id="lblSortBy" style="font-weight:bold; font-size:20px">Sort By</label>
-                    <select class="form-control" style="width: 60%;font-size:17px;font-weight: bold;" ng-model="ddlSortBySelected" ng-options="S.Id as S.Text for S in ddlSortByList"></select>
-               {{ddlSortBySelected}}
+                    <select class="form-control" style="width: 60%;font-size:17px;font-weight: bold;" ng-model="ddlSortBySelected" ng-options="S.Id as S.Text for S in ddlSortByList" ng-change="ddlSortBy_Change()"></select>
                 </div>
 
                 <div id="divPageSize" style="display: flex;width:50%">
                     <label id="lblPageSize" style="font-weight:bold; font-size:20px">Products Per Page</label>
                     <select class="form-control" style="width:25%;font-size:17px;font-weight: bold;" ng-model="ddlPageSizeSelected" ng-options="P.Id as P.Text for P in ddlPageSizeList" ng-change="ddlPageSize_Change()"></select>
-                {{ddlPageSizeSelected}}
                 </div>
                 </div>
 
@@ -62,6 +60,22 @@
             <div id="divPageNumber" style="margin-left:42%;margin-bottom:1%">
                 <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:18px">Page <span style="font-weight:normal">{{CurrentPageNumber}}</span> Of <span style="font-weight:normal">{{LastPageNumber}}</span> </label>
             </div>
+
+            <div id="divPaging" style="margin-left:41%;margin-bottom:-2%;">
+
+
+                    <button id="btnPreviousPageOrder" ng-if="LastPageNumber>1 && CurrentPageNumber>1" ng-click="btnPreviousPageOrder_Click()"   class="btn btnSubmit" style="position:absolute;left:39%;">
+                        <span class="glyphicon glyphicon-chevron-left"></span>PreviousPage
+                    </button>
+    
+                    <button id="btnNextPageOrder" ng-if="LastPageNumber > 1 && LastPageNumber != CurrentPageNumber" ng-click="btnNextPageOrder_Click()" class="btn btnSubmit" style="position:absolute;left:50%">
+                        NextPage
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </button>  
+            </div>
+
+
+
 
 
                 <script type="text/ng-template" id="Display">
@@ -179,8 +193,6 @@
                 </script>
 
 
-
-
                 <script type="text/ng-template" id="Edit">
 
                     <div id="divOrderId" class="divOrderList" style="width: 10%;">
@@ -292,7 +304,6 @@
 
 
                 </script>
-
 
 
                 <div id="divSaveStatusConfirm" style="display:none; position:fixed;background-color:white; z-index:2;left:35%;top:25%; height: 200px;width: 400px; border-radius:35px;box-shadow:30px 20px 17px;">

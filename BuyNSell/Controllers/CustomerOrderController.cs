@@ -73,6 +73,25 @@ namespace BuyNSell.Controllers
             return Json(Response, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult btnNextPageOrder_Click(int ddlPageSizeSelected)
+        {
+            PageSize = ddlPageSizeSelected;
+            CurrentPageNumber = CurrentPageNumber + 1;
+            StartRecord = (PageSize * CurrentPageNumber) - PageSize;
+            EndRecord = (PageSize * CurrentPageNumber) - 1;
+            var Response = GetOrderList(StartRecord, EndRecord);
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult btnPreviousPageOrder_Click()
+        {
+            CurrentPageNumber = CurrentPageNumber - 1;
+            StartRecord = (PageSize * CurrentPageNumber) - PageSize;
+            EndRecord = (PageSize * CurrentPageNumber) - 1;
+            var Response = GetOrderList(StartRecord, EndRecord);
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
+
 
 
         public dynamic GetOrderList(int StartRecord, int EndRecord)
