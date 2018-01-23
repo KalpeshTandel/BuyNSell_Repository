@@ -323,15 +323,15 @@ $(document).ready(function () {
             $("#lblErrorContact").show();
             return false;
         }
-        else
-        {
-            $("#divAddOrder").empty();
-            $("#divPopupBackground").empty();
-            $("#divAddOrder").hide();
-            $("#divPopupBackground").hide();
-            $("#divSuccess").show();
-            $("#lblSuccess").val("Order placed Sccessfully!Thank You")
-        }
+        //else
+        //{
+        //    $("#divAddOrder").empty();
+        //    $("#divPopupBackground").empty();
+        //    $("#divAddOrder").hide();
+        //    $("#divPopupBackground").hide();
+        //    $("#divSuccess").show();
+        //    $("#lblSuccess").val("Order placed Sccessfully!Thank You")
+        //}
     });
 
 

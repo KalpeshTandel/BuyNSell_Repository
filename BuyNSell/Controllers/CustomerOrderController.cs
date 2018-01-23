@@ -19,6 +19,8 @@ namespace BuyNSell.Controllers
         static int EndRecord;
         static int TotalNumberOfRecords;
         static int CurrentPageNumber;
+        static string OrderBy;
+        static string OrderByAscOrDesc;
         #endregion
 
 
@@ -53,6 +55,8 @@ namespace BuyNSell.Controllers
                 PageSize = 5;
                 StartRecord = 0;
                 EndRecord = 4;
+                OrderBy = "OrderAddedDate";
+                OrderByAscOrDesc = "Desc";
                 var Response = GetOrderList(StartRecord, EndRecord);
                 return Json(Response, JsonRequestBehavior.AllowGet);
                 //return Response;
@@ -67,6 +71,7 @@ namespace BuyNSell.Controllers
         public JsonResult ddlPageSize_Change(int ddlPageSizeSelected)
         {
             PageSize = ddlPageSizeSelected;
+            CurrentPageNumber = 1;
             StartRecord = (PageSize * CurrentPageNumber) - PageSize;
             EndRecord = (PageSize * CurrentPageNumber) - 1;
             var Response = GetOrderList(StartRecord, EndRecord);
@@ -93,6 +98,28 @@ namespace BuyNSell.Controllers
         }
 
 
+        public JsonResult ddlSortBy_Change(string ddlSortBySelected)
+        {
+            OrderBy = ddlSortBySelected;
+            if (OrderBy.Contains("Desc"))
+            {
+                OrderByAscOrDesc = "Desc";
+            }
+            else
+            {
+                OrderByAscOrDesc = "Asc";
+            }
+            OrderBy = OrderBy.Replace("Desc", "");
+
+            CurrentPageNumber = 1;
+            StartRecord = (PageSize * CurrentPageNumber) - PageSize;
+            EndRecord = (PageSize * CurrentPageNumber) - 1;
+
+            var Response = GetOrderList(StartRecord, EndRecord);
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         public dynamic GetOrderList(int StartRecord, int EndRecord)
         {
@@ -100,13 +127,13 @@ namespace BuyNSell.Controllers
             {
 
                 int UserId = Convert.ToInt16(Session["UserId"]);
-
+                var OrderByProperty = typeof(OrderList_ViewModel).GetProperty(OrderBy);
+                
                 List<OrderList_ViewModel> FullOrderList = (from om in objDbEntities.OrderMasters
                                                        join pm in objDbEntities.ProductMasters on om.ProductId equals pm.ProductId
                                                        join um in objDbEntities.UserMasters on om.UserId equals um.UserId
                                                        join os in objDbEntities.OrderStatusMasters on om.OrderStatusId equals os.OrderStatusId
                                                        where pm.UserId == UserId
-                                                       orderby om.OrderAddedDate descending
                                                        select new OrderList_ViewModel
                                                        {
                                                            OrderId = om.OrderId,
@@ -121,6 +148,14 @@ namespace BuyNSell.Controllers
                                                            OrderStatusName = os.OrderStatusName,
                                                        }).ToList();
 
+                if(OrderByAscOrDesc == "Asc")
+                {
+                    FullOrderList = FullOrderList.OrderBy(x => OrderByProperty.GetValue(x, null)).ToList();
+                }
+                else
+                {
+                    FullOrderList = FullOrderList.OrderByDescending(x => OrderByProperty.GetValue(x, null)).ToList();
+                }
 
                 //int Start = (Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - Convert.ToInt32(Session["PageSize"]) ;
                 //int End = (Convert.ToInt32(Session["PageSize"]) * Convert.ToInt32(Session["PageNumber"])) - 1;

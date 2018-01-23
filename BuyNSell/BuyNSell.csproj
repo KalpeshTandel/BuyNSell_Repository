@@ -167,6 +167,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageResult.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MyOrderController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
@@ -228,6 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AngularJs\CustomerOrderController.js" />
+    <Content Include="AngularJs\MyOrderController.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\MyStyle.css" />
@@ -1099,6 +1101,7 @@
     <Content Include="Views\CustomerOrder\Index.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\CustomerOrder\_ViewCustomerOrderDetails.cshtml" />
+    <Content Include="Views\MyOrder\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

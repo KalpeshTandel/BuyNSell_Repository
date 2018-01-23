@@ -9,10 +9,10 @@ app.controller("IndexController", function ($scope, $http) {
     $scope.OrderItemSelected = {};
     $scope.TotalRecords = 0; //Number datatype 
     $scope.ddlSortByList = [
-        { Id: 1, Text: "Newest First" },
-        { Id: 2, Text: "Product Name" },
-        { Id: 3, Text: "Order Quantity" },
-        { Id: 4, Text: "Payment Amount" }
+        { Id: "OrderAddedDateDesc", Text: "Newest First" },
+        { Id: "ProductName", Text: "Product Name" },
+        { Id: "OrderQuantityDesc", Text: "Order Quantity" },
+        { Id: "PaymentAmountDesc", Text: "Payment Amount" }
     ]; //Array Object datatype
 
     $scope.ddlPageSizeList = [
@@ -21,7 +21,7 @@ app.controller("IndexController", function ($scope, $http) {
     { Id: 15, Text: "15" }
     ]; //Array Object datatype
 
-    $scope.ddlSortBySelected = 1;
+    $scope.ddlSortBySelected = "OrderAddedDateDesc";
     $scope.ddlPageSizeSelected = 5;
 
     //Variables Declarations --End
@@ -161,13 +161,19 @@ app.controller("IndexController", function ($scope, $http) {
         $("#divLoadingImage").show();
         $http({
             method: "Post",
-            url: "/CustomerOrder/ddlPageSize_Change",
+            url: "/CustomerOrder/ddlSortBy_Change",
             datatype: "json",
-            data: { ddlPageSizeSelected: $scope.ddlPageSizeSelected }
+            data: { ddlSortBySelected: $scope.ddlSortBySelected }
         }).then(function (response) {
-
+            debugger;
+            $scope.OrderListData = response.data.OrderList;
+            $scope.TotalRecords = response.data.TotalRecords;
+            $scope.CurrentPageNumber = response.data.CurrentPageNumber;
+            $scope.LastPageNumber = response.data.LastPageNumber;
+            $("#divLoadingImage").hide();
+            $("#divLoadingBackground").hide();
         }, function (error) {
-            alert("Erroe");
+            alert("Error");
         });
     };
 
