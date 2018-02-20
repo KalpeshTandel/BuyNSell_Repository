@@ -5,23 +5,54 @@ app.controller("IndexController", function ($scope, $http) {
 
     $scope.MyOrderListFull = [];
 
-    //Variables Declarations --End
+    $scope.MyOrderListSpecific = [];
+
     $scope.ddlPageSizeList = [
-         { Id: 5, Text: "5" },
-         { Id: 10, Text: "10" },
-         { Id: 15, Text: "15" }
+     { Id: 5, Text: "5" },
+     { Id: 10, Text: "10" },
+     { Id: 15, Text: "15" }
     ];
 
     $scope.ddlPageSizeSelected = $scope.ddlPageSizeList[0];
 
+    $scope.TotalRecords = 0;
+    $scope.StartRecord = 0;
+    $scope.EndRecord = 0;
+    $scope.LastPageNumber = 0;
+    $scope.CurrentPageNumber = 0;
 
+    $scope.MyOrderSelectedItem = {};
+
+    //Variables Declarations --End
 
 
     //Methods Declarations --Start
 
 
-    //Methods Declarations --End
+    $scope.GetSpecificData = function () {
+        debugger;
+        $scope.StartRecord = ($scope.CurrentPageNumber * $scope.ddlPageSizeSelected.Id) - $scope.ddlPageSizeSelected.Id;
+        $scope.EndRecord = ($scope.CurrentPageNumber * $scope.ddlPageSizeSelected.Id) - 1;
+        $scope.MyOrderListSpecific = [];
 
+        for (var i = $scope.StartRecord; i <= $scope.EndRecord && i < $scope.TotalRecords; i++) {
+            $scope.MyOrderListSpecific.push($scope.MyOrderListFull[i]);
+        }
+    };
+
+    $scope.GetOrderTemplate = function (item) {
+        debugger;
+        if ($scope.MyOrderSelectedItem == item) {
+            return 'Edit';
+        }
+        else {
+            return 'Display';
+        }
+    };
+
+    $scope.ChangeOrderStatus = function (item) {
+        $scope.MyOrderSelectedItem = item;
+    };
 
     $scope.MyOrder_PageLoad = function () {
         $http({
@@ -31,11 +62,37 @@ app.controller("IndexController", function ($scope, $http) {
         }).then(function (response) {
             debugger;
             $scope.MyOrderListFull = response.data;
+            $scope.TotalRecords = $scope.MyOrderListFull.length;
+            $scope.CurrentPageNumber = 1;
+            $scope.LastPageNumber = Math.ceil($scope.TotalRecords / $scope.ddlPageSizeSelected.Id);
+            $scope.GetSpecificData();
         }, function () {
             alert("Error");
         });
     };
 
+
+    $scope.ddlPageSize_Change = function () {
+        debugger;
+        $scope.CurrentPageNumber = 1;
+        $scope.LastPageNumber = Math.ceil($scope.TotalRecords / $scope.ddlPageSizeSelected.Id);
+        $scope.GetSpecificData();
+    };
+
+    $scope.btnNextPageMyOrder_Click = function () {
+        $scope.CurrentPageNumber = $scope.CurrentPageNumber + 1;
+        $scope.GetSpecificData();
+    };
+
+    $scope.btnPreviousPageMyOrder_Click = function () {
+        $scope.CurrentPageNumber = $scope.CurrentPageNumber - 1;
+        $scope.GetSpecificData();
+    };
+
+    //Methods Declarations --End
+
+
     $scope.MyOrder_PageLoad();
+
 
 });
