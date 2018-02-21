@@ -39,7 +39,48 @@ namespace BuyNSell.Controllers
                                                           OrderStatusName = m.OrderStatusMasters.OrderStatusName
                                                       }).ToList();
 
+            List<OrderStatusMaster> OrderStatusList = objDataBase.OrderStatusMasters.Where(s => s.AccessFor == 1).ToList();
+
+            foreach(var OrderItem in FullOrderList)
+            {
+                OrderItem.OrderStatusList = new List<OrderStatusMaster>();
+
+                var OrderStageNumber = objDataBase.OrderStatusMasters.Where(s => s.OrderStatusId == OrderItem.OrderStatusId).Select(s => s.StageNumber).SingleOrDefault();
+
+                OrderStageNumber = OrderStageNumber + 1;
+
+                foreach(var OrderStatusItem in OrderStatusList)
+                {
+                    if(OrderStatusItem.StageNumber == OrderStageNumber)
+                    {
+                        OrderItem.OrderStatusList.Add(new OrderStatusMaster
+                        {
+                            OrderStatusId = OrderStatusItem.OrderStatusId,
+                            OrderStatusName = OrderStatusItem.OrderStatusName
+                        });
+                    }
+                }
+            }
+
             return Json(FullOrderList,JsonRequestBehavior.AllowGet);
+        }
+
+
+        public void ChangeOrderStatus(OrderMaster OrderInfo)
+        {
+            try
+            {
+                if(OrderInfo != null)
+                {
+                    OrderMaster Order = objDataBase.OrderMasters.Where(o => o.OrderId == OrderInfo.OrderId).FirstOrDefault();
+                    Order.OrderStatusId = OrderInfo.OrderStatusId;
+                    objDataBase.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

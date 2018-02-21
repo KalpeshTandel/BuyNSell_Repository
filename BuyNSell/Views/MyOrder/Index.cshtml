@@ -96,7 +96,7 @@
                     <div class="LabelProductList" id="DivOrderStatusLabel">
                         {{item.OrderStatusName}}
 
-                        <button class="btn btnSubmit" ng-click="ChangeOrderStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" >Change</button>
+                        <button class="btn btnSubmit" ng-if="item.OrderStatusList != 0"  ng-click="ChangeOrderStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" >Change</button>
 
                         @*<input type="button" value="Change" ng-if="item.OrderStatusList != 0" class="btn btnSubmit" ng-click="ChangeOrderStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" />*@
                     </div>
@@ -158,14 +158,27 @@
                         <select class="form-control" style="width:80%;margin:0% 0% 2% 10%" data-ng-model="item.OrderStatusId" data-ng-options="O.OrderStatusId as O.OrderStatusName for O in item.OrderStatusList">
                             <option value="">--Select--</option>
                         </select>
-                        <input type="button" value="Save" ng-click="SaveOrderStatus(item)" class="btn btn-success" />
-                        <input type="button" value="Cancel" ng-click="CancelOrderStatus()" class="btn btn-danger" />
+                        <input type="button" value="Save" ng-click="SaveMyOrderStatus(item)" class="btn btn-success" />
+                        <input type="button" value="Cancel" ng-click="CancelMyOrderStatus()" class="btn btn-danger" />
                     </div>
 
                 </div>
             </script>
 
+            <div id="divSaveStatusConfirm" style="display:none; position:fixed;background-color:white; z-index:2;left:35%;top:25%; height: 200px;width: 400px; border-radius:35px;box-shadow:30px 20px 17px;">
 
+                <div style="margin-left:4%; margin-top:10%">
+                    @*<img src="~/Images/question-mark-icon.jpg" style="width:10%;" />*@
+                    <label style="font-weight:bold;font-size: 17px; padding-left:2%">Are You Sure You Want To Change Status of Order ?</label>
+                    <label style="color:red;margin-left: 1%;">Note:- You can't go back to the Previews Order Status</label>
+
+                </div>
+
+                <div style="margin-top: 7%;margin-left: 15%;">
+                    <button type="button" id="btnSaveStatusConfirmYes" ng-click="btnSaveStatusConfirmYes()" class="btnConfirm btn btn-success " style="width:35%"> Yes </button>
+                    <button type="button" id="btnSaveStatusConfirmNo" ng-click="btnSaveStatusConfirmNo()" style="margin-left:13%;width:35%" class="btnConfirm btn btn-danger "> No </button>
+                </div>
+            </div>
 
             </div>
     </div>

@@ -19,9 +19,10 @@ app.controller("IndexController", function ($scope, $http) {
     $scope.StartRecord = 0;
     $scope.EndRecord = 0;
     $scope.LastPageNumber = 0;
-    $scope.CurrentPageNumber = 0;
+    $scope.CurrentPageNumber = 1;
 
     $scope.MyOrderSelectedItem = {};
+    $scope.MyOrderDetails = {};
 
     //Variables Declarations --End
 
@@ -54,7 +55,45 @@ app.controller("IndexController", function ($scope, $http) {
         $scope.MyOrderSelectedItem = item;
     };
 
+    $scope.SaveMyOrderStatus = function (item) {
+        debugger;
+        $("#divPopupBackground").show();
+        $("#divSaveStatusConfirm").show();
+        $scope.MyOrderDetails = item;
+    };
+
+    $scope.CancelMyOrderStatus = function () {
+        $scope.MyOrderSelectedItem = {};
+    };
+
+    $scope.btnSaveStatusConfirmYes = function (item) {
+        $http({
+            method: "Post",
+            url: "../MyOrder/ChangeOrderStatus",
+            datatype: "json",
+            data: { OrderInfo: $scope.MyOrderDetails }
+        }).then(function () {
+            $scope.MyOrderDetails = {};
+            $scope.MyOrderSelectedItem = {};
+            $("#divPopupBackground").hide();
+            $("#divSaveStatusConfirm").hide();
+            $scope.MyOrder_PageLoad();
+        }, function () {
+            alert("Error");
+        });
+    };
+
+    $scope.btnSaveStatusConfirmNo = function () {
+        $scope.MyOrderSelectedItem = {};
+        $("#divPopupBackground").hide();
+        $("#divSaveStatusConfirm").hide();
+    };
+
+
+
     $scope.MyOrder_PageLoad = function () {
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
         $http({
             method: "Get",
             url: "/MyOrder/GetMyOrderList",
@@ -63,9 +102,11 @@ app.controller("IndexController", function ($scope, $http) {
             debugger;
             $scope.MyOrderListFull = response.data;
             $scope.TotalRecords = $scope.MyOrderListFull.length;
-            $scope.CurrentPageNumber = 1;
+            //$scope.CurrentPageNumber = 1;
             $scope.LastPageNumber = Math.ceil($scope.TotalRecords / $scope.ddlPageSizeSelected.Id);
             $scope.GetSpecificData();
+            $("#divLoadingImage").hide();
+            $("#divLoadingBackground").hide();
         }, function () {
             alert("Error");
         });

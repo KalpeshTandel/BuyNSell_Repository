@@ -187,7 +187,7 @@ namespace BuyNSell.Controllers
 
                     foreach (var OrderStatusItem in OrderStatusList)
                     {
-                        if (OrderStageNumber == OrderStatusItem.StageNumber && OrderItem.OrderStatusId != 4)
+                        if (OrderStageNumber == OrderStatusItem.StageNumber && OrderItem.OrderStatusId != 4 && OrderItem.OrderStatusId != 2)
                         {
                             OrderItem.OrderStatusList.Add(new OrderStatusMaster()
                             {

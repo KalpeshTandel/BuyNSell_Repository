@@ -96,6 +96,7 @@ app.controller("IndexController", function ($scope, $http) {
             //data: JSON.stringify(item)
         }).then(function () {
             $scope.OrderItemSelected = {};
+            $scope.OrderDetails = {};
             debugger;
             $scope.CustomerOrder_PageLoad();
             $("#divPopupBackground").hide();
