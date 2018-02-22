@@ -89,6 +89,10 @@
                         </div>
                     </div>
 
+                    <div id="divpicture" style="margin-right:1%">
+                        <img ng-src="data:image/jpeg;base64,{{item.PictureSrc}}" style="height:125px;width:250px;" />
+                    </div>
+
                     <div id="divProductName" class="divOrderList" style="width: 15%;">
                         <div class="LabelProductListBold">
                             <label>Product Name</label>
@@ -200,6 +204,10 @@
                         <div class="LabelProductList">
                             {{item.OrderId}}
                         </div>
+                    </div>
+
+                    <div id="divpicture" style="margin-right:1%">
+                        <img ng-src="data:image/jpeg;base64,{{item.PictureSrc}}" style="height:125px;width:250px;" />
                     </div>
 
                     <div id="divProductName" class="divOrderList" style="width: 15%;">

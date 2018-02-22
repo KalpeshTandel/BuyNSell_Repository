@@ -139,7 +139,7 @@
                 <span class="sr-only">Previous</span>
             </a>*@
 
-            <img id="imgProductPicture" src="data:image;base64,@System.Convert.ToBase64String(Model.PictureContent)" alt="No Image" style="height: 280px;width: 430px;" />
+            <img id="imgProductPicture" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.PictureContent)" alt="No Image" style="height: 280px;width: 430px;" />
 
             <button id="btnNextPicture" type="button" class="right carousel-control" onclick="btnNextPicture_click(@Model.ProductId)" style="border: none;"><span class="glyphicon glyphicon-chevron-right"></span></button>
             @*<a id="btnNextPicture" class="right carousel-control" style="cursor: pointer;" data-slide="next" onclick="btnNextPicture_click(@Model.ProductId)" >

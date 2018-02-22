@@ -130,23 +130,27 @@ namespace BuyNSell.Controllers
                 var OrderByProperty = typeof(OrderList_ViewModel).GetProperty(OrderBy);
                 
                 List<OrderList_ViewModel> FullOrderList = (from om in objDbEntities.OrderMasters
-                                                       join pm in objDbEntities.ProductMasters on om.ProductId equals pm.ProductId
-                                                       join um in objDbEntities.UserMasters on om.UserId equals um.UserId
-                                                       join os in objDbEntities.OrderStatusMasters on om.OrderStatusId equals os.OrderStatusId
-                                                       where pm.UserId == UserId
-                                                       select new OrderList_ViewModel
-                                                       {
-                                                           OrderId = om.OrderId,
-                                                           ProductId = om.ProductId,
-                                                           ProductName = pm.ProductName,
-                                                           CustomerId = om.UserId,
-                                                           CustomerName = um.FirstName + " " + um.LastName,
-                                                           OrderQuantity = om.OrderQuantity,
-                                                           PaymentAmount = om.PaymentAmount,
-                                                           OrderAddedDate = om.OrderAddedDate,
-                                                           OrderStatusId = om.OrderStatusId,
-                                                           OrderStatusName = os.OrderStatusName,
-                                                       }).ToList();
+                                                          join pm in objDbEntities.ProductMasters on om.ProductId equals pm.ProductId
+                                                          join picm in objDbEntities.PictureMasters on om.ProductId equals picm.ProductId
+                                                          join um in objDbEntities.UserMasters on om.UserId equals um.UserId
+                                                          join os in objDbEntities.OrderStatusMasters on om.OrderStatusId equals os.OrderStatusId
+                                                          where pm.UserId == UserId
+                                                          group new { om, pm , picm ,um,os} by new { om.OrderId} into grp
+                                                          select new OrderList_ViewModel
+                                                          {
+                                                           OrderId = grp.FirstOrDefault().om.OrderId,
+                                                           ProductId = grp.FirstOrDefault().om.ProductId,
+                                                           ProductName = grp.FirstOrDefault().pm.ProductName,
+                                                           PictureId =grp.FirstOrDefault().picm.PictureId,
+                                                           PictureContent = grp.FirstOrDefault().picm.PictureContent,
+                                                           CustomerId = grp.FirstOrDefault().om.UserId,
+                                                           CustomerName = grp.FirstOrDefault().um.FirstName + " " + grp.FirstOrDefault().um.LastName,
+                                                           OrderQuantity = grp.FirstOrDefault().om.OrderQuantity,
+                                                           PaymentAmount = grp.FirstOrDefault().om.PaymentAmount,
+                                                           OrderAddedDate = grp.FirstOrDefault().om.OrderAddedDate,
+                                                           OrderStatusId = grp.FirstOrDefault().om.OrderStatusId,
+                                                           OrderStatusName = grp.FirstOrDefault().os.OrderStatusName,
+                                                          }).OrderByDescending(x => x.OrderId).ToList();
 
                 if(OrderByAscOrDesc == "Asc")
                 {
@@ -176,6 +180,9 @@ namespace BuyNSell.Controllers
 
                 foreach (var OrderItem in SpecificOrderList)
                 {
+                    OrderItem.PictureSrc = Convert.ToBase64String(OrderItem.PictureContent);
+
+
                     OrderItem.OrderStatusList = new List<OrderStatusMaster>();
                     //var OrderStageNumber = (from o in objDbEntities.OrderStatusMasters
                     //                        where o.OrderStatusId == OrderItem.OrderStatusId

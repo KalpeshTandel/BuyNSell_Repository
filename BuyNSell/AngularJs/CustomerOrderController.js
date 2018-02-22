@@ -92,7 +92,8 @@ app.controller("IndexController", function ($scope, $http) {
             method: "Post",
             url: "../CustomerOrder/ChangeOrderStatus",
             datatype: "json",
-            data: { OrderInfo: $scope.OrderDetails }
+            //data: { OrderInfo: $scope.OrderDetails }
+            data: { OrderId: $scope.OrderDetails.OrderId, OrderStatusId: $scope.OrderDetails.OrderStatusId, ProductId: $scope.OrderDetails.ProductId }
             //data: JSON.stringify(item)
         }).then(function () {
             $scope.OrderItemSelected = {};
@@ -232,6 +233,7 @@ app.controller("IndexController", function ($scope, $http) {
         //    alert("Error");
         //});
     };
+
 
     //Methods Declarations --End
 

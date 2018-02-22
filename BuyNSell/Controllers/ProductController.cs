@@ -251,7 +251,7 @@ namespace BuyNSell.Controllers
 
                         var PictureData = Convert.ToBase64String(PictureContent);
 
-                        var src = "data:image; base64," + PictureData;
+                        var src = "data:image/jpeg;base64,"+ PictureData;
 
                         return Json(src, JsonRequestBehavior.AllowGet);
                     }

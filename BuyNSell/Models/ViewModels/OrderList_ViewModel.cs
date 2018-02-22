@@ -27,5 +27,8 @@ namespace BuyNSell.Models
         public Nullable<bool> Deleted { get; set; }
 
         public List<OrderStatusMaster> OrderStatusList { get; set; }
+
+        public string PictureSrc { get; set; }
+
     }
 }

@@ -66,20 +66,21 @@ app.controller("IndexController", function ($scope, $http) {
         $scope.MyOrderSelectedItem = {};
     };
 
-    $scope.btnSaveStatusConfirmYes = function (item) {
+    $scope.btnSaveStatusConfirmYes = function () {
+        debugger;
         $http({
             method: "Post",
             url: "../MyOrder/ChangeOrderStatus",
             datatype: "json",
-            data: { OrderInfo: $scope.MyOrderDetails }
+            data: { OrderId: $scope.MyOrderDetails.OrderId, OrderStatusId: $scope.MyOrderDetails.OrderStatusId }
         }).then(function () {
             $scope.MyOrderDetails = {};
             $scope.MyOrderSelectedItem = {};
             $("#divPopupBackground").hide();
             $("#divSaveStatusConfirm").hide();
             $scope.MyOrder_PageLoad();
-        }, function () {
-            alert("Error");
+        }, function (error) {
+            alert("Error"+error);
         });
     };
 
@@ -129,6 +130,11 @@ app.controller("IndexController", function ($scope, $http) {
         $scope.CurrentPageNumber = $scope.CurrentPageNumber - 1;
         $scope.GetSpecificData();
     };
+
+    $scope.btnViewMyOrderDetails_Click = function () {
+
+    };
+
 
     //Methods Declarations --End
 

@@ -53,54 +53,63 @@
                     </div>
                 </div>
 
-                <div id="divProductName" class="divOrderList" style="width: 15%;">
-                    <div class="LabelProductListBold">
-                        <label>Product Name</label>
-                    </div>
-                    <div class="LabelProductList">
-                        {{item.ProductName}}
-                    </div>
+                <div id="divpicture" style="margin-right:1%">
+                    <img ng-src="data:image/jpeg;base64,{{item.PictureSrc}}" style="height:125px;width:250px;"/>
                 </div>
 
-                <div id="divCustomerName" class="divOrderList" style="width: 15%;">
-                    <div class="LabelProductListBold">
-                        <label>Seller Name</label>
+                    <div id="divProductName" class="divOrderList" style="width: 15%;">
+                        <div class="LabelProductListBold">
+                            <label>Product Name</label>
+                        </div>
+                        <div class="LabelProductList">
+                            {{item.ProductName}}
+                        </div>
                     </div>
-                    <div class="LabelProductList">
-                        {{item.CustomerName}}
+
+                    <div id="divCustomerName" class="divOrderList" style="width: 15%;">
+                        <div class="LabelProductListBold">
+                            <label>Seller Name</label>
+                        </div>
+                        <div class="LabelProductList">
+                            {{item.CustomerName}}
+                        </div>
                     </div>
+
+                    <div id="divOrderQuantity" class="divOrderList" style="width: 10%;">
+                        <div class="LabelProductListBold">
+                            <label>Order Quantity</label>
+                        </div>
+                        <div class="LabelProductList">
+                            {{item.OrderQuantity}}
+                        </div>
+                    </div>
+
+                    <div id="divPaymentAmmount" class="divOrderList" style="width: 10%;">
+                        <div class="LabelProductListBold">
+                            <label>Payment Amount</label>
+                        </div>
+                        <div class="LabelProductList">
+                            {{item.PaymentAmount}}
+                        </div>
+                    </div>
+
+                    <div id="divOrderStatus" class="divOrderList" style="width:20%;min-width:200px">
+                        <div class="LabelProductListBold">
+                            <label>Order Status</label>
+                        </div>
+                        <div class="LabelProductList" id="DivOrderStatusLabel">
+                            {{item.OrderStatusName}}
+
+                            <button class="btn btnSubmit" ng-if="item.OrderStatusList != 0" ng-click="ChangeOrderStatus(item)" style="display:block; margin: 2% 0% 0% 35%;">Change</button>
+
+                            @*<input type="button" value="Change" ng-if="item.OrderStatusList != 0" class="btn btnSubmit" ng-click="ChangeOrderStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" />*@
+                        </div>
+                     </div>
+
+                <div id="ViewOrderDetailsButton" style="margin:4% 0% 0% 0%">
+                    <button id="btnViewMyOrderDetails" class="btn btnSubmit" ng-click="btnViewMyOrderDetails_Click()">View Details</button>
+
                 </div>
-
-                <div id="divOrderQuantity" class="divOrderList" style="width: 10%;">
-                    <div class="LabelProductListBold">
-                        <label>Order Quantity</label>
-                    </div>
-                    <div class="LabelProductList">
-                        {{item.OrderQuantity}}
-                    </div>
-                </div>
-
-                <div id="divPaymentAmmount" class="divOrderList" style="width: 10%;">
-                    <div class="LabelProductListBold">
-                        <label>Payment Amount</label>
-                    </div>
-                    <div class="LabelProductList">
-                        {{item.PaymentAmount}}
-                    </div>
-                </div>
-
-                <div id="divOrderStatus" class="divOrderList" style="width:20%;min-width:200px">
-                    <div class="LabelProductListBold">
-                        <label>Order Status</label>
-                    </div>
-                    <div class="LabelProductList" id="DivOrderStatusLabel">
-                        {{item.OrderStatusName}}
-
-                        <button class="btn btnSubmit" ng-if="item.OrderStatusList != 0"  ng-click="ChangeOrderStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" >Change</button>
-
-                        @*<input type="button" value="Change" ng-if="item.OrderStatusList != 0" class="btn btnSubmit" ng-click="ChangeOrderStatus(item)" style="display:block; margin: 2% 0% 0% 35%;" />*@
-                    </div>
-                    </div>
 
 </script>
 
@@ -112,6 +121,10 @@
                     <div class="LabelProductList">
                         {{item.OrderId}}
                     </div>
+                </div>
+
+                <div id="divpicture" style="margin-right:1%">
+                    <img ng-src="data:image/jpeg;base64,{{item.PictureSrc}}" style="height:125px;width:250px;" />
                 </div>
 
                 <div id="divProductName" class="divOrderList" style="width: 15%;">
