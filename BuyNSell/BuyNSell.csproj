@@ -1102,6 +1102,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\CustomerOrder\_ViewCustomerOrderDetails.cshtml" />
     <Content Include="Views\MyOrder\Index.cshtml" />
+    <Content Include="Views\MyOrder\_ViewMyOrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

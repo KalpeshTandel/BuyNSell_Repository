@@ -12,9 +12,9 @@
 <div id="divViewCustomerOrderDetails">
     <img id="btnCloseViewCustomerOrderDetails" onclick="btnCloseViewCustomerOrderDetails_Click()" src="~/Images/Close.jpg" style="width:30px;cursor: pointer;margin: 0% 0% 0% 93%;" />
 
-    <h3 style="margin:0% 0% 0% 30%;font-weight:bold">Order Details</h3>
+    <h3 style="margin:0% 0% 0% 0%;font-weight:bold;text-align:center">Order Details</h3>
 
-    <div id="divProductPicture" style="margin: 4% 0% 4% 4%;">
+    <div id="divProductPicture" style="margin: 4% 0% 4% 0%;text-align:center">
         <img id="imgProductPicture" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.PictureContent)" alt="No Image" style="height: 280px;width: 430px;" />
     </div>
 
@@ -38,12 +38,21 @@
         </div>
     </div>
 
-    <div id="divCustomerName" class="divViewCustomerOrderDetails">
+    <div id="divBuyerName" class="divViewCustomerOrderDetails">
         <div class="LabelViewCustomerOrderDetailsBold">
-            @Html.Label("Customer Name")
+            @Html.Label("Buyer Name")
         </div>
-        <div class="LabelViewCustomerOrderDetails" style="margin-left: 37px;">
-            @Html.DisplayFor(m => m.CustomerName)
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 68px;">
+            @Html.DisplayFor(m => m.BuyerName)
+        </div>
+    </div>
+
+    <div id="divSellerName" class="divViewCustomerOrderDetails">
+        <div class="LabelViewCustomerOrderDetailsBold">
+            @Html.Label("Seller Name")
+        </div>
+        <div class="LabelViewCustomerOrderDetails" style="margin-left: 68px;">
+            @Html.DisplayFor(m => m.SellerName)
         </div>
     </div>
 

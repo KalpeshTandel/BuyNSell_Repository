@@ -125,6 +125,7 @@ app.controller("IndexController", function ($scope, $http) {
         }).then(function (response) {
             debugger;
             $("#divViewOrderDetails").html(response.data);
+            $("#divSellerName").remove();
             $("#divPopupBackground").show();
             $("#divViewOrderDetails").show();
             $("#divLoadingImage").hide();

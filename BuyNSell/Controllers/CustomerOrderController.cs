@@ -131,10 +131,11 @@ namespace BuyNSell.Controllers
                 
                 List<OrderList_ViewModel> FullOrderList = (from om in objDbEntities.OrderMasters
                                                           join pm in objDbEntities.ProductMasters on om.ProductId equals pm.ProductId
+                                                          where pm.UserId == UserId
                                                           join picm in objDbEntities.PictureMasters on om.ProductId equals picm.ProductId
                                                           join um in objDbEntities.UserMasters on om.UserId equals um.UserId
                                                           join os in objDbEntities.OrderStatusMasters on om.OrderStatusId equals os.OrderStatusId
-                                                          where pm.UserId == UserId
+                                                          //where pm.UserId == UserId
                                                           group new { om, pm , picm ,um,os} by new { om.OrderId} into grp
                                                           select new OrderList_ViewModel
                                                           {
@@ -143,8 +144,8 @@ namespace BuyNSell.Controllers
                                                            ProductName = grp.FirstOrDefault().pm.ProductName,
                                                            PictureId =grp.FirstOrDefault().picm.PictureId,
                                                            PictureContent = grp.FirstOrDefault().picm.PictureContent,
-                                                           CustomerId = grp.FirstOrDefault().om.UserId,
-                                                           CustomerName = grp.FirstOrDefault().um.FirstName + " " + grp.FirstOrDefault().um.LastName,
+                                                           BuyerId = grp.FirstOrDefault().om.UserId,
+                                                           BuyerName = grp.FirstOrDefault().um.FirstName + " " + grp.FirstOrDefault().um.LastName,
                                                            OrderQuantity = grp.FirstOrDefault().om.OrderQuantity,
                                                            PaymentAmount = grp.FirstOrDefault().om.PaymentAmount,
                                                            OrderAddedDate = grp.FirstOrDefault().om.OrderAddedDate,
@@ -252,11 +253,12 @@ namespace BuyNSell.Controllers
                 // OrderList_ViewModel OrderDetails = new OrderList_ViewModel();
 
                 OrderList_ViewModel OrderDetails = (from om in objDbEntities.OrderMasters
+                                                    where om.OrderId == OrderId
                                                     join pm in objDbEntities.ProductMasters on om.ProductId equals pm.ProductId
                                                     join picm in objDbEntities.PictureMasters on  om.ProductId equals picm.ProductId
                                                     join um in objDbEntities.UserMasters on om.UserId equals um.UserId
                                                     join os in objDbEntities.OrderStatusMasters on om.OrderStatusId equals os.OrderStatusId
-                                                    where om.OrderId == OrderId
+                                                    //where om.OrderId == OrderId -- Write where condition on top increase performance
                                                     select new OrderList_ViewModel
                                                     {
                                                         OrderId = om.OrderId,
@@ -265,8 +267,8 @@ namespace BuyNSell.Controllers
                                                         PictureId = picm.PictureId,
                                                         PictureContent = picm.PictureContent,
                                                         Price = pm.Price,
-                                                        CustomerId = om.UserId,
-                                                        CustomerName = um.FirstName + " " + um.LastName,
+                                                        BuyerId = om.UserId,
+                                                        BuyerName = um.FirstName + " " + um.LastName,
                                                         OrderQuantity = om.OrderQuantity,
                                                         AvailableQuantity = pm.Quantity,
                                                         PaymentAmount = om.PaymentAmount,

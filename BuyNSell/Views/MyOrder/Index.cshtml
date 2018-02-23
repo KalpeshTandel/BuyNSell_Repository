@@ -6,6 +6,13 @@
 @section Scripts{
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="~/AngularJs/MyOrderController.js"></script>
+    <script type="text/javascript">
+        function btnCloseViewCustomerOrderDetails_Click() {
+            $("#divViewMyOrderDetails").hide();
+            $("#divViewMyOrderDetails").empty();
+            $("#divPopupBackground").hide();
+        }
+    </script>
 }
 <html>
 <body>
@@ -15,10 +22,11 @@
             <div style="display:flex;margin-left: 55%;margin-top: 2%;">
                 <div id="divSortBy" style="display: flex; width:50%">
                     <label id="lblSortBy" style="font-weight:bold; font-size:20px">Sort By</label>
+                    <select class="form-control" style="width: 60%;font-size:17px;font-weight: bold;" ng-options="S.Text for S in ddlSortByList" ng-model="ddlSortBySelected" ng-change="ddlSortBy_Change()"></select>
                 </div>
                 <div id="divPageSize" style="display: flex;width:50%">
                     <label id="lblPageSize" style="font-weight:bold; font-size:20px">Products Per Page</label>
-                    <select ng-options="P.Text for P in ddlPageSizeList" ng-model="ddlPageSizeSelected" ng-change="ddlPageSize_Change()"></select>
+                    <select class="form-control" style="width:25%;font-size:17px;font-weight: bold;" ng-options="P.Text for P in ddlPageSizeList" ng-model="ddlPageSizeSelected" ng-change="ddlPageSize_Change()"></select>
                 </div>
             </div>
 
@@ -26,7 +34,7 @@
                 <label id="lblTotalProducts" style="font-weight: bold;font-size: 18px;">Total Orders:<span style="font-weight:normal">{{TotalRecords}}</span></label>
             </div>
 
-            <div id="divOrderResult" ng-repeat="item in MyOrderListSpecific" ng-include="GetOrderTemplate(item)" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;">
+            <div id="divOrderResult" ng-repeat="item in MyOrderListSpecific|orderBy:'OrderId'" ng-include="GetOrderTemplate(item)" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;">
               
             </div>
 
@@ -54,7 +62,7 @@
                 </div>
 
                 <div id="divpicture" style="margin-right:1%">
-                    <img ng-src="data:image/jpeg;base64,{{item.PictureSrc}}" style="height:125px;width:250px;"/>
+                    <img ng-src="data:image/jpeg;base64,{{item.PictureSrc}}" style="height:125px;width:200px;"/>
                 </div>
 
                     <div id="divProductName" class="divOrderList" style="width: 15%;">
@@ -66,12 +74,12 @@
                         </div>
                     </div>
 
-                    <div id="divCustomerName" class="divOrderList" style="width: 15%;">
+                    <div id="divSellerName" class="divOrderList" style="width: 15%;">
                         <div class="LabelProductListBold">
                             <label>Seller Name</label>
                         </div>
                         <div class="LabelProductList">
-                            {{item.CustomerName}}
+                            {{item.SellerName}}
                         </div>
                     </div>
 
@@ -106,9 +114,8 @@
                         </div>
                      </div>
 
-                <div id="ViewOrderDetailsButton" style="margin:4% 0% 0% 0%">
-                    <button id="btnViewMyOrderDetails" class="btn btnSubmit" ng-click="btnViewMyOrderDetails_Click()">View Details</button>
-
+                <div id="ViewOrderDetailsButton" style="width:10%; margin:4% 0% 0% 0%">
+                    <button id="btnViewMyOrderDetails" class="btn btnSubmit" ng-click="btnViewMyOrderDetails_Click(item.OrderId)">View Details</button>
                 </div>
 
 </script>
@@ -124,7 +131,7 @@
                 </div>
 
                 <div id="divpicture" style="margin-right:1%">
-                    <img ng-src="data:image/jpeg;base64,{{item.PictureSrc}}" style="height:125px;width:250px;" />
+                    <img ng-src="data:image/jpeg;base64,{{item.PictureSrc}}" style="height:125px;width:200px;" />
                 </div>
 
                 <div id="divProductName" class="divOrderList" style="width: 15%;">
@@ -136,12 +143,12 @@
                     </div>
                 </div>
 
-                <div id="divCustomerName" class="divOrderList" style="width: 15%;">
+                <div id="divSellerName" class="divOrderList" style="width: 15%;">
                     <div class="LabelProductListBold">
                         <label>Seller Name</label>
                     </div>
                     <div class="LabelProductList">
-                        {{item.CustomerName}}
+                        {{item.SellerName}}
                     </div>
                 </div>
 
@@ -174,8 +181,12 @@
                         <input type="button" value="Save" ng-click="SaveMyOrderStatus(item)" class="btn btn-success" />
                         <input type="button" value="Cancel" ng-click="CancelMyOrderStatus()" class="btn btn-danger" />
                     </div>
-
                 </div>
+
+                <div id="ViewOrderDetailsButton" style="width:10%; margin:4% 0% 0% 0%">
+                    <button id="btnViewMyOrderDetails" class="btn btnSubmit" ng-click="btnViewMyOrderDetails_Click(item.OrderId)">View Details</button>
+                </div>
+
             </script>
 
             <div id="divSaveStatusConfirm" style="display:none; position:fixed;background-color:white; z-index:2;left:35%;top:25%; height: 200px;width: 400px; border-radius:35px;box-shadow:30px 20px 17px;">
@@ -195,6 +206,11 @@
 
             </div>
     </div>
+
+    <div id="divViewMyOrderDetails" style="display:none;position:fixed;padding:1% 1% 1% 1% ;background-color:white;min-height:530px;min-width:600px;left:27%;top:4%;border-radius:35px;z-index:2;box-shadow:30px 20px 17px;">
+    </div>
+
+
 </body>
 </html>
 

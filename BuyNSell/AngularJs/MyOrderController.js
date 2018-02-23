@@ -15,6 +15,15 @@ app.controller("IndexController", function ($scope, $http) {
 
     $scope.ddlPageSizeSelected = $scope.ddlPageSizeList[0];
 
+    $scope.ddlSortByList = [
+        { Id: "OrderAddedDateDesc", Text: "Newest First" },
+        { Id: "ProductName", Text: "Product Name" },
+        { Id: "OrderQuantityDesc", Text: "Order Quantity" },
+        { Id: "PaymentAmountDesc", Text: "Payment Amount" }
+    ];
+
+    $scope.ddlSortBySelected = $scope.ddlSortByList[0];
+
     $scope.TotalRecords = 0;
     $scope.StartRecord = 0;
     $scope.EndRecord = 0;
@@ -42,7 +51,7 @@ app.controller("IndexController", function ($scope, $http) {
     };
 
     $scope.GetOrderTemplate = function (item) {
-        debugger;
+        //debugger;
         if ($scope.MyOrderSelectedItem == item) {
             return 'Edit';
         }
@@ -121,6 +130,13 @@ app.controller("IndexController", function ($scope, $http) {
         $scope.GetSpecificData();
     };
 
+    $scope.ddlSortBy_Change = function (){
+        debugger;
+        alert("Hii");
+        $scope.MyOrderListSpecific = $filter
+    };
+
+
     $scope.btnNextPageMyOrder_Click = function () {
         $scope.CurrentPageNumber = $scope.CurrentPageNumber + 1;
         $scope.GetSpecificData();
@@ -131,8 +147,27 @@ app.controller("IndexController", function ($scope, $http) {
         $scope.GetSpecificData();
     };
 
-    $scope.btnViewMyOrderDetails_Click = function () {
-
+    $scope.btnViewMyOrderDetails_Click = function (OrderId) {
+        $("#divLoadingBackground").show();
+        $("#divLoadingImage").show();
+        $http({
+            method: "Post",
+            url: "../MyOrder/ViewMyOrderDetails",
+            datatype: "json",
+            data: { OrderId: OrderId }
+        }).then(function (response) {
+            debugger;
+            $("#divViewMyOrderDetails").html(response.data);
+            $("#divBuyerName").remove();
+            $("#divPopupBackground").show();
+            $("#divViewMyOrderDetails").show();
+            $("#divLoadingImage").hide();
+            $("#divLoadingBackground").hide();
+        }, function () {
+            $("#divLoadingImage").hide();
+            $("#divLoadingBackground").hide();
+            alert("Error");
+        });
     };
 
 
