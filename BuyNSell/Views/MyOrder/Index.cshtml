@@ -34,9 +34,14 @@
                 <label id="lblTotalProducts" style="font-weight: bold;font-size: 18px;">Total Orders:<span style="font-weight:normal">{{TotalRecords}}</span></label>
             </div>
 
-            <div id="divOrderResult" ng-repeat="item in MyOrderListSpecific|orderBy:'OrderId'" ng-include="GetOrderTemplate(item)" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;">
+            <div id="divOrderResult" ng-repeat="item in MyOrderListSpecific" ng-include="GetOrderTemplate(item)" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;">
               
             </div>
+
+            <div id="divPageNumber" style="margin-left:42%;margin-bottom:1%">
+                <label id="lblPageNumber" style="padding-left:2%;font-weight:bold; font-size:18px">Page <span style="font-weight:normal">{{CurrentPageNumber}}</span> Of <span style="font-weight:normal">{{LastPageNumber}}</span> </label>
+            </div>
+
 
             <div id="divPaging" style="margin-left:41%;margin-bottom:-2%;">
 

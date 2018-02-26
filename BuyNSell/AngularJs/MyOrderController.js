@@ -88,6 +88,7 @@ app.controller("IndexController", function ($scope, $http) {
             $("#divPopupBackground").hide();
             $("#divSaveStatusConfirm").hide();
             $scope.MyOrder_PageLoad();
+            //$scope.ddlSortBy_Change();
         }, function (error) {
             alert("Error"+error);
         });
@@ -98,8 +99,6 @@ app.controller("IndexController", function ($scope, $http) {
         $("#divPopupBackground").hide();
         $("#divSaveStatusConfirm").hide();
     };
-
-
 
     $scope.MyOrder_PageLoad = function () {
         $("#divLoadingBackground").show();
@@ -114,6 +113,7 @@ app.controller("IndexController", function ($scope, $http) {
             $scope.TotalRecords = $scope.MyOrderListFull.length;
             //$scope.CurrentPageNumber = 1;
             $scope.LastPageNumber = Math.ceil($scope.TotalRecords / $scope.ddlPageSizeSelected.Id);
+            $scope.SortMyOrderListFull();
             $scope.GetSpecificData();
             $("#divLoadingImage").hide();
             $("#divLoadingBackground").hide();
@@ -130,10 +130,73 @@ app.controller("IndexController", function ($scope, $http) {
         $scope.GetSpecificData();
     };
 
-    $scope.ddlSortBy_Change = function (){
+    $scope.ddlSortBy_Change = function () {
+        //var jsvar = angular.element(document.querySelector('[ng-controller="IndexController"]')).scope().MyOrderListFull;
+        //function compare(a, b) {
+        //    if (a.ProductName < b.ProductName)
+        //        return -1;
+        //    if (a.ProductName > b.ProductName)
+        //        return 1;
+        //    return 0;
+        //};
+        //jsvar.sort(compare);
+        //$scope.MyOrderListFull.sort(compare);
         debugger;
-        alert("Hii");
-        $scope.MyOrderListSpecific = $filter
+        if ($scope.ddlSortBySelected.Id == "OrderAddedDateDesc") {
+            $scope.MyOrderListFull.sort(function (a, b) {
+                return b.OrderId - a.OrderId
+            });
+        }
+        else if ($scope.ddlSortBySelected.Id == "ProductName") {
+            $scope.MyOrderListFull.sort(function (a, b) {
+                var x = a.ProductName.toLowerCase();
+                var y = b.ProductName.toLowerCase();
+                if (x < y) { return -1; }
+                if (x > y) { return 1; }
+                return 0;
+            });
+        }
+        else if ($scope.ddlSortBySelected.Id == "OrderQuantityDesc") {
+            $scope.MyOrderListFull.sort(function (a, b) {
+                return b.OrderQuantity - a.OrderQuantity
+            });
+        }
+        else if ($scope.ddlSortBySelected.Id == "PaymentAmountDesc") {
+            $scope.MyOrderListFull.sort(function (a, b) {
+                return b.PaymentAmount - a.PaymentAmount
+            });
+        }
+        $scope.CurrentPageNumber = 1;
+        $scope.GetSpecificData();
+    };
+
+    $scope.SortMyOrderListFull = function () {
+        debugger;
+        if ($scope.ddlSortBySelected.Id == "OrderAddedDateDesc") {
+            $scope.MyOrderListFull.sort(function (a, b) {
+                return b.OrderId - a.OrderId
+            });
+        }
+        else if ($scope.ddlSortBySelected.Id == "ProductName") {
+            $scope.MyOrderListFull.sort(function (a, b) {
+                var x = a.ProductName.toLowerCase();
+                var y = b.ProductName.toLowerCase();
+                if (x < y) { return -1; }
+                if (x > y) { return 1; }
+                return 0;
+            });
+        }
+        else if ($scope.ddlSortBySelected.Id == "OrderQuantityDesc") {
+            $scope.MyOrderListFull.sort(function (a, b) {
+                return b.OrderQuantity - a.OrderQuantity
+            });
+        }
+        else if ($scope.ddlSortBySelected.Id == "PaymentAmountDesc") {
+            $scope.MyOrderListFull.sort(function (a, b) {
+                return b.PaymentAmount - a.PaymentAmount
+            });
+        }
+
     };
 
 

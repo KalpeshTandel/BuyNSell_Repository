@@ -48,15 +48,19 @@ app.controller("IndexController", function ($scope, $http) {
         });
     };
 
-    $scope.GetOrderList = function () {
+    $scope.GetCustomerOrderList = function () {
+        debugger;
         $("#divLoadingBackground").show();
         $("#divLoadingImage").show();
         $http({
             method: "Get",
-            url: "../CustomerOrder/GetOrderList"
+            url: "../CustomerOrder/GetCustomerOrderList"
         }).then(function (response) {
             debugger;
             $scope.OrderListData = response.data.OrderList;
+            $scope.TotalRecords = response.data.TotalRecords;
+            $scope.CurrentPageNumber = response.data.CurrentPageNumber;
+            $scope.LastPageNumber = response.data.LastPageNumber;
             $("#divLoadingImage").hide();
             $("#divLoadingBackground").hide();
         }, function (error) {
@@ -99,7 +103,9 @@ app.controller("IndexController", function ($scope, $http) {
             $scope.OrderItemSelected = {};
             $scope.OrderDetails = {};
             debugger;
-            $scope.CustomerOrder_PageLoad();
+            //$scope.CustomerOrder_PageLoad();
+            //$scope.GetOrderList();
+            $scope.GetCustomerOrderList();
             $("#divPopupBackground").hide();
             $("#divSaveStatusConfirm").hide();
         });

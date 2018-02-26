@@ -13,10 +13,10 @@ namespace BuyNSell.Controllers
         //static variables are used when only one copy of the variable is required.
         //A static variable shares the value of it among all instances of the class.
         #region ClassLevel Variabels Static        
-        static int PageSize = 5;
+        static int PageSize ;
         static int LastPageNumber;
         static int StartRecord;
-        static int EndRecord;
+        static int EndRecord ;
         static int TotalNumberOfRecords;
         static int CurrentPageNumber;
         static string OrderBy;
@@ -237,6 +237,19 @@ namespace BuyNSell.Controllers
                         objDbEntities.SaveChanges();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ActionResult GetCustomerOrderList()
+        {
+            try
+            {
+                var Response = GetOrderList(StartRecord, EndRecord);
+                return Json(Response, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
