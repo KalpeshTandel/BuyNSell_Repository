@@ -84,9 +84,19 @@
                         <li><a href="#">Page 1-3</a></li>
                     </ul>
                 </li>
-                <li style="width: 20%;">@Html.ActionLink("My Order","Index","MyOrder")  </li>
+                <li style="width: 20%; display:-webkit-box;">@Html.ActionLink("My Order","Index","MyOrder",null, new { style = "padding-right:0px" })
+                    @if (Convert.ToInt16(Session["NewMyOrder"]) != 0)
+                    {
+                        <span class="badge">New @Session["NewMyOrder"]</span>
+                    }  
+                </li>
                 <li style="width: 20%;"><a href="#">My Cart</a></li>
-                <li style="width: 25%;">@Html.ActionLink("Customer Order","Index", "CustomerOrder")</li>
+                <li style="width: 25%; display:-webkit-box;">@Html.ActionLink("Customer Order","Index", "CustomerOrder",null,new { style= "padding-right:0px" })
+                @if(Convert.ToInt16(Session["NewCustomerOrder"]) != 0)
+                {
+                <span class="badge">New @Session["NewCustomerOrder"]</span>
+                }
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" style="width: 30%;">

@@ -15,6 +15,8 @@
     <Property Name="Active" Type="bit" />
     <Property Name="Deleted" Type="bit" />
     <Property Name="OrderAddedDate" Type="datetime" />
+    <Property Name="IsNew" Type="int" />
+    <Property Name="OrderModifiedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="OrderStatusMaster">
     <Key>

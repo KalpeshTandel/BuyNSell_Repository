@@ -55,7 +55,14 @@ namespace BuyNSell.Controllers
                 PageSize = 5;
                 StartRecord = 0;
                 EndRecord = 4;
-                OrderBy = "OrderAddedDate";
+                if(Convert.ToInt32(Session["NewCustomerOrder"]) != 0)
+                {
+                    OrderBy = "OrderModifiedDate";
+                }
+                else
+                {
+                    OrderBy = "OrderAddedDate";
+                }
                 OrderByAscOrDesc = "Desc";
                 var Response = GetOrderList(StartRecord, EndRecord);
                 return Json(Response, JsonRequestBehavior.AllowGet);
@@ -151,6 +158,8 @@ namespace BuyNSell.Controllers
                                                            OrderAddedDate = grp.FirstOrDefault().om.OrderAddedDate,
                                                            OrderStatusId = grp.FirstOrDefault().om.OrderStatusId,
                                                            OrderStatusName = grp.FirstOrDefault().os.OrderStatusName,
+                                                           IsNew = grp.FirstOrDefault().om.IsNew,
+                                                           OrderModifiedDate = grp.FirstOrDefault().om.OrderModifiedDate
                                                           }).OrderByDescending(x => x.OrderId).ToList();
 
                 if(OrderByAscOrDesc == "Asc")

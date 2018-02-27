@@ -113,7 +113,17 @@ namespace BuyNSell.Controllers
                         }
                     }
 
-                    return Json(FullOrderList, JsonRequestBehavior.AllowGet);
+                    //Need to be Increase MaxJsonLength for return large Json Data
+                    return new JsonResult()
+                    {
+                        Data = FullOrderList,
+                        MaxJsonLength = Int32.MaxValue,//86753090 
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    };
+
+                    //JsonResult JsonResult = Json(FullOrderList, JsonRequestBehavior.AllowGet);
+                    //JsonResult.MaxJsonLength = Int32.MaxValue;
+                    //return JsonResult;
                 }
                 else
                 {

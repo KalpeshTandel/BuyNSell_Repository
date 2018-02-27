@@ -20,6 +20,8 @@
           <Property Name="Active" Type="bit" />
           <Property Name="Deleted" Type="bit" />
           <Property Name="OrderAddedDate" Type="datetime" />
+          <Property Name="IsNew" Type="int" />
+          <Property Name="OrderModifiedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="OrderStatusMaster">
           <Key>
@@ -199,6 +201,8 @@
           <Property Name="Active" Type="Boolean" />
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="OrderAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsNew" Type="Int32" />
+          <Property Name="OrderModifiedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RatingMaster">
           <Key>
@@ -295,6 +299,8 @@
           <EntitySetMapping Name="OrderMasters">
             <EntityTypeMapping TypeName="BuyNSell_Model.OrderMaster">
               <MappingFragment StoreEntitySet="OrderMaster">
+                <ScalarProperty Name="OrderModifiedDate" ColumnName="OrderModifiedDate" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
                 <ScalarProperty Name="OrderAddedDate" ColumnName="OrderAddedDate" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Active" ColumnName="Active" />

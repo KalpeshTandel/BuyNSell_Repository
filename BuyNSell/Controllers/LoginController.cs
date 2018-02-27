@@ -38,7 +38,8 @@ namespace BuyNSell.Controllers
                     if (UserInfo != null)
                     {
                         StoreUserInfoInSession(UserInfo);
-                        return RedirectToAction("Home", "Home");                        
+                        StoreNotificationInfoInSession();
+                        return RedirectToAction("Home", "Home");
                     }
                     else
                     {
@@ -102,6 +103,25 @@ namespace BuyNSell.Controllers
                 Session["UserId"] = objUM.UserId;
                 Session["UserTypeId"] = objUM.UserTypeId;
                 Session["FirstName"] = objUM.FirstName;
+                 
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void StoreNotificationInfoInSession()
+        {
+            //IsNew Flag in OrderMaster Meaning --> 1 -New for Buyer, 2 -New for Seller, 0 -Normal
+            try
+            {
+                if (Session["UserId"] != null)
+                {
+                    int UserId = Convert.ToInt16(Session["UserId"]);
+                    Session["NewMyOrder"] = objDbEntities.OrderMasters.Where(o => o.UserId == UserId && o.IsNew == 1).Count();
+                    Session["NewCustomerOrder"] = objDbEntities.OrderMasters.Join(objDbEntities.ProductMasters, o => o.ProductId, p => p.ProductId, (o, p) => new { o, p }).Where(op => op.p.UserId == UserId && op.o.IsNew == 2).Count();
+                }
             }
             catch(Exception ex)
             {

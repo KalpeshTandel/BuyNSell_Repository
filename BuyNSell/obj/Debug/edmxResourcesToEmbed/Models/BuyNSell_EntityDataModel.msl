@@ -67,6 +67,8 @@
     <EntitySetMapping Name="OrderMasters">
       <EntityTypeMapping TypeName="BuyNSell_Model.OrderMaster">
         <MappingFragment StoreEntitySet="OrderMaster">
+          <ScalarProperty Name="OrderModifiedDate" ColumnName="OrderModifiedDate" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
           <ScalarProperty Name="OrderAddedDate" ColumnName="OrderAddedDate" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
           <ScalarProperty Name="Active" ColumnName="Active" />

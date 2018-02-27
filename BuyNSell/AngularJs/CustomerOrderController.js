@@ -12,7 +12,8 @@ app.controller("IndexController", function ($scope, $http) {
         { Id: "OrderAddedDateDesc", Text: "Newest First" },
         { Id: "ProductName", Text: "Product Name" },
         { Id: "OrderQuantityDesc", Text: "Order Quantity" },
-        { Id: "PaymentAmountDesc", Text: "Payment Amount" }
+        { Id: "PaymentAmountDesc", Text: "Payment Amount" },
+        { Id: "OrderModifiedDateDesc", Text:"Latest Change" }
     ]; //Array Object datatype
 
     $scope.ddlPageSizeList = [
@@ -21,7 +22,16 @@ app.controller("IndexController", function ($scope, $http) {
     { Id: 15, Text: "15" }
     ]; //Array Object datatype
 
+    if (NewCustomerOrder != 0)
+    {
+        $scope.ddlSortBySelected = "OrderModifiedDateDesc";
+    }
+    else
+    {
     $scope.ddlSortBySelected = "OrderAddedDateDesc";
+    }
+
+
     $scope.ddlPageSizeSelected = 5;
 
     //Variables Declarations --End

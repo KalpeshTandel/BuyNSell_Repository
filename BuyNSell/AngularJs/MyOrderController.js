@@ -117,7 +117,8 @@ app.controller("IndexController", function ($scope, $http) {
             $scope.GetSpecificData();
             $("#divLoadingImage").hide();
             $("#divLoadingBackground").hide();
-        }, function () {
+        }, function (error) {
+            debugger;
             alert("Error");
         });
     };
