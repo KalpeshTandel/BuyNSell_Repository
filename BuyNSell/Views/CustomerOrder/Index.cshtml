@@ -55,7 +55,7 @@
                 <label id="lblTotalProducts" style="font-weight: bold;font-size: 18px;">Total Orders:<span style="font-weight:normal">{{TotalRecords}}</span></label>
             </div>
 
-                <div id="divOrderResult" ng-repeat="item in OrderListData" ng-include="GetOrderTemplate(item)" style="background-color:white;height:152.875px; border-radius:10px; padding:1%; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;">
+                <div id="divOrderResult" ng-repeat="item in OrderListData" ng-include="GetOrderTemplate(item)" style="background-color:white;height:152.875px; border-radius:10px; padding:1% 1% 1% 8px; margin:1%; display:flex;box-shadow: 10px 10px 10px #888888;">
 
                 </div>
 
@@ -82,7 +82,13 @@
 
                 <script type="text/ng-template" id="Display">
 
-                    <div id="divOrderId" class="divOrderList" style="width: 10%;">
+                    <div id="divNew" style="min-width:40px">
+                        <span class="badge" ng-if="item.IsNew == 2" style="transform: rotate(-30deg);">New</span>
+                    </div>
+                        
+                   
+
+                    <div id="divOrderId" class="divOrderList" style="width: 9%;margin-left:0px">
                         <div class="LabelProductListBold">
                             <label>Order Id</label>
                         </div>
@@ -199,7 +205,11 @@
 
                 <script type="text/ng-template" id="Edit">
 
-                    <div id="divOrderId" class="divOrderList" style="width: 10%;">
+                    <div id="divNew" style="min-width:40px">
+                        <span class="badge" ng-if="item.IsNew == 2" style="transform: rotate(-30deg);">New</span>
+                    </div>
+
+                    <div id="divOrderId" class="divOrderList" style="width: 9%;margin-left:0px;">
                         <div class="LabelProductListBold">
                             <label>Order Id</label>
                         </div>

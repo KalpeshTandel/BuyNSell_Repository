@@ -47,7 +47,7 @@ namespace BuyNSell.Controllers
             }
         }
 
-        public JsonResult CustomerOrder_PageLoad()
+        public JsonResult CustomerOrder_PageLoad(string ddlSortBySelected)
         {
             try
             {
@@ -55,24 +55,37 @@ namespace BuyNSell.Controllers
                 PageSize = 5;
                 StartRecord = 0;
                 EndRecord = 4;
-                if(Convert.ToInt32(Session["NewCustomerOrder"]) != 0)
+                //if(Convert.ToInt32(Session["NewCustomerOrder"]) != 0)
+                //{
+                //    OrderBy = "OrderModifiedDate";
+                //}
+                //else
+                //{
+                //    OrderBy = "OrderAddedDate";
+                //}
+                if (ddlSortBySelected.Contains("Desc"))
                 {
-                    OrderBy = "OrderModifiedDate";
+                    OrderByAscOrDesc = "Desc";
                 }
                 else
                 {
-                    OrderBy = "OrderAddedDate";
+                    OrderByAscOrDesc = "Asc";
                 }
-                OrderByAscOrDesc = "Desc";
+                OrderBy = ddlSortBySelected.Replace("Desc", "");
+
                 var Response = GetOrderList(StartRecord, EndRecord);
                 return Json(Response, JsonRequestBehavior.AllowGet);
                 //return Response;
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
+            //finally
+            //{
+            //    var abc = Orde
+            //}
+
         }
 
         public JsonResult ddlPageSize_Change(int ddlPageSizeSelected)
@@ -216,6 +229,8 @@ namespace BuyNSell.Controllers
                 }
 
                 var Response = new { OrderList = SpecificOrderList, TotalRecords = TotalNumberOfRecords, CurrentPageNumber = CurrentPageNumber,LastPageNumber = LastPageNumber };
+
+                Session["CustomerOrderListIsRead"] = Response.OrderList;
 
                 return Response;
 

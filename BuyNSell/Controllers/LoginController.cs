@@ -31,6 +31,8 @@ namespace BuyNSell.Controllers
         {
             try
             {
+                NotificationController objNC = new NotificationController();
+
                 if (ModelState.IsValid)
                 {
                     UserMaster UserInfo = objDbEntities.UserMasters.Where(a => a.EmailId.Equals(objUM.EmailId) && a.Password.Equals(objUM.Password)).FirstOrDefault();
@@ -38,7 +40,9 @@ namespace BuyNSell.Controllers
                     if (UserInfo != null)
                     {
                         StoreUserInfoInSession(UserInfo);
-                        StoreNotificationInfoInSession();
+
+                        objNC.StoreNotificationInfoInSession(this.Request.RequestContext); //Because of  create object of controller it also sets Session, Request, Resposne etc accordingly, that means null.but we want values so pass it the current RequestContext.
+
                         return RedirectToAction("Home", "Home");
                     }
                     else
@@ -104,24 +108,6 @@ namespace BuyNSell.Controllers
                 Session["UserTypeId"] = objUM.UserTypeId;
                 Session["FirstName"] = objUM.FirstName;
                  
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void StoreNotificationInfoInSession()
-        {
-            //IsNew Flag in OrderMaster Meaning --> 1 -New for Buyer, 2 -New for Seller, 0 -Normal
-            try
-            {
-                if (Session["UserId"] != null)
-                {
-                    int UserId = Convert.ToInt16(Session["UserId"]);
-                    Session["NewMyOrder"] = objDbEntities.OrderMasters.Where(o => o.UserId == UserId && o.IsNew == 1).Count();
-                    Session["NewCustomerOrder"] = objDbEntities.OrderMasters.Join(objDbEntities.ProductMasters, o => o.ProductId, p => p.ProductId, (o, p) => new { o, p }).Where(op => op.p.UserId == UserId && op.o.IsNew == 2).Count();
-                }
             }
             catch(Exception ex)
             {

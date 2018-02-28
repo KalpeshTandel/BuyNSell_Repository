@@ -43,8 +43,10 @@ app.controller("IndexController", function ($scope, $http) {
         $("#divLoadingBackground").show();
         $("#divLoadingImage").show();
         $http({
-            method: "Get",
-            url: "../CustomerOrder/CustomerOrder_PageLoad"
+            method: "Post",
+            url: "../CustomerOrder/CustomerOrder_PageLoad",
+            datatype: "json",
+            data: { ddlSortBySelected : $scope.ddlSortBySelected}
         }).then(function (response) {
             debugger;
             $scope.OrderListData = response.data.OrderList;

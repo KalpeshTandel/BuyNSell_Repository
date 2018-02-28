@@ -168,6 +168,7 @@
     <Compile Include="Controllers\ImageResult.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MyOrderController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
@@ -1106,6 +1107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Notification\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
