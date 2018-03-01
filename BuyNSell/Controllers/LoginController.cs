@@ -41,7 +41,7 @@ namespace BuyNSell.Controllers
                     {
                         StoreUserInfoInSession(UserInfo);
 
-                        objNC.StoreNotificationInfoInSession(this.Request.RequestContext); //Because of  create object of controller it also sets Session, Request, Resposne etc accordingly, that means null.but we want values so pass it the current RequestContext.
+                        objNC.StoreNotificationCountInSession(this.Request.RequestContext); //Because of  create object of controller it also sets Session, Request, Resposne etc accordingly, that means null.but we want values so pass it the current RequestContext.
 
                         return RedirectToAction("Home", "Home");
                     }

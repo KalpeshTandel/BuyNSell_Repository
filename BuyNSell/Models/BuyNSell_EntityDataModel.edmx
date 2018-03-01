@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BuyNSell_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="NotificationStatusMaster">
+          <Key>
+            <PropertyRef Name="NotificationStatusId" />
+          </Key>
+          <Property Name="NotificationStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationStatusName" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="OrderMaster">
           <Key>
             <PropertyRef Name="OrderId" />
@@ -20,7 +27,7 @@
           <Property Name="Active" Type="bit" />
           <Property Name="Deleted" Type="bit" />
           <Property Name="OrderAddedDate" Type="datetime" />
-          <Property Name="IsNew" Type="int" />
+          <Property Name="NotificationStatusId" Type="int" />
           <Property Name="OrderModifiedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="OrderStatusMaster">
@@ -105,6 +112,7 @@
           <Property Name="Deleted" Type="bit" />
         </EntityType>
         <EntityContainer Name="BuyNSell_ModelStoreContainer">
+          <EntitySet Name="NotificationStatusMaster" EntityType="Self.NotificationStatusMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderMaster" EntityType="Self.OrderMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderStatusMaster" EntityType="Self.OrderStatusMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PictureMaster" EntityType="Self.PictureMaster" Schema="dbo" store:Type="Tables" />
@@ -149,6 +157,7 @@
           <EntitySet Name="OrderMasters" EntityType="BuyNSell_Model.OrderMaster" />
           <EntitySet Name="RatingMasters" EntityType="BuyNSell_Model.RatingMaster" />
           <EntitySet Name="OrderStatusMasters" EntityType="BuyNSell_Model.OrderStatusMaster" />
+          <EntitySet Name="NotificationStatusMasters" EntityType="BuyNSell_Model.NotificationStatusMaster" />
         </EntityContainer>
         <EntityType Name="ProductCategoryMaster">
           <Key>
@@ -201,8 +210,8 @@
           <Property Name="Active" Type="Boolean" />
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="OrderAddedDate" Type="DateTime" Precision="3" />
-          <Property Name="IsNew" Type="Int32" />
           <Property Name="OrderModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="NotificationStatusId" Type="Int32" />
         </EntityType>
         <EntityType Name="RatingMaster">
           <Key>
@@ -226,6 +235,13 @@
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="AccessFor" Type="Int32" />
           <Property Name="StageNumber" Type="Int32" />
+        </EntityType>
+        <EntityType Name="NotificationStatusMaster">
+          <Key>
+            <PropertyRef Name="NotificationStatusId" />
+          </Key>
+          <Property Name="NotificationStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -299,8 +315,8 @@
           <EntitySetMapping Name="OrderMasters">
             <EntityTypeMapping TypeName="BuyNSell_Model.OrderMaster">
               <MappingFragment StoreEntitySet="OrderMaster">
+                <ScalarProperty Name="NotificationStatusId" ColumnName="NotificationStatusId" />
                 <ScalarProperty Name="OrderModifiedDate" ColumnName="OrderModifiedDate" />
-                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
                 <ScalarProperty Name="OrderAddedDate" ColumnName="OrderAddedDate" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
@@ -337,6 +353,14 @@
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
                 <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationStatusMasters">
+            <EntityTypeMapping TypeName="BuyNSell_Model.NotificationStatusMaster">
+              <MappingFragment StoreEntitySet="NotificationStatusMaster">
+                <ScalarProperty Name="NotificationStatusName" ColumnName="NotificationStatusName" />
+                <ScalarProperty Name="NotificationStatusId" ColumnName="NotificationStatusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

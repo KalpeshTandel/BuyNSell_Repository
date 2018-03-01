@@ -13,6 +13,7 @@
         <EntityTypeShape EntityType="BuyNSell_Model.OrderMaster" Width="2.375" PointX="5.375" PointY="5.75" />
         <EntityTypeShape EntityType="BuyNSell_Model.RatingMaster" Width="1.5" PointX="7.375" PointY="4.75" />
         <EntityTypeShape EntityType="BuyNSell_Model.OrderStatusMaster" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BuyNSell_Model.NotificationStatusMaster" Width="2.125" PointX="8.5" PointY="9.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

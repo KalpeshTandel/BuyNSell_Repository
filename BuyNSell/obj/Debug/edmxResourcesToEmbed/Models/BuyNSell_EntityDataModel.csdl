@@ -31,6 +31,7 @@
     <EntitySet Name="OrderMasters" EntityType="BuyNSell_Model.OrderMaster" />
     <EntitySet Name="RatingMasters" EntityType="BuyNSell_Model.RatingMaster" />
     <EntitySet Name="OrderStatusMasters" EntityType="BuyNSell_Model.OrderStatusMaster" />
+    <EntitySet Name="NotificationStatusMasters" EntityType="BuyNSell_Model.NotificationStatusMaster" />
   </EntityContainer>
   <EntityType Name="ProductCategoryMaster">
     <Key>
@@ -85,6 +86,7 @@
     <Property Name="OrderAddedDate" Type="DateTime" Precision="3" />
     <Property Name="IsNew" Type="Int32" />
     <Property Name="OrderModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="NotificationStatusId" Type="Int32" />
   </EntityType>
   <EntityType Name="RatingMaster">
     <Key>
@@ -108,5 +110,12 @@
     <Property Name="Deleted" Type="Boolean" />
     <Property Name="AccessFor" Type="Int32" />
     <Property Name="StageNumber" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NotificationStatusMaster">
+    <Key>
+      <PropertyRef Name="NotificationStatusId" />
+    </Key>
+    <Property Name="NotificationStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NotificationStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

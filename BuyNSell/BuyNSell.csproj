@@ -195,6 +195,9 @@
     <Compile Include="Models\MetaData\ProductMaster_MetaData.cs" />
     <Compile Include="Models\MetaData\RatingMaster_MetaData.cs" />
     <Compile Include="Models\MetaData\UserMaster_MetaData.cs" />
+    <Compile Include="Models\NotificationStatusMaster.cs">
+      <DependentUpon>BuyNSell_EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\OrderMaster.cs">
       <DependentUpon>BuyNSell_EntityDataModel.tt</DependentUpon>
     </Compile>

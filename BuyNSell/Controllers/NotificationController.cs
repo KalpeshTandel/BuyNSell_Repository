@@ -18,7 +18,7 @@ namespace BuyNSell.Controllers
         //}
         BuyNSell_DbEntities objDbEntities = new BuyNSell_DbEntities();
 
-        public void StoreNotificationInfoInSession(RequestContext context)
+        public void StoreNotificationCountInSession(RequestContext context)
         {
             //IsNew Flag in OrderMaster Meaning --> 1 -New for Buyer, 2 -New for Seller, 0 -Normal
             try
@@ -28,8 +28,8 @@ namespace BuyNSell.Controllers
                 if (Session["UserId"] != null)
                 {
                     int UserId = Convert.ToInt16(Session["UserId"]);
-                    Session["NewMyOrder"] = objDbEntities.OrderMasters.Where(o => o.UserId == UserId && o.IsNew == 1).Count();
-                    Session["NewCustomerOrder"] = objDbEntities.OrderMasters.Join(objDbEntities.ProductMasters, o => o.ProductId, p => p.ProductId, (o, p) => new { o, p }).Where(op => op.p.UserId == UserId && op.o.IsNew == 2).Count();
+                    Session["NotificationMyOrder"] = objDbEntities.OrderMasters.Where(o => o.UserId == UserId && (o.NotificationStatusId == 2 || o.NotificationStatusId ==3)).Count();
+                    Session["NotificationCustomerOrder"] = objDbEntities.OrderMasters.Join(objDbEntities.ProductMasters, o => o.ProductId, p => p.ProductId, (o, p) => new { o, p }).Where(op => op.p.UserId == UserId && op.o.NotificationStatusId == 2).Count();
                 }
             }
             catch (Exception ex)

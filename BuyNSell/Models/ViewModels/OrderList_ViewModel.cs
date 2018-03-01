@@ -35,8 +35,11 @@ namespace BuyNSell.Models
 
         public string PictureSrc { get; set; }
 
-        public Nullable<int> IsNew { get; set; }
+        //public Nullable<int> IsNew { get; set; }
         public Nullable<System.DateTime> OrderModifiedDate { get; set; }
+
+        public Nullable<int> NotificationStatusId { get; set; }
+
 
 
     }

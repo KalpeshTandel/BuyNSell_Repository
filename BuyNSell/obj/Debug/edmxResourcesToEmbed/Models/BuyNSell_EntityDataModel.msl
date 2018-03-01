@@ -67,8 +67,8 @@
     <EntitySetMapping Name="OrderMasters">
       <EntityTypeMapping TypeName="BuyNSell_Model.OrderMaster">
         <MappingFragment StoreEntitySet="OrderMaster">
+          <ScalarProperty Name="NotificationStatusId" ColumnName="NotificationStatusId" />
           <ScalarProperty Name="OrderModifiedDate" ColumnName="OrderModifiedDate" />
-          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
           <ScalarProperty Name="OrderAddedDate" ColumnName="OrderAddedDate" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
           <ScalarProperty Name="Active" ColumnName="Active" />
@@ -105,6 +105,14 @@
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
           <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotificationStatusMasters">
+      <EntityTypeMapping TypeName="BuyNSell_Model.NotificationStatusMaster">
+        <MappingFragment StoreEntitySet="NotificationStatusMaster">
+          <ScalarProperty Name="NotificationStatusName" ColumnName="NotificationStatusName" />
+          <ScalarProperty Name="NotificationStatusId" ColumnName="NotificationStatusId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

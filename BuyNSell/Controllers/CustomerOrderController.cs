@@ -171,7 +171,7 @@ namespace BuyNSell.Controllers
                                                            OrderAddedDate = grp.FirstOrDefault().om.OrderAddedDate,
                                                            OrderStatusId = grp.FirstOrDefault().om.OrderStatusId,
                                                            OrderStatusName = grp.FirstOrDefault().os.OrderStatusName,
-                                                           IsNew = grp.FirstOrDefault().om.IsNew,
+                                                           NotificationStatusId = grp.FirstOrDefault().om.NotificationStatusId,
                                                            OrderModifiedDate = grp.FirstOrDefault().om.OrderModifiedDate
                                                           }).OrderByDescending(x => x.OrderId).ToList();
 
@@ -230,8 +230,42 @@ namespace BuyNSell.Controllers
 
                 var Response = new { OrderList = SpecificOrderList, TotalRecords = TotalNumberOfRecords, CurrentPageNumber = CurrentPageNumber,LastPageNumber = LastPageNumber };
 
-                Session["CustomerOrderListIsRead"] = Response.OrderList;
+                ////Notification By Session
+                //List<int> CustomerOrderListIsRead = new List<int>();
 
+                //if (Session["CustomerOrderListIsRead"] != null)
+                //{
+                //    CustomerOrderListIsRead = Session["CustomerOrderListIsRead"] as List<int>;
+                //    foreach (OrderList_ViewModel item in SpecificOrderList)
+                //    {
+                //        foreach(int item1 in CustomerOrderListIsRead)
+                //        {
+                //            if(item.OrderId != item1)
+                //            {
+                //                CustomerOrderListIsRead.Add(item.OrderId);
+                //            }
+                //        }
+                //    }
+                //    Session["CustomerOrderListIsRead"] = CustomerOrderListIsRead;
+                //}
+                //else
+                //{
+                //    foreach(var item in SpecificOrderList)
+                //    {
+                //        CustomerOrderListIsRead.Add(item.OrderId);
+                //    }
+                //    Session["CustomerOrderListIsRead"] = CustomerOrderListIsRead;
+                //}
+
+                foreach (var item in SpecificOrderList)
+                {
+                    OrderMaster OrderMaster = objDbEntities.OrderMasters.Where(o => o.OrderId == item.OrderId).FirstOrDefault();
+                    if(OrderMaster.NotificationStatusId == 4)
+                    {
+                        OrderMaster.NotificationStatusId = 5;
+                        objDbEntities.SaveChanges();
+                    }
+                }
                 return Response;
 
             }
