@@ -28,7 +28,7 @@ namespace BuyNSell.Controllers
 
       [HttpPost]
       public ActionResult Login(UserMaster_Login_ViewModel objUM)
-        {
+        { 
             try
             {
                 NotificationController objNC = new NotificationController();
