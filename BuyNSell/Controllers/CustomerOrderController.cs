@@ -47,6 +47,7 @@ namespace BuyNSell.Controllers
             }
         }
 
+        [HttpPost]
         public JsonResult CustomerOrder_PageLoad(string ddlSortBySelected)
         {
             try

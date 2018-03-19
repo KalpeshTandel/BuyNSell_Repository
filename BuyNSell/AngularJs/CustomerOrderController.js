@@ -22,7 +22,7 @@ app.controller("IndexController", function ($scope, $http) {
     { Id: 15, Text: "15" }
     ]; //Array Object datatype
 
-    if (NewCustomerOrder != 0)
+    if (NotificationCustomerOrder != 0)
     {
         $scope.ddlSortBySelected = "OrderModifiedDateDesc";
     }
@@ -40,6 +40,7 @@ app.controller("IndexController", function ($scope, $http) {
     //Methods Declarations --Start
 
     $scope.CustomerOrder_PageLoad = function () {
+        debugger;
         $("#divLoadingBackground").show();
         $("#divLoadingImage").show();
         $http({

@@ -85,16 +85,16 @@
                     </ul>
                 </li>
                 <li style="width: 20%; display:-webkit-box;">@Html.ActionLink("My Order","Index","MyOrder",null, new { style = "padding-right:0px" })
-                    @if (Convert.ToInt16(Session["NewMyOrder"]) != 0)
+                    @if (Convert.ToInt16(Session["NotificationMyOrder"]) != 0)
                     {
-                        <span class="badge">New @Session["NewMyOrder"]</span>
+                        <span class="badge">New @Session["NotificationMyOrder"]</span>
                     }  
                 </li>
                 <li style="width: 20%;"><a href="#">My Cart</a></li>
                 <li style="width: 25%; display:-webkit-box;">@Html.ActionLink("Customer Order","Index", "CustomerOrder",null,new { style= "padding-right:0px" })
-                @if(Convert.ToInt16(Session["NewCustomerOrder"]) != 0)
+                @if(Convert.ToInt16(Session["NotificationCustomerOrder"]) != 0)
                 {
-                <span class="badge">New @Session["NewCustomerOrder"]</span>
+                <span class="badge">New @Session["NotificationCustomerOrder"]</span>
                 }
                 </li>
             </ul>
