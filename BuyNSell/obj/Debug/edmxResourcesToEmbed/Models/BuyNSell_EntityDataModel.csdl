@@ -84,7 +84,6 @@
     <Property Name="Active" Type="Boolean" />
     <Property Name="Deleted" Type="Boolean" />
     <Property Name="OrderAddedDate" Type="DateTime" Precision="3" />
-    <Property Name="IsNew" Type="Int32" />
     <Property Name="OrderModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="NotificationStatusId" Type="Int32" />
   </EntityType>
