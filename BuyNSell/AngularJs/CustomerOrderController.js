@@ -40,6 +40,7 @@ app.controller("IndexController", function ($scope, $http) {
     //Methods Declarations --Start
 
     $scope.CustomerOrder_PageLoad = function () {
+        debugger;
         $("#divLoadingBackground").show();
         $("#divLoadingImage").show();
         $http({
