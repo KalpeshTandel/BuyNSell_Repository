@@ -2,7 +2,7 @@
 var app = angular.module("IndexApp", [])
 
 app.controller("IndexController", function ($scope, $http) {
-    
+    debugger
     //Variables Declarations --Start
 
     $scope.OrderListData = {}; //Object datatype 
@@ -22,7 +22,7 @@ app.controller("IndexController", function ($scope, $http) {
     { Id: 15, Text: "15" }
     ]; //Array Object datatype
 
-    if (NewCustomerOrder != 0)
+    if (NotificationCustomerOrder != 0)
     {
         $scope.ddlSortBySelected = "OrderModifiedDateDesc";
     }
